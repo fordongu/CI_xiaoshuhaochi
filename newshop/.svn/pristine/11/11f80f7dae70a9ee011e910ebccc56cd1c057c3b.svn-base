@@ -1,0 +1,40 @@
+<?php
+if (!defined('BASEPATH'))
+    exit('No direct script access allowed');
+class GoodsDetail extends CI_Controller {
+
+    function __construct() {
+        parent::__construct();
+        $this->load->service('Goods_service');
+    }
+
+    public function index()
+    {//订单详情页主页
+                       $id=2;
+                       $sql="select * from t_users where tu_id=?";
+                       $user=$this->db->query($sql,array($id))->result();
+                     if($_GET){
+                       $good_id=$_GET['good_id'];   
+                     }   
+       
+        $building=43;//$building后期设成非固定
+        //$this->load->service('cart_service');
+        //$goods_detail = $this->Goods_service->getGoodDetail($good_id,$building);
+      //  print_r($goods_detail);
+    
+    }
+    public function goodsdetail(){
+        if($_POST['good_id']&&$_POST['building_id']){
+            $good_id=$_POST['good_id'];
+            $building_id=$_POST['building_id'];
+             $goods_detail = $this->Goods_service->getGoodDetail($good_id,$building_id);
+             if($goods_detail){
+                   echo json_encode(array("sussces"=>'yes','msg'=>$goods_detail));
+             }
+        }else{
+            echo json_encode(array("sussces"=>'no','msg'=>'查不到商品信息'));
+        }
+         
+    }
+   
+}

@@ -1,0 +1,89 @@
+<?php $this->load->view('main/new_header');?>
+
+  <!-- member_menu -->
+    <?php echo $this->load->view('member/member_left');?>
+  <!-- member_menu_end --> 
+ 
+  <div class="main_member_order_list member_base_infos_eric float_left">
+     
+  <!-- order_info -->
+     <div  class="order_info_eric member_order_base_info_eric">
+     	<div class="base_title_eric">
+          <div class="config_title_eric float_left">
+             我的订单
+          </div>
+          <div class="member_normal_line_eric float_left ">          
+          <!--  img src="/images/search.png" class="order_search_button float_right"/>
+             <input type="text" name="search_keywords" placeholder="商品名称，商品编号，订单编号" class="search_keywords float_right"/ -->              
+          </div>
+        </div>
+  <?php if($orders){
+  			foreach($orders as $key=>$val){
+  	?>      
+      <div class="base_title_eric">
+          <div class="config_title_eric float_left order_sn_div_eric">
+             订单编号：<?php echo $val->to_order_sn;?>
+          </div> 
+        </div>  
+     <div class="order_shipping_info_eric">
+        <ul class="receiver_info_eric">
+          <li>收货人：<?php echo $val->to_receiver;?></li>
+          <li>手机号码：<?php echo $val->to_mobile;?></li>
+          <li>下单时间：<?php echo $val->to_created;?></li>
+          <li>订单来源：<?php if ($val->to_order_type){echo '微信订单';}else{ echo '网站订单';}?></li>
+          <li>订单状态：<?php echo $order_status[$val->to_status];?></li>
+        </ul>
+        <div class="main_member_order_list_address receiver_address_eric">
+           地址:<?php echo $val->to_address;?>
+          <?php ?>
+          <?php $current_time=date('H:i:s');$current_date = strtotime(date('Y-m-d')); if(($val->to_status == 10)&&($val->to_pay_way != 'daofu')&&(($val->first_server_date > $current_date)||(($val->first_server_date == $current_date)&&($current_time < $order_time->tc_title)))){?>
+                  <button class="extra_span_eric pay_now_eric float_right" data_sn="<?php echo $val->to_order_sn;?>" data_pay_way="<?php echo $val->to_pay_way;?>">去付款</button>
+           <?php }?>  
+         </div>
+         
+     </div> 
+     <table class="order_list_table_eric member_base_order_list_eric" width="1px">
+       <tr class="list_title_eric"><td>用餐日期</td><td>菜品内容</td><td>原价/元</td><td>优惠活动</td><td>份数</td><td>小计/元</td><td>合计/元</td><td>支付方式及金额</td></tr>
+       <?php $temp_count = count($val->order_detail);foreach($val->order_detail as $k=>$v){
+       		 
+       	?>
+       <tr><td><?php echo $v->service_date;?></td>
+       <td><?php for($i=0;$i<5;$i++){$title = 'title'.$i;if($v->$title){ if($i){echo '+';}echo $v->$title;}}?></td>
+       <td><?php echo $v->now_price;?></td><td class="youhui"><?php if($val->event){ echo $val->event->name.'优惠价'.$val->event->price.'元'; }else{echo '无';}?></td><td><?php echo $v->count;?></td>
+       <td><?php if($val->event){echo $v->count*$val->event->price;}else{echo $v->count*$v->now_price;}?></td>
+       
+         
+       <?php }?><td><?php echo $val->to_total_amount;?></td>
+       <td>
+         
+         <?php if($val->coupon_amount){
+         	echo '优惠券:'.$val->coupon_amount.'元';
+         }
+         if ($val->to_order_amount){
+             if ($val->to_pay_way == 'alipay'){
+             	echo '&nbsp;&nbsp;支付宝:&nbsp;';
+             }else if($val->to_pay_way == 'wechat'){
+             	echo '&nbsp;&nbsp;微信支付:&nbsp;';
+             }else if($val->to_pay_way == 'daofu'){
+             	echo '&nbsp;&nbsp;货到付款:&nbsp;';
+             }
+             echo $val->to_order_amount.'元';      	
+         }
+         ?>   
+       </td></tr>
+    </table>
+   <?php 
+     }
+}?> 
+  </div>
+  
+  <!-- order_info --> 
+     
+</div>
+    
+
+</div>
+<div class="clear"></div>
+ <?php $this->load->view('main/new_footer');?>
+</body>
+</html> 

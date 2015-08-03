@@ -1,0 +1,13 @@
+RewriteEngine on
+RewriteCond $1 !^(weixin_api\.php|walipay|mobile_return_url\.php|api\.php|ckeditor|return_url\.php|alipay|last\.txt|login\.txt|asset|assets|api_images|doubancallback\.php|index\.php|img|images|image|resource|bootstrap|jquery-ui|js|uploads|upload|upload1|css|ueditor|robots\.txt|favicon\.ico)
+RewriteRule ^(.*)$ /index.php/$1 [L]
+Options +FollowSymLinks
+Options -Indexes
+
+DirectoryIndex index.php
+
+RewriteEngine on
+
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteCond %{REQUEST_FILENAME} !-d
+RewriteRule ^(.*)$ index.php/$1 [L,QSA]

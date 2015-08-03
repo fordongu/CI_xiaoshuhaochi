@@ -1,0 +1,30 @@
+<?php
+
+class Main_service extends MY_Service
+{
+    /**
+     * 
+     *
+     * 
+     * 
+     *
+     * @return arr $date
+     */
+        public function getDate(){
+            //获取当天用餐时间超过改时间则只能订购下一天的菜
+        $this->load->model("Product_model");
+        $limit=  $this->Product_model->getDate();
+        $usetime=$limit->tc_title;
+        $date=date("H:i:s");
+        if(strtotime($date)>strtotime($usetime)){
+            $usetime=date("Y-m-d",  strtotime("+1 day"));
+            $date_time=date("w")+1;
+        }else{
+            $usetime=date("Y-m-d");
+            $date_time=date("w");
+        }
+        return array($usetime,$date_time);
+        }  
+
+    
+}

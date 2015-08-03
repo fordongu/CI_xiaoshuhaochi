@@ -1,0 +1,48 @@
+                                         <!-- 头部 Begin -->
+<!DOCTYPE HTML>
+<html>
+<head>
+<meta charset="UTF-8" />
+<title>小树好吃</title>
+<link rel="stylesheet" href="<?=$static_url?>/css/main.css"/>
+<LINK href="/favicon.ico" type="<?=$static_url?>/image/x-icon" rel="icon">
+<LINK href="/favicon.ico" type="<?=$static_url?>/image/x-icon" rel="shortcut icon">
+</head>
+
+<body onselectstart="return false">
+  <div class="views_main_header">
+     <ul>
+      <li onclick="location.href='/main/index'"><span></span></li>
+      <li>
+        <ol>
+          <li class="person_content"><span></span></li>
+          <li class="person_name"><span></span></li>
+        </ol>
+      </li>
+      <li>
+        <ol>
+          <li id='this_week' class="this_week"><span></span><span>本周 </span><span> <?php echo $weeks_contorl[0][0]."-".$weeks_contorl[0][1];?></span></li>
+          <li id='next_week' class="next_week"><span></span><span>下周 </span><span> <?php echo $weeks_contorl[1][0]."-".$weeks_contorl[1][1];?></span></li>
+          <li><span><i></i></span><span><i></i></span><span><i></i></span><span><i></i></span></li>
+        </ol>
+      </li>
+      <li>
+        <ol>
+          <li><a href="javascript:;">F&Q</a></li>
+          <li><a href="javascript:;">关于我们</a></li>
+          <li><a href="javascript:;">用户协议</a></li>
+          <li><a href="javascript:;">隐私协议</a></li>
+        </ol>
+      </li>
+      <li><span></span><span></span></li>
+      <li>
+        <ol>
+          <li>版权所有©2014</li>
+          <li>上海小树好吃有限公司</li>
+          <li><h5>ICP备案号:</h5></li>
+          <li>京ICP备15001635号-1</li>
+        </ol>
+      </li>
+     </ul>
+ </div>
+                                          <!-- 头部 End -->

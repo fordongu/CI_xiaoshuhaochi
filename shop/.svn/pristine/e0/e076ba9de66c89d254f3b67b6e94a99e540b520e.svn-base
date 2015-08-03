@@ -1,0 +1,68 @@
+<?php $this->load->view('main/new_header');?>
+
+  <!-- member_menu -->
+    <?php echo $this->load->view('member/member_left');?>
+  <!-- member_menu_end --> 
+ 
+  <div class="member_base_infos float_left">
+      <!-- base_info --> 
+       <div class="member_base_info height280">
+        <div class="base_title">
+          <div class="config_title float_left">
+             基本信息
+          </div>
+          <div class="member_normal_line float_left ">
+          </div>
+        </div>
+       
+       <ul>
+         <li>
+           <div class="base_info_title float_left">昵称：</div> <div class="base_info_input float_left"><input type="text" name="nickname" /></div>  
+         </li>
+         <li>
+           <div class="base_info_title float_left">手机号码：</div> <div class="base_info_input float_left"><input type="text" name="nickname" /></div>  
+         </li>
+         <li>
+           <div class="base_info_title float_left">公司名称：</div> <div class="base_info_input float_left"><input type="text" name="nickname" /></div>  
+         </li>
+         <li>
+           <div class="base_info_title float_left">地址：</div> <div class="base_info_input float_left">
+             													<select><option value="">北京</option></select>
+             													<select><option value="">朝阳区</option></select>
+             													<select><option value="">三环以内</option></select>
+           														</div>  
+         </li>
+         <li class="last_li">
+           <div class="base_info_title float_left">&nbsp;</div> <div class="base_info_input float_left address_detail"><input type="text" name="nickname" /></div>  
+         </li>
+       </ul>    
+      </div>    
+     <!-- base_info -->
+       
+  <!-- order_info -->
+     <div  class="order_info member_base_info">
+     	<div class="base_title">
+          <div class="config_title float_left">
+             我的订单
+          </div>
+          <div class="member_normal_line float_left ">
+          <img src="/images/search.png" class="order_search_button float_right"/>
+             <input type="text" name="search_keywords" placeholder="商品名称，商品编号，订单编号" class="search_keywords float_right"/> 
+             
+          </div>
+        </div>
+     
+     <table class="order_list_table member_base_order_list">
+    <tr class="list_title"><td>订单信息</td><td>收货人</td><td>订单金额</td><td><select><option value="">最近三个月</option></select></td><td><select><option value="">全部状态</option></select></td><td>操作</td></tr>
+    </table>
+     </div>
+  
+  <!-- order_info --> 
+     
+</div>
+    
+
+</div>
+ <?php $this->load->view('main/new_footer');?>
+</body>
+</html> 

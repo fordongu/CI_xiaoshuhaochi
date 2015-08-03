@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8"/>
+<meta name="viewport" content="width=device-width,initial-scale=1.0,maximum-scale=1.0,user-scalable=no" >
+<title>小树好吃</title>
+<link rel="stylesheet" type="text/css" href="/css/wechat_new.css"/>
+</head>
+<body>
+<?php if($good_detail){?>
+<div class="wechat_detail">
+	<dl>
+	   <dt>
+	   	 <img src="<?php echo $good_detail->coverurl0;?>" alt="主菜"/>
+	   </dt>
+	   <dd>
+	   	 <h3><?php echo $good_detail->goods_name;?></h3>
+	   	 <p><span>供应日期:</span><span>需替换</span></p>
+	   	 <p>¥<big><?php echo $good_detail->price;?></big>元/份<button>点餐</button></p>
+	   </dd>
+	</dl>
+	<dl>
+		<dt>
+			<h3>套餐菜品</h3>
+			<ul>
+				<li>
+					<?php if($good_detail->coverurl1){?> <img src="<?php echo $good_detail->coverurl1;?>" />
+					<span><?php echo $good_detail->title1;?></span>
+					<?php }?>				
+					<!--<img src="<?php echo $good_detail->coverurl1;?>">
+					<span><?php echo $good_detail->title1;?></span>-->
+				</li>
+				<li>
+					<?php if($good_detail->coverurl2){?> <img src="<?php echo $good_detail->coverurl2;?>" />
+					<span><?php echo $good_detail->title2;?></span>
+					<?php }?>
+					<!--<img src="<?php echo $good_detail->coverurl2;?>">
+					<span><?php echo $good_detail->title2;?></span>-->
+				</li>
+				<li>
+					<?php if($good_detail->coverurl3){?> <img src="<?php echo $good_detail->coverurl3;?>" />
+					<span><?php echo $good_detail->title3;?></span>
+					<?php }?>
+					<!--<img src="<?php echo $good_detail->coverurl3;?>">
+					<span><?php echo $good_detail->title3;?></span>-->
+				</li>
+				<li>
+					<?php if($good_detail->coverurl4){?> <img src="<?php echo $good_detail->coverurl4;?>" />
+					<span><?php echo $good_detail->title4;?></span>
+					<?php }?>
+					<!--<img src="<?php echo $good_detail->coverurl4;?>">
+					<span><?php echo $good_detail->title4;?></span>-->
+				</li>
+			</ul>
+		</dt>
+		<dd>
+		<p><?php print_r($good_detail);//echo $good_detail->desc0;?></p>
+		<p><?php echo $good_detail->desc0;?></p>
+		</dd>
+	</dl>
+	<dl>
+		<dt>
+			<h3>商家信息</h3>
+			<img src="<?php echo $good_detail->image0_url;?>" alt="商家图片" />
+		</dt>
+		<dd>
+			<p><span>店名: </span><?php echo $good_detail->supplier_name;?></p>
+			<p><span>地址: </span><?php echo $good_detail->supplier_address;?></p>
+			<p><span>介绍: </span><?php echo $good_detail->descr;?></p>
+			
+		</dd>
+	</dl>
+	<div class="wechat_detail_cart">
+		<ul>
+			<li><i></i><span>5</span></li>
+			<li onclick="location.href='/wechat/index'><i></i></li>
+		</ul>
+	</div>
+</div>
+<?php }?>
+</body>
+</html>

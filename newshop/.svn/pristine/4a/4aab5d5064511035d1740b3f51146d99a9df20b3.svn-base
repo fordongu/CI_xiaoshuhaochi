@@ -1,0 +1,31 @@
+$(function(){
+    $("#login_btn").click(function(){
+
+        var login_cell=$("#login_cell").val();
+        var login_password=$("#login_password").val();
+        var remember_flag = $('#remember_password').attr('checked');
+        if(remember_flag){
+    			remember_flag = 1;
+    		}else{
+    			remember_flag = 2; 
+    		}
+                var submitdata ={
+    				login_cell:login_cell,
+    				login_password:login_password,
+    				remember_flag:remember_flag   			
+    		}
+                $.post('main/user_login',submitdata,function(data){
+                     alert_frame(data.msg,1);
+                      if(data.success == 'yes'){
+				    if(login_flag==1){
+						window.location.href="/main/order_confirm"; 
+					 }else{
+					    window.location.reload();
+					 }
+			 }
+                },"json");
+    
+ 
+      })
+})
+

@@ -1,0 +1,256 @@
+@charset "utf-8";
+
+
+
+/*全局设置*/
+*{padding:0px;margin:0px;font-family: "微软雅黑",Arial,"宋体";}
+html,body{width:100%;height:100%;overflow: hidden;}
+body{font-size:12px;z-index:1;}
+ul,li{list-style:none;}img{border:0;}
+
+
+/*隐藏菜单*/
+body.showmenu{}
+body.showmenu .left{display:block;}
+body.showmenu .right{left:207px;}
+/*
+body.hidemenu .left{display:none;}
+body.hidemenu .right{left:0px;}
+body.hidemenu{background:none;}
+*/
+
+/*布局样式*/
+.left{position:absolute;top:40px;width:207px;left:0px;bottom:0px;z-index:7;overflow: auto;}
+.menu{height:auto;}
+.left-spliter{
+	position: fixed;
+	top: 110px;
+	left: 204px;
+	background: url(../../image/admin/admin.png) no-repeat -7px -36px;
+	width: 3px;
+	height: 491px;
+}
+.menu iframe{height:100%;width:99.99%;z-index:20;border: 0;}
+.right{position:absolute;right:0;top:40px;bottom:0px;z-index:7;}
+.main{height:100%;position: absolute;width: 100%;}
+.main iframe{height:100%;width:99.99%;z-index:20;border: 0;}
+
+
+/*头部样式*/
+.header{background:#FFF;position:relative;z-index:8;}
+#site-logo{
+	margin-top: 10px;
+	height: 51px;
+}
+#site-logo a{
+	margin-left: 20px;
+}
+#site-logo a:hover{
+	text-decoration: none;
+}
+#site-logo a.logo img {
+}
+#site-logo .site-title{
+	font-size: 28px;
+	line-height: 51px;
+	color: #40a61a;
+	letter-spacing: 3px;
+	font-weight: bold;
+}
+.user-type-logo{
+	background: url(../../image/admin/admin.png) no-repeat 0 1px;
+	display: block;
+	position: absolute;
+	right: 10px;
+	top: 8px;
+}
+.type-taobao{
+	height: 27px;
+	width: 171px;
+	background-position: -491px 1px;
+}
+.type-shoper{
+	height: 27px;
+	width: 171px;
+	background-position: -130px 1px;
+}
+.type-medier{
+	height: 27px;
+	width: 171px;
+	background-position: -312px 1px;
+}
+.header-bottom{
+	height: 40px;
+	background-color: #f5f5f5;
+}
+.header-title{
+	float: left;
+	margin:10px 20px 0 20px;
+}
+.header-title h5{
+	font-size: 16px;
+	display: inline;
+	margin-left: 10px;
+}
+.icon-home{
+	width: 15px;
+	height: 15px;
+	margin-top: 1px;
+	line-height: 15px;
+	vertical-align: text-top;
+	background: url(../../image/admin/admin.png) no-repeat -49px -37px;
+}
+.header-info{color:#333333;float:right;margin:10px 20px 0 0;_display:inline;font-size: 13px;}
+.header-info a{color:#333333;text-decoration:none;}
+.header-info a:hover{text-decoration:underline;}
+
+/*菜单样式--覆盖bootstrap*/
+.nav-header{
+	font-size: 14px;
+	background-color: #dddddd;
+	cursor: pointer;
+	height: 25px;
+	line-height: 25px;
+	border-top: 1px solid white;
+	color: #333;
+}
+.nav-list{
+	display: none;
+}
+.nav-list li{
+	line-height: 30px;
+	color : #40a61a;
+}
+.nav-list > li > a{
+	color : #40a61a;
+}
+.nav-list > .active > a, .nav-list > .active > a:hover {
+	background-color: #40a61a;
+}
+/*
+ * CSS Styles that are needed by jScrollPane for it to operate correctly.
+ *
+ * Include this stylesheet in your site or copy and paste the styles below into your stylesheet - jScrollPane
+ * may not operate correctly without them.
+ */
+
+.jspContainer
+{
+	overflow: hidden;
+	position: relative;
+}
+
+.jspPane
+{
+	position: absolute;
+}
+
+.jspVerticalBar
+{
+	position: absolute;
+	top: 0;
+	right: 0;
+	width: 8px;
+	height: 100%;
+}
+
+.jspHorizontalBar
+{
+	position: absolute;
+	bottom: 0;
+	left: 0;
+	width: 100%;
+	height: 8px;
+}
+
+.jspVerticalBar *,
+.jspHorizontalBar *
+{
+	margin: 0;
+	padding: 0;
+	opacity:inherit;
+	filter:inherit;
+}
+
+.jspCap
+{
+	display: none;
+}
+
+.jspHorizontalBar .jspCap
+{
+	float: left;
+}
+
+.jspTrack
+{
+	background: transparent;
+	position: relative;
+}
+
+.jspDrag
+{
+	background: #77B44C;
+	position: relative;
+	top: 0;
+	left: 0;
+	cursor: pointer;
+	border-radius:5px;
+	-webkit-border-radius:5px;
+	-moz-border-radius:5px;		
+	-ms-border-radius:5px;			
+	-o-border-radius:5px;				
+}
+
+.jspHorizontalBar .jspTrack,
+.jspHorizontalBar .jspDrag
+{
+	float: left;
+	height: 100%;
+}
+
+
+.jspArrow
+{
+	background: #50506d;
+	text-indent: -20000px;
+	display: block;
+	cursor: pointer;
+}
+
+.jspArrow.jspDisabled
+{
+	cursor: default;
+	background: #80808d;
+}
+
+.jspVerticalBar .jspArrow
+{
+	height: 16px;
+}
+
+.jspHorizontalBar .jspArrow
+{
+	width: 16px;
+	float: left;
+	height: 100%;
+}
+
+.jspVerticalBar .jspArrow:focus
+{
+	outline: none;
+}
+
+.jspCorner
+{
+	background: #eeeef4;
+	float: left;
+	height: 100%;
+}
+
+/* Yuk! CSS Hack for IE6 3 pixel bug :( */
+* html .jspCorner
+{
+	margin: 0 -3px 0 0;
+}
+

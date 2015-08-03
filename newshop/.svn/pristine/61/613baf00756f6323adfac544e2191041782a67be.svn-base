@@ -1,0 +1,80 @@
+<?php
+defined('BASEPATH') OR exit('No direct script access allowed');
+
+class Cart extends CI_Controller {
+
+    function __construct() {
+        parent::__construct();
+        $this->load->service('cart_service');
+    }
+
+    public function index()
+    {
+        //$this->load->service('cart_service');
+        $goods_list = $this->cart_service->getCartInfo();
+        print_r($goods_list);exit;
+        $this->load->view('welcome_message');
+    }
+
+    public function getCart()
+    {
+        $goods_list = $this->cart_service->getCartInfo();
+        echo json_encode($goods_list);
+        exit;
+    }
+
+    public function addCart()
+    {
+        /*$goods_id = (int)$this->input->post('goods_id');
+        $date = strtotime($this->input->post('date'));
+        $num = (int)$this->input->post('num');
+        $type = (int)$this->input->post('goods_type');
+        $week_flag = (int)$this->input->post('week_flag');*/
+
+        $goods_id = 31;
+        $date = strtotime('2015-5-8');
+        $num = 1;
+        $type = 0;
+        $week_flag = 0;
+        $flag = $this->cart_service->addCart($goods_id, $date, $num, $type, $week_flag);
+        echo $flag;
+        exit;
+    }
+
+    public function delCart()
+    {
+
+    }
+
+    public function clearCart()
+    {
+        $flag = $this->cart_service->clearCart();
+        echo $flag;
+        exit;
+    }
+
+    public function incrCart()
+    {
+        $goods_key = $this->input->post('goods_key');
+        $flag = $this->cart_service->incrCart($goods_key, 1);
+    }
+
+    public function decrCart()
+    {
+        $goods_key = $this->input->post('goods_key');
+        $flag = $this->cart_service->decrCart($goods_key, 1);
+    }
+
+    public function updateCartDate()
+    {
+        $date = '2015-5-7';
+        //$date = $this->input->post('date');
+        $is_date = @strtotime($date) ? @strtotime($date) : FALSE;
+        if ($is_date) {
+            $flag = $this->cart_service->updateCartDate(strtotime($date), 0);
+            var_dump($flag);
+        } else {
+            echo '日期格式不正确';
+        }
+    }
+}

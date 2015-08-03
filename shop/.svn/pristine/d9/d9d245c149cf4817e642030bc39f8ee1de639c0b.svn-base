@@ -1,0 +1,65 @@
+   <?php $this->load->view('wechat/common_header');?>
+<script>
+$(function(){
+	$(".wechat_member_center_quit").click(function(){
+    $.post('/main/clear_cookie_member', '',function(data) { 
+      if (data.success == 'yes') {
+        window.location.href='/wechat/index';
+      }else{
+        alert(data.msg);
+      }
+    },"json");  
+    
+  })
+})
+</script>
+<!-- member_center_title_end --> 
+  <div style="display:none;" class="order_desc">
+     <img src="/images/wechat_logo.png" class="wechat_logo float_left"/>
+     <div class="order_desc_detail_bak float_right">
+      <ul class="center_ul" style="display:none;">
+	    <li>
+	      <div class="float_left cacu_left_order">累计订餐：</div>
+	      <div class="float_right cacu_right_order">X次，X份</div>
+	    </li> 
+	    <li>
+	      <div class="float_left cacu_left_order">累计原价金额总计：</div>
+	      <div class="float_right cacu_right_order">XXX元</div>
+	    </li> 
+	    <li>
+	      <div class="float_left cacu_left_order">累计使用优惠券：</div>
+	      <div class="float_right cacu_right_order">XX元</div>
+	    </li>
+	    <li>
+	      <div class="float_left cacu_left_order">累计优惠金额：</div>
+	      <div class="float_right cacu_right_order">XXX元</div>
+	    </li>  
+	   </ul> 
+     </div>
+  </div>
+  
+<!-- member_center_icon -->
+   
+<!-- member_center_icon_end -->   
+</div>
+<div class="wechat_member_center">
+	<div class="wechat_member_center_wrapper">
+	  <div class="wechat_member_center_title">
+		<h3>个人中心</h3>
+      </div>		
+		<ul class="wechat_member_center_list">
+          <li onclick="location.href='/wechat/member_index'" ><img src="/images/icon_geren.png" class="center_icon_img"/>基本信息</li>
+          <li onclick="location.href='/wechat/member_address'" ><img src="/images/icon_dizhi.png" class="center_icon_img"/>配送地址</li>
+          <li onclick="location.href='/wechat/member_order'" ><img src="/images/icon_dingdan.png" class="center_icon_img"/>我的订单</li>
+          <li onclick="location.href='/wechat/member_coupons'"><img src="/images/icon_yhq.png" class="center_icon_img" />优惠券</li>
+          <li onclick="location.href='/wechat/member_account'"><img src="/images/icon_zhanghu.png" class="center_icon_img" />我的账户</li>
+        </ul> 
+        <input class="wechat_member_center_quit" type="button" value="退 出 登 录">
+	</div>
+</div>
+
+
+
+
+</body>
+</html> 

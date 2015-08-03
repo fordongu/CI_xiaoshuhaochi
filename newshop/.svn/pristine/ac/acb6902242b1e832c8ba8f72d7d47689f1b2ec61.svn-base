@@ -1,0 +1,22 @@
+<?php
+defined('BASEPATH') OR exit('No direct script access allowed');
+
+class Main extends CI_Controller {
+        
+	
+	public function index()
+	{
+        $this->load->service('Goods_service');
+        $this->load->service('User_service');  
+        //$this->load->model('base');
+        $uid=  $this->User_service->get_uid();
+        $building_id=43;
+	$all_good=  $this->Goods_service->getAllGood($building_id);
+        $data["goods"]=$all_good["final_goods"];
+        
+        
+        $this->load->view('main/index',$data);
+	}
+
+
+}

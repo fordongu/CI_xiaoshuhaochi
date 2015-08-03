@@ -1,0 +1,272 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<link rel="stylesheet" href="/bootstrap/css/bootstrap.min.css" media="screen" />
+<link rel="stylesheet" href="/resource/css/admin/admin.css" media="screen" />
+<script type="text/javascript" src="/resource/js/jquery-1.7.2.min.js"></script>
+<style>
+.count{
+		background-color: #FFEFAF;
+		line-height: 30px;
+		margin-bottom: 10px;
+}
+.member-count{
+	margin: 0 50px 0 10px;
+}
+.info-block{
+	text-align: center;
+}
+.statu_frozen{
+	color: red;
+}
+.control-groups{
+	clear:both;
+	margin-top:0 !important;
+}
+.control-label{
+	width:8%;
+	float:left;
+	text-align:right;
+	padding-right:10px;
+}
+.controls{
+	width:60%;
+	float:left;
+	text-align:left;
+}
+#order_infos .control-group{
+	width:30%;
+	float:left !important;
+}
+#order_infos .control-label{
+	width:30% !important;
+}
+</style>
+<script>
+ $(document).ready(function(){
+   $('.click_input').dblclick(function(){
+      var name = $(this).attr('data_val'); 
+      var flag = $(this).children('input').attr('name');
+      
+      if(flag == undefined){
+     
+	      var v = $.trim($(this).attr('data_o_val'));
+
+	      if((name == 'to_mobile')||(name == 'to_receiver')){
+	    	  var id = $(this).attr('data_id'); 
+	      }else{
+	    	  var id = $(this).parents('tr').attr('data_id');
+		  }
+	      
+	      var input = "<input type='text' name='"+name+"' data_o_val='"+v+"' data_id='"+id+"' class='edit_input' value='"+v+"' style='width:100px;' />";
+	      $(this).html(input);
+      }
+   })
+
+    $(".edit_input").focus().live("blur",function() {
+            var val = $.trim($(this).val());     
+            var field = $(this).attr('name');
+            if((field == 'to_mobile')||(field == 'to_receiver')){
+	            var o_val = $(this).attr('data_o_val');
+	            var og_id = 0;
+	            var order_id = $(this).parents('div').attr('data_id');
+	            var price = '';
+	            var order_price = '';
+            }else{
+	            var o_val = $(this).attr('data_o_val');
+	            var og_id = $(this).parents('tr').attr('data_og_id');
+	            var order_id = $(this).parents('tr').attr('data_id');
+	            var price = $(this).parents('tr').attr('data_price');
+	            var order_price = $(this).parents('tr').attr('data_order_price');
+            }
+            if(o_val != val){
+	        //post表单提交
+	            $.post("/store/ajax_update_order",{order_price:order_price,price:price,o_val:o_val,val:val,field:field,og_id:og_id,order_id:order_id},function(data) {
+	                alert(data.msg);
+	                if(data.success=='yes'){
+	  					window.location.reload();
+	                }
+	            },"json");
+            }else{
+            	if((field == 'to_mobile')||(field == 'to_receiver')){
+            		$(this).parents('.controls').html(val);
+                }else{
+            		$(this).parents('td').html(val);
+                }
+            }
+        })
+ }) 
+</script>
+
+<title>订单预览</title>
+</head>
+<body> 
+        <fieldset id="order_infos">
+           <legend>订单信息</legend>
+           <div class="control-group" style="margin-top:0;">
+				<label class="control-label" for="option1">订单号:</label>
+				<div class="controls">
+					<?php echo $default_order->to_order_sn;?>
+					<?php print_r($default_order);//echo $default_order->to_order_sn;?>
+				</div>
+			</div>
+			
+			<div class="control-group">
+				<label class="control-label" for="option1">订单来源:</label>
+				<div class="controls">
+					<?php if($default_order->to_order_type){echo '微信订单';}else{echo '网站订单';}?>
+				</div>
+			</div>
+			
+			
+			<div class="control-group">
+				<label class="control-label" for="option1">订单状态:</label>
+				<div class="controls">
+					<?php echo $order_status[$default_order->to_status];?>
+				</div>
+			</div>
+			
+			<div class="control-group">
+				<label class="control-label" for="option1">支付方式:</label>
+				<div class="controls">
+					<?php echo $payment_config[$default_order->to_pay_way];?>
+				</div>
+			</div>
+			
+			<div class="control-group">
+				<label class="control-label" for="option1">订单已支付金额:</label>
+				<div class="controls">
+					<?php if (($default_order->to_status ==10)||($default_order->to_status ==70)){echo 0;}else{ echo $default_order->to_order_amount;}?>元
+				</div>
+			</div>
+			
+			<div class="control-group">
+				<label class="control-label" for="option1">订单修改后金额:</label>
+				<div class="controls">
+					<?php echo $default_order->to_total_amount;?>元
+				</div>
+			</div>
+		<?php if($default_order->to_coupon_id){?>	
+			<div class="control-group">
+				<label class="control-label" for="option1">优惠券金额:</label>
+				<div class="controls">
+					<?php echo $default_order->coupon_price;?>元
+				</div>
+			</div>
+		<?php }?>	
+		<?php if($default_order->to_comment){?>	
+			<div class="control-group">
+				<label class="control-label" for="option1">订单备注:</label>
+				<div class="controls">
+					<?php echo $default_order->to_comment;?>
+				</div>
+			</div>
+		<?php }?>	
+			<div class="control-group">
+				<label class="control-label" for="option1">下单时间:</label>
+				<div class="controls">
+					<?php echo $default_order->to_created;?>
+				</div>
+			</div>
+		<?php if($default_order->to_change_amount){?>	
+			<div class="control-group" style="color:red">
+				<label class="control-label" for="option1">订单变动金额:</label>
+				<div class="controls">
+					<?php echo $default_order->to_change_amount;?>元  <br/>(负数是要找给客户的，整数是客户需要额外支付)
+				</div>
+			</div>
+        <?php }?>
+        </fieldset>
+
+        <fieldset>
+           <legend>商品信息</legend>
+           <table class="table table-bordered" id="catelist">
+           <thead>
+             <tr>
+               <td>名称</td> 
+               <td>用餐日期</td>
+               <td>原价/元</td>
+               <td>优惠活动</td>
+               <td>数量/份</td>
+               <td>小计/元</td>
+             </tr>
+            </thead> 
+           <?php foreach($order as $k=>$v){
+               $current_time = strtotime(date('Y-m-d').'23:59:59');
+               $service_date = strtotime($v->service_date);
+           	?>  
+           <tr data_id="<?php echo $v->to_id;?>" data_og_id="<?php echo $v->id;?>" data_price="<?php echo $v->price;?>" data_order_price="<?php echo $v->to_total_amount;?>" >
+               <td><?php for($i=0;$i<5;$i++){$title = 'title'.$i;if($v->$title){ if($i){echo '+';}echo $v->$title;}}?></td>
+             
+               <td><?php echo $v->service_date;?></td>
+               <td data_o_val="<?php echo $v->perprice;?>" data_val="perprice" <?php if(($default_order->to_status == 10)&&($current_time<$service_date)){?> class="click_input" <?php }?>><?php echo $v->perprice;?></td>
+               <td><?php if($v->event){ echo $v->event->name;}else{echo '无';}?></td>
+               <td data_o_val="<?php echo $v->count;?>" data_val="count" <?php if(($default_order->to_status == 10)&&($current_time<$service_date)){?> class="click_input"<?php }?> ><?php echo $v->count;?></td>
+               <td><?php if($v->event){echo $v->count*$v->event->price;}else{echo $v->count*$v->perprice;}?></td>
+             </tr>
+             
+           <?php }?>  
+             
+           </table>
+           
+        </fieldset>
+
+		<fieldset>		   
+			<legend>客户信息</legend>
+			 
+			<div class="control-group control-groups">
+				<label class="control-label" for="option1">收货人:</label>
+				<div class="controls click_input" data_o_val="<?php echo $default_order->to_receiver;?>"  data_val="to_receiver"  data_id="<?php echo $default_order->to_id;?>">
+					<?php echo $default_order->to_receiver;?>
+				</div>
+			</div>
+			<div class="control-group control-groups">
+				<label class="control-label" for="option1">收货人手机:</label>
+				<div class="controls click_input" data_o_val="<?php echo $default_order->to_mobile;?>" data_val="to_mobile" data_id="<?php echo $default_order->to_id;?>">
+					<?php echo $default_order->to_mobile;?>
+				</div>
+			</div> 
+		 
+			<div class="control-group control-groups">
+				<label class="control-label" for="option1">收货地址:</label>
+				<div class="controls">
+					<?php echo $default_order->to_address;?>
+				</div>
+			</div> 
+			</fieldset>
+<?php if($change_history){?>			
+<fieldset>		   
+			<legend>修改记录</legend>
+		<table class="table table-bordered" id="catelist">
+           <thead>
+             <tr>
+               <td>修改字段</td> 
+               <td>字段原值</td>
+               <td>字段修改后值</td>
+               <td>操作人</td>
+               <td>修改时间</td>
+             </tr>
+            </thead> 	
+		<?php foreach($change_history as $k=>$v){?>	 
+			<tr>
+               <td><?php echo $v->field;?></td> 
+               <td><?php echo $v->original_val;?></td>
+               <td><?php echo $v->now_val;?></td>
+               <td><?php echo $v->username;?></td>
+               <td><?php echo $v->created;?></td>
+             </tr>
+		<?php }?> 
+		</table>
+</fieldset>	
+<?php }?>		
+   		  	<div class="control-group control-groups" style="margin-top:20px;height: 50px;line-height: 50px;">
+			    <div class="controls">
+			      
+			      <button id="back-btn" type="button" class="btn btn-primary" onclick="location.href='/store/order_index'">返回</button>
+			    </div>
+		    </div>
+		
+ 
+</body>	
+</html>

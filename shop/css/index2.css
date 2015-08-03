@@ -1,0 +1,96 @@
+@charset "utf-8";
+html,body,div,span,object,iframe,h1,h2,h3,h4,h5,h6,p,blockquote,pre,abbr,address,cite,code,del,dfn,em,img,ins,kbd,q,samp,small,strong,sub,sup,var,b,i,
+dl,dt,dd,ol,ul,li,fieldset,form,label,legend,table,caption,tbody,tfoot,thead,tr,th,td,article,aside,canvas,details,figcaption,figure,footer,header,
+hgroup,menu,nav,section,summary,time,mark,audio,video{margin:0;padding:0;}
+article,aside,details,figcaption,figure,footer,header,hgroup,menu,nav,section{display:block}
+ol,ul,menu {list-style:none;}
+blockquote,q{quotes:none}
+blockquote:before,blockquote:after,q:before,q:after{content:'';content:none}
+html {-webkit-tap-highlight-color:rgba(0,0,0,0);}
+a {text-decoration:none;}
+ins{background-color:#ff9;color:#000;text-decoration:none}
+mark{background-color:#ff9;color:#000;font-style:italic;font-weight:bold}
+del{text-decoration:line-through;}
+abbr[title],dfn[title]{border-bottom:1px dotted;cursor:help}
+address,em {font-style:normal;}
+table{border-collapse:collapse;border-spacing:0;}
+input,select{vertical-align:middle}
+fieldset,img{border:none;vertical-align:text-bottom;}
+.clearfix:after{visibility:hidden;display:block;font-size:0;content:" ";clear:both;height:0}
+* html .clearfix{zoom:1}
+*:first-child+html .clearfix{zoom:1}
+.table {display:table;table-layout:fixed;border-collapse:collapse;border-spacing:0;}
+body {font-size:12px;background:#f0f0f0;}
+
+.wrap {width:924px;margin:0 auto;}
+#pageHeader {background:url(../image/login/bg_1.jpg) 0 0 repeat-x;border-bottom:solid 3px #fff;}
+#headerWrap {height:347px;overflow:hidden;position:relative;}
+#logo {background:url(../image/login/logo.png);width:470px;height:118px;position:absolute;left:216px;top:37px;text-indent:-999px;overflow:hidden;}
+#productIntro {background:url(../image/login/bg_repeat_x.png) 0 0 repeat-x;}
+#productIntro .wrap {background:url(../image/login/bg_0.jpg) 0 0 no-repeat;height:326px;}
+#productIntro .padding {padding:51px 0 0 55px;}
+#productIntro h2,#features h2 {background-image:url(../image/login/title2.png);background-repeat:no-repeat;text-indent:-100%;overflow:hidden;}
+#productIntro h2 {background-position:0 -116px;width:135px;height:73px;}
+#productIntro p {font:100 17px/25px "微软雅黑","宋体";text-indent:2em;width:22em;}
+#features h2 {height:116px;}
+#features li {overflow:hidden;}
+#features h3 {background-image:url(../image/login/title.png);background-repeat:no-repeat;width:359px;height:59px;text-indent:-359px;overflow:hidden;}
+#features p {font:100 17px/25px "微软雅黑","宋体";color:#737373;padding-top:1em;width:21em;}
+#intelligentCS {height:307px;background:url(../image/login/bg_1.jpg) 0 0 no-repeat;}
+#intelligentCS .padding {padding:52px 0 0 550px;}
+#customActivities {height:463px;background:url(../image/login/bg_2.jpg) 0 0 no-repeat;}
+#customActivities .padding {padding:118px 0 0 109px;}
+#customActivities h3 {background-position:0 -59px;}
+#smallSites {height:441px;background:url(../image/login/bg_3.jpg) 0 0 no-repeat;}
+#smallSites .padding {padding:78px 0 0 554px;}
+#smallSites h3 {background-position:0 -118px;}
+#memberManagement {height:452px;background:url(../image/login/bg_4.jpg) 0 0 no-repeat;}
+#memberManagement .padding {padding:121px 0 0 102px;}
+#memberManagement h3 {background-position:0 -177px;}
+#dataMA {height:522px;background:url(../image/login/bg_5.jpg) 0 0 no-repeat;}
+#dataMA .padding {padding:137px 0 0 539px;}
+#dataMA h3 {background-position:0 -236px;}
+#stayTuned {text-align:center;font:100 27px/4em "微软雅黑","宋体";color:#3a3a3a;padding-bottom:1em;}
+#pageFooter {font-size:12px;padding:2em 0;border-top:solid 1px #aaa;}
+#pageFooter li {float:left;}
+#pageFooter li#copyright {float:right;}
+#pageFooter,#pageFooter a {color:#464646;}
+#pageFooter a:hover {text-decoration:underline;}
+#customerService,#csPadding,#customerService ul,#scannedImage,#tel {background-image:url(../image/login/cs_bg.png);background-repeat:no-repeat;}
+#customerService {position:fixed;_position:absolute;right:0;top:100px;width:107px;padding-top:11px;text-align:center;}
+#csPadding {background-position:-107px bottom;padding-bottom:16px;}
+#customerService ul {background-position:right 0;background-repeat:repeat-y;padding:0 7px;}
+#QQcs a,#scannedImage p,#tel p {background-image:url(../image/login/cs_bg2.png);background-repeat:no-repeat;}
+#QQcs a {background-position:-158px 5px;height:25px;padding-left:20px;font:100 12px/25px "宋体";color:#000;display:inline-block;*display:inline;*zoom:1;}
+#QQcs a:hover {text-decoration:underline;}
+#scannedImage,#tel {background-position:-7px -40px;padding:26px 0 0;}
+#scannedImage p {width:65px;padding-top:70px;margin:0 auto;color:#858585;font-size:12px;}
+#tel p {background-position:-65px 0;width:93px;padding:60px 0 12px;color:#2a2a2a;font:100 12px/1em Arial;}
+#LandR {position:absolute;top:159px;left:163px;}
+#LandR_l,#LandR_c,#LandR_r {background-image:url(../image/login/LandR.png);height:114px;float:left;overflow:hidden;}
+#LandR_l,#LandR_r {width:23px;}
+#LandR_r {background-position:-77px 0;}
+#LandR_c {background-position:0 -114px;width:529px;position:relative;}
+#LandR_c_wrap {width:1200px;}
+.blueMenu83,.grayMenu83 {width:83px;height:30px;background-image:url(../image/login/indexMenu.png);text-align:center;font:bold 14px/30px "微软雅黑","宋体";}
+.blueMenu83 {color:#fff;}
+.blueMenu83:hover {background-position:0 -30px;}
+.grayMenu83 {background-position:0 -60px;color:#333;}
+#userName,#passwordTips,#password,#code {border:solid 1px #c9c9c9;height:27px;line-height:27px;color:#464646;}
+#userName,#passwordTips,#password,#LandR_c .blueMenu83,#LandR_c .grayMenu83,#code {float:left;}
+#login,#register {padding-top:40px;width:529px;overflow:hidden;float:left;}
+#userName,#passwordTips,#password,#code {margin-right:3px;width:205px;padding:0 5px;}
+#userName,#passwordTips,#password {width:205px;}
+#code {width:423px;}
+.otherOperations {padding-top:.5em;}
+.otherOperations a,.otherOperations .interval {color:#3eadd4;}
+.otherOperations a:hover {text-decoration:underline;}
+#registerNow {margin-left:240px;}
+#have {margin-left:285px;}
+#maskLeft,#maskRight {background-image:url(../image/login/mask.png);width:10px;height:96px;position:absolute;top:10px;display:none;}
+#maskLeft {left:23px;}
+#maskRight {background-position:-10px 0;right:23px;}
+#LandR.ani #maskLeft,#LandR.ani #maskRight {display:block;}
+.suggest-container{border:1px solid #C1C1C1;visibility:hidden;}
+.suggest-item{padding:3px 2px;}
+.suggest-active {background:#33CCFF;color:white;padding:3px 2px;}

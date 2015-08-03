@@ -1,0 +1,25 @@
+                                          <!-- 页尾 Begin -->
+
+<div class="views_mian_footer">
+  <ul>
+    <li>
+      <span>版权所有©2014</span>
+      <span>上海小树好吃有限公司</span>
+    </li>
+    <li>
+      <h5>ICP备案号:</h5>
+      <span>京ICP备15001635号-1</span>
+    </li>
+  </ul>
+</div>
+<script type="text/javascript">
+    var base_url = "<?=$base_url?>";
+</script>
+<script type="text/javascript" src="<?=$static_url?>/js/jquery-1.7.2.min.js"></script>
+<script type="text/javascript" src="<?=$static_url?>/js/main_index_common.js"></script>
+<script type="text/javascript" src="<?=$static_url?>/js/cart.js"></script>
+<script type="text/javascript" src="<?=$static_url?>/js/MainController.js"></script>
+<script type="text/javascript" src="<?=$static_url?>/js/user_center.js"></script>
+</body>
+</html>
+                                          <!-- 页尾 End -->

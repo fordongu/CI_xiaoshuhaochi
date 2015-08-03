@@ -1,0 +1,205 @@
+
+
+                                          <!-- 主体 Begin -->
+<input type="hidden" id="dav_memory" value="<?php //echo $index;?>">
+ <input type="hidden" id="dav_select" value="<?php //echo $dav_select;?>">
+ <input type="hidden" id="cookie_good_count" value="<?php //echo $cookie_count;?>">
+<input type="hidden" id="choose_pic" value="<?php //echo $day_choose;?>">
+<input type="hidden" id="per_count_limit" value="<?php //echo $per_count_limit;?>" />
+<input type="hidden" id="total_count_limit" value="<?php //echo $total_count_limit;?>" />
+ <input type="hidden" id="uid" value="<?php echo $uid;?>" />
+ <input type="hidden" id="week" value="<?php echo $week;?>" />
+
+<div class="views_main_content">
+    <div class="views_main_wrap">
+     <?php 
+       
+     foreach ($goods[0]->temp_goods as $key=>$val){
+        
+         if(in_array($date[1],$val->week)){          
+         //$date[0]是日期date[1]是周几
+         
+          if(in_array($val->id,$first)){           
+              //取首元素
+           //   $arr = explode("+", $val->name);
+     ?> 
+  
+      <dl class="first">
+        <dt>
+          <ul>
+              <li><img src="<?php echo $val->coverurl0;?>" alt="主菜"></li>
+            <li><h5><?php echo $val->name;?></h5></li>
+            <li><img src="<?php echo $val->coverurl0;?>" alt="<?php //echo $arr[0];?>"/><img src="<?php echo $val->coverurl0;?>" alt="<?php //echo $arr[1];?>" /></li>
+          </ul>
+        </dt>
+        <dd>
+        <ul>
+          <li>
+             <h3>商品名</h3>
+          </li>
+          <li>
+            <ol>
+              <li>
+                  <span>用餐时间:</span>
+                  <span class="week_day_chinese">
+                      <?php echo $date[0];?>
+                  </span>
+                  <span class="week_day"><?php //echo $val;?></span>
+              </li>
+              <li><span>餐厅:</span><span><?php echo $val->supplier_name;?></span></li>
+            </ol>
+          </li>
+          <li>
+             <p></p>
+          </li>
+          <li>
+            <span><small>¥</small></span>
+            <button class="plus_good_main" data_good_id="<?php echo $val->good_id;?>" cate_id="<?php echo $val->cate_id;?>">点餐</button>
+          </li>
+        </ul>
+       </dd>
+      </dl> 
+          <?php }
+             if($key!==0){
+          ?>
+     <dl class="views_main_content_small">
+        <dt>
+          <img src="<?php echo $val->coverurl0;?>" alt="主菜" data_goods_id="<?php echo $val->good_id;?>">
+        </dt>
+        <dd>
+          <ul>
+            <li>
+             <ol>
+               <li>
+                 <h3><?php echo $val->name;?></h3>
+               </li>
+               <li>
+                  <span>用餐时间:</span>
+                  <span class="week_day_chinese">
+                     
+                  </span>
+                  <span class="week_day"><?php echo $date[0]?></span>
+              </li>
+             </ol> 
+            </li>
+            <li>
+              <span><small>¥</small><?php echo $val->price;?></span>
+              <button class="plus_good_main" data_good_id="<?php echo $val->good_id;?>" cate_id="<?php echo $val->cate_id;?>">点餐</button>
+            </li>
+          </ul>
+        </dd>
+      </dl>
+    
+             <?php }}}?>
+      <div class="views_main_index_carouse">
+        
+        <ul>
+              <?php     foreach ($goods[0]->temp_goods as $key=>$val){?>
+            <li><img src="images/suppliers/<?php echo $val->image0_url;
+                       ?>"><span><?php echo $val->descr;?></span></li>
+
+              <?php }?>
+        </ul>
+        <ol>
+             <?php     foreach ($goods[0]->temp_goods as $key=>$val){?>
+          <li class="normal"><a href="javascript:;"></a></li>
+          
+           <?php }?>
+        </ol>
+          
+      </div>
+   </div>
+</div>
+                                          <!-- 主体 End -->
+       
+                                          <!-- 购物车 Begin -->  
+  <div class="views_main_shopping_cart">
+    <div class="views_main_dinner_time">
+       <h5>用餐时间</h5>
+       <ul>
+         <li class="prev"></li>
+         <li>
+           <ol>
+             <li>星期一 4/5</li>
+             <li>星期二 5/5</li>
+             <li>星期三 6/5</li>
+             <li>星期四 7/5</li>
+             <li>星期五 8/5</li>
+           </ol>
+         </li>
+         <li class="next"></li>
+       </ul>
+    </div>
+    <ul class="views_main_cart_list"></ul>
+    <div class="views_main_cart_subtotal">
+      <ul>
+        <li>
+          <h5>小计:</h5>
+          ¥<span>120</span>元
+        </li>
+        <li>
+          <h5>优惠:</h5>
+          ¥<span>30</span>元
+        </li>
+      </ul>
+    </div>
+    <div class="views_main_cart_total">
+      <ul>
+        <li>
+          <h5>总计:</h5>
+          ¥<span>90</span>元
+        </li>
+        <li>
+          <ol>
+            <li><i></i><span>清除所有</span></li>
+            <li><button>结算</button></li>
+          </ol>
+        </li>
+      </ul>
+    </div>
+  </div>
+ <!-- 购物车 End --> 
+                                           <!-- 详情 Begin -->
+   <div class="views_main_detail">
+     <span class="delete"><img src="../icon/delete.png" alt="删除" /></span>
+     <dl>
+        <dt>
+          <ul>
+            <li><img src="../images/index_menu02.png" alt="主菜"></li>
+            <li><h3>套餐配菜</h3><span>大骨汤、孜然牛肉卷</span></li>
+            <li><img src="../images/index_menu02.png"  alt="牛肉卷"/><img src="../images/index_menu02.png"  alt="大骨汤"/><img src="../images/index_menu02.png"  alt="大骨汤"/></li>
+          </ul>
+        </dt>
+        <dd>
+        <ul>
+          <li>
+             <h3>坎塔布里亚</h3>
+          </li>
+          <li>
+            <ol>
+              <li><span>餐厅:</span><span>大士村</span></li>
+              <li>
+                  <span>用餐时间:</span>
+                  <span class="views_main_content_week">星期一</span>
+                  <span class="views_main_content_date">4/5/2015</span>
+              </li>
+              
+            </ol>
+          </li>
+          <li>
+             <p></p>
+          </li>
+          <li>
+            <span><small>¥</small>25</span>
+            <button class="views_main_plus_button">点餐</button>
+          </li>
+        </ul>
+       </dd>
+      </dl>
+      <div>
+        <img src="../images/index_menu02.png"  alt="详情图片" /><span>详情</span>
+      </div>
+   </div>
+   <!-- 详情 End -->  
+   
+   

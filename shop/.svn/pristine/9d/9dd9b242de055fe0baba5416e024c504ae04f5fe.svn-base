@@ -1,0 +1,1745 @@
+
+/*rest*/
+html, body, div, p, ul, ol , li, dl, dt, dd, h1, h2, h3, h4, h5, h6, form, input, select, button, textarea, iframe, table, th, td { width:640px;margin: 0; padding:0;}
+div,dl,dt,dd,form,h1,h2,h3,h4,h5,h6,img,ol,ul,li,table,th,td,p,span,a{border:0;}
+article,aside,dialog,figure,footer,header,legend,nav,section{display: block;}
+img,input{border:none;vertical-align:middle;-webkit-appearance:none;text-indent: 20px;}
+input[type="button"]{text-indent: 0px!important;}
+body{font-family:Helvetica;font-size:16px;background:#dddddd;-moz-user-select:none;-khtml-user-select:none;-webkit-font-smoothing:antialiaed;}
+html{overflow-y:scroll;}
+ul,ol{list-style-type:none;}
+th,td,input{font-size:12px;}
+h1{ font-size:24px;}
+h2{ font-size:20px;}
+h3{ font-size:18px;}
+h4{ font-size:16px;}
+h5{ font-size:14px;}
+h6{ font-size:12px;}button{border:none;cursor:pointer;font-size:12px;background-color:transparent;}
+select{border-width:1px;_zoom:1;border-style:solid;padding-top:2px;font-size:12px;}
+.clear{clear:both;font-size:1px;height:0;visibility:hidden;line-height:0;}
+.clearfix:after{content:"";display:block;clear:both;}
+.clearfix{zoom:1;}
+a:link,a:visited{text-decoration:none;}
+a:hover,a:active{text-decoration:underline;}
+.absolute{position:absolute;}
+.relative{position:relative;}
+.UnLine{text-decoration:underline;}
+.DisunLine{text-decoration:none;}
+.o-hidden{overflow: hidden;}
+.none{display: none;}
+.block{display: block;}
+.t-l{text-align:left;}
+.t-c{text-align:center;}
+.t-r{text-align:right;}
+.f-l{float:left;}
+.f-r{float:right;}
+.f-n{float:none;}
+.ml-10{margin-left:10px}
+.mr-10{margin-right:10px}
+.mt-10{margin-top:10px}
+.mb-10{margin-bottom:10px}
+.pl-10{padding-left:10px}
+.pr-10{padding-right:10px}
+.pt-10{padding-top:10px}
+.pb-10{padding-bottom:10px}
+ .float_left{
+    float:left;
+ }
+.float_right{
+    float:right;
+ }
+ .wechat_buildings_name{
+    color:#fff;
+    margin-left:25%;
+    font-size:1.3rem;
+   
+ }
+ .down_arrow{
+    width:6%;
+    margin-top:22px;
+    margin-left:2%;
+ }
+ 
+#cellphone{
+
+}
+
+
+ .detail_week{
+    width:100%;;
+    padding:10px 0 0 20px;
+    text-align:center;
+    font-size:20px;
+    z-index: 2;
+    color:#006800;
+    font-weight:bold;
+
+ }
+ .detail_week_new{
+    _position:absolute;
+_bottom:auto;
+_top:expression(eval(document.documentElement.scrollTop));
+ 
+}
+ .detail_week span{
+    display: inline-block;
+    margin-left: -35px;
+    font-size: 18px;
+ }
+ .good_detail_title{
+    /*padding:15px 0;*/
+    /*width:100%;*/
+    /*text-align:center;*/
+    font-size:16px;
+   color:#757575;
+ }
+ 
+.index_gray_gb{ 
+    margin-top:-200px !important;  
+    height:200px !important;
+ }
+.wechat_index_goods{
+ width:100%;
+
+    }
+ .wechat_goods_detail_div{
+ position:relative;
+  width:100%;
+  height: 100%;
+  float:left;
+  margin-bottom: 50px;
+}
+.date_week_top{
+    position: absolute;
+    top: 0px;
+    text-align: center;
+    background: #F85A00;
+    padding:10px;
+    filter:alpha(opacity:80);
+    opacity: 0.8;
+}
+.date_week_top span{
+    display: block;
+}
+.wx_sq{
+    position: absolute;
+    bottom: 5px;
+    right: 5px;
+    width: 150px !important;
+    height: 150px !important;
+   
+}
+
+.good_detail_img{
+    width:100%;
+	height:75%;
+}
+
+.good_detail_img_div{
+    position: relative;
+    /*margin-top:20px;*/
+    background:#fff;
+    /*padding:10px;*/
+	width:95%;
+	/*height:60%;*/
+	margin:10px auto;
+    /*border-radius:10px;*/
+ }
+ .wechat_good_detail_price_count{
+ /*float:right;*/
+    height:10%;
+    width:95%;
+    padding:10px 10px;
+ }
+ .wechat_good_buy_button{
+    /*padding:15px 5px;*/
+    color:#757575;
+    text-align:right;
+   /*margin-top:-10px;*/
+   float:right;
+   margin-right: 10px;
+ display:inline-block;
+ margin-bottom:10px;
+}
+.wechat_good_address{
+    height: 20px;
+    color: #757575;
+    padding:5px 0;
+	font-size:14px;
+}
+ .wechat_good_price {
+ width:45%;
+ color: #757575;
+ /*text-align:center;*/
+ /*padding:20px 0;*/
+ font-size:18px;
+ float:left;
+ }
+ .wechat_good_price del{
+    font-size: 14px;
+  display: block;
+ }
+ .wechat_good_price span{
+    color:#f85a00;
+    font-size: 22px;
+ }
+ .wechat_mins_count_none{
+    display: none;
+ }
+ .wechat_buy_icon{
+    color: #00d329;
+    height:25px;
+    width:25px;
+    font-size: 24px;
+    font-weight: lighter;
+    border-radius:2px; 
+    border:1px solid #00d329;
+    line-height:25px;
+    text-align:center;
+    display:inline-block;
+    cursor: default;
+ }
+ .wechat_buy_icon:hover{
+     background:#00931B;
+    color: #fff;
+ }
+.wechat_buy_icon_invalid{
+    border:1px solid #757575;
+    height:25px;
+    width:25px;
+    line-height:25px;
+    font-size:20px;
+    color:#757575;
+    border-radius: 2px;
+    text-align:center;
+ }
+ .pop_close_but{
+    position: absolute;
+    top: 3%;
+    right: 5%;
+    z-index: 20;
+ }
+ .buy_good_count{
+    width:30px;
+    line-height:25px;
+    font-size: 24px;
+    text-align:center;
+ }
+ 
+ .good_name_icon{
+    font-size:18px;
+ }
+ .normal_icon{
+    font-size:10px;
+ }
+ .signupBar{
+    width: 100%;
+    background: #ccc;
+    z-index:100;
+ }
+ .signupItem{
+    width: auto;
+    padding:30px;
+    margin: 0 auto;
+ }
+ .signupBar ul li{
+    float: left;
+    margin-bottom: 20px;
+    width: 100%;
+ }
+ .confirm_step_two_title{
+ 	position: relative;
+ 	text-align: left;
+ }
+ /*views_wechat_index*/
+ .views_wechat_index{
+    position:relative;
+    width:100%;
+    height: 100%;
+    color:#fff;
+     
+}
+.views_wechat_index .views_wechat_wrap{
+   width: 100%;
+   height: 100%;    
+}
+.views_wechat_title{
+    position: fixed;
+    top: 0;
+    width: 100%;
+    padding:20px 0;
+    z-index: 999;
+    background: #fff;
+}
+.views_wechat_title ul{
+    width: 90%;
+    background: #fff;
+    margin: 0 auto;
+}
+.views_wechat_title ul li{
+}
+.views_wechat_title ul li:hover{
+    cursor: pointer;
+}
+.views_wechat_title ul li h3{
+    display: inline-block;
+    color: #606060;
+    font-size: 20px;
+    vertical-align: top;
+    font-weight: normal;
+}
+.active1 span{
+    background: url('/images/weichat_icon.png') 0 0 no-repeat!important;
+    background-size: 60px 60px!important;
+}
+.active2 span{
+    background: url('/images/weichat_icon.png') -30px 0 no-repeat!important;
+    background-size: 60px 60px!important;
+}
+.active1 h3{
+    color: #ff6000!important;
+}
+.active2 h3{
+    color: #ff6000!important;
+}
+.views_wechat_title ul li span{
+    width: 30px;
+    height: 30px;
+    vertical-align: middle;
+    display: inline-block;
+    background: #fff;
+}
+.views_wechat_title ul li:nth-child(1){
+    float: left;
+}
+.views_wechat_title ul li:nth-child(2){
+    float: right;
+}
+.views_wechat_title ul li:nth-child(1) span{
+    background: url('/images/weichat_icon.png') 0 -30px no-repeat;
+    background-size: 60px 60px;
+}
+.views_wechat_title ul li:nth-child(2) span{
+    background: url('/images/weichat_icon.png') -30px -30px no-repeat;
+    background-size: 60px 60px;
+}
+
+#carousel{
+  position:relative;
+  top:5px;
+  width: 50%;
+  height: 50px;
+  overflow: hidden;
+  margin: 0 auto;
+  text-align: center;
+  /*padding:70px 0;*/
+      /*width:100%;*/
+     
+     /* z-index:2;*/
+}
+#carousel ul{
+    position: absolute;
+    left: 40px;
+}
+
+ /*views_wechat_index*/
+ 
+ 
+ #wechat_popup{
+    background-color: white; 
+    display: none;
+    filter:alpha(opacity=90); 
+    -moz-opacity:0.9; 
+    opacity:0.9;  
+    left: 25%;
+    margin-left: -20%;
+    margin-top: -2.5rem;
+    overflow: hidden;
+    position: fixed;
+    text-align: center;
+    top: 20%; 
+    z-index: 51; 
+    color:#000;
+    padding:30px 0;
+
+ }
+ #popup_ul{
+    height:400px; 
+    overflow-y:auto;
+    border-right:2px solid #d6d6d6;
+    width:40%;
+ }
+ #popup_area_ul{
+    height:400px; 
+    overflow-y:auto;
+    width:40%;
+ }
+ 
+ .popup_ul li{
+    height:40px;
+    line-height:40px;
+    border-bottom:1px solid #d6d6d6;
+    padding:0 20px;
+    width:110px;
+ }
+ /*views_main_container*/
+.default_index_footer{
+    margin-top:0px;
+  } 
+
+ #wechat_popup{
+    background-color: white; 
+    display: none;
+    filter:alpha(opacity=90); 
+    -moz-opacity:0.9; 
+    opacity:0.9;   
+    margin-left: -20%;
+    margin-top: 25px;
+    overflow: hidden;
+    position: fixed;
+    text-align: center;
+    top: 20%; 
+    z-index: 51; 
+    color:#000; 
+
+ }
+ #popup_ul{
+    height:400px; 
+    overflow-y:auto;
+    border-right:2px solid #d6d6d6;
+    width:40%;
+ }
+ #popup_area_ul{
+    height:400px; 
+    overflow-y:auto;
+    width:40%;
+ }
+ 
+#popup_area_ul li{
+    cursor:pointer;
+}
+ .popup_ul li{
+    cursor:pointer;
+    height:40px;
+    line-height:40px;
+    border-bottom:1px solid #d6d6d6;
+    padding:0 20px;
+    width:110px;
+ }  
+
+
+ /*views_main_container*/
+ .wechat_area_arrow{
+    width:10%;
+    float:right;
+    margin-right:15%;
+    margin-left:5%;
+    margin-top:12px;
+ }
+ .confirm_one_img{
+    width:100%;
+    height:100%;
+ }
+
+ .empty_cart{
+    margin-right:5%;
+ }
+ .confirm_step_one_icon{
+    margin-left:6%;
+ }
+ .order_confirm_step_one{
+    margin-left:2%;
+ }
+ 
+ .confirm_buttom{
+
+ }
+ .confirm_buttom div{
+ 	position: relative;
+ 	left: 10%;
+ 	height: 20px;
+ 	line-height: 20px;
+ 	width: 20px;
+ 	border:1px solid #ccc;
+ 	display: inline-block;
+ }
+ .confirm_order_count{
+ 	border-left: none!important;
+ 	border-right: none!important;
+ }
+.payment_selected{
+    width:6%;
+}
+.payment_selected img{
+    width:100%;
+    margin-top: -10px;
+}
+ .order_configs{
+    height: 40px;
+    line-height: 40px;
+    padding:0 20px;
+    border:1px solid #aaa;
+    background: #ccc;
+}
+.wechat_member_order_title_i{
+    display: inline-block;
+    height: 0;
+    width: 0;
+    float: right;
+    margin-top: 10px;
+    margin-right: 20%;
+    border-width: 10px;
+    border-style: solid;
+    border-color: transparent transparent transparent #ff2d4b;
+
+}
+
+ .order_confirm_table{
+    position: absolute;
+    bottom: 50px;
+    left: 0;
+    display: none;
+    color: #757575;
+    background: #EAEAEA;
+    width:100%;
+    border:1px solid #CCCCCC;
+     border-collapse:collapse;
+ }
+ .order_confirm_table tr{
+    border-bottom: 1px solid #ccc;
+    width: 100%;
+ }
+ .order_confirm_table td{
+    width:24%;
+    text-align:center;
+    height:32px;
+    line-height:32px;
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow:ellipsis;
+    -moz-text-overflow:ellipsis;
+    -ms-text-overflow:ellipsis;
+    -o-text-overflow:ellipsis;
+    -webkit-text-overflow:ellipsis;
+ }
+ .order_confirm_table td:nth-child(2){
+ 	display: inline-block;
+ 	width: 100px;
+ }
+  .confirm_step_one_title{
+    color: #00931B;
+    font-size: 30px;
+    font-weight: bold;
+    height: 40px;
+    line-height: 38px;
+    text-decoration: none;
+ }
+ .confirm_total_list{
+    padding:10px 0;
+    font-size: 16px;
+    border-bottom: none;
+    background: #00931B;
+    color: #fff;
+ }
+ .confirm_total_count span{
+   color: #fff;
+ }
+ .confirm_total_count_amount{
+    color: #fff;
+ }
+ .confirm_next_step{
+   color: #fff;
+ border-left: 1px solid #fff;
+ }
+ .service{
+    color: #aaa;
+ }
+ .order_confirm_table{
+   z-index:3; 
+ }
+ 
+ #confirm_step_one_body{
+    width: 100%;
+    background:#fff;
+ }
+ .index_confirm_bottom{
+    position: fixed;
+    left: 0;
+    bottom: 0;
+    width: 100%;
+    height: 50px;
+    color: #f1f1f1;
+    background: #EAEAEA;
+    z-index:3;
+    box-shadow: 0 0 10px #000;
+ }
+ .person_icon_div{
+    width: 25%;
+    height: 100%;
+    float: left;
+    text-align: center;
+ }
+.person_center{
+    width: 80px;
+    height: 80px;
+    text-align: center;
+    background: #00931B;
+    color: #fff;
+    position: fixed;
+    bottom: 50px;
+    left: 0;
+    display: none;
+}
+.person_center li{
+    padding-top:10px;
+}
+.person_center li:hover{
+    background: #005910;
+}
+.signupBar{
+    position: absolute;
+    top: 10%;
+    left: 10%;
+}
+ .cart_count_div{
+   float: right;
+   width: 25%;
+   height: 100%;
+   text-align: right;
+  outline:none;
+  border:none;
+  cursor: default;
+ }
+ .cart_count_div img,.person_icon{
+    position: relative;
+    right: 10px;
+   height: 35px;
+   padding-top: 8px;
+ }
+ 
+ .cart_count{
+    position: relative;
+    top: -5px;
+    left: 28px;
+    width: 20px;
+    color:#fff;
+    box-shadow:0 0 20px #fff;
+    background: #FF4A00;
+    text-align: center;
+    border-radius: 30px;
+    z-index: 4;
+    display: inline-block;
+ }
+ #views_wechat_side {
+    width: 50%;
+    height: 50px;
+    line-height:50px;
+   float: left;
+   text-align: center;
+   overflow: hidden;
+ }
+ #views_wechat_side .carousel_ul{
+    width: 100%;
+    height: 100%;
+ }
+ #views_wechat_side .carousel_ul li{
+    float: left;
+     width: 100%;
+    height: 100%;
+   /*padding:10% 0;*/
+}
+#views_wechat_side .carousel_ul a{
+        position: relative;
+        left: 0;
+        height: 100%;
+        width: 100%;
+        font-size: 14px;
+        color: #00931B;
+        display: inline-block;
+}
+#views_wechat_side .carousel_ul a:hover{
+    text-decoration: none;
+}
+#views_wechat_side .carousel_ul .week_day_active{
+   border:none;
+   text-decoration: none;
+ }
+
+ .confirm_step-two_submit{
+    position: relative;
+    width: 100%;
+    color: #000;
+    text-align: center;
+    background: #fff;
+    font-size: 20px;
+    padding:20px 0;
+    display: inline-block;
+ }
+ .confirm_step-two_submit span{
+    position: absolute;
+    top: 10px;
+    left: 40%;
+     display: inline-block;
+    text-align: center;
+    font-weight: bold;
+ }
+
+ .confirm_step-two_submit a img{
+    position: absolute;
+    top: 13px;
+    left: 5%;
+    display: inline-block;
+    width: 20px;
+    height: 20px;
+ }
+ .confirm_step-two_submit a:hover{
+    cursor: pointer;
+ }
+ 
+ .new_address_confirm{
+    float: right;
+    color: #00931B;
+    padding:10px;
+    font-size: 14px;
+    cursor: pointer;
+    background: transparent;
+ }
+ .confirm_step_three_header{
+    height:40px; 
+    border-bottom:1px solid #000;
+    width:95%;
+    padding-left:5%;
+    padding-top:10px;*/
+ }
+ 
+ .confirm_step_three_content{
+    width: 100%;
+    font-size: 14px;
+ }
+ .confirm_step_three_amount{
+    display: inline-block;
+    width:70%;
+    text-align:center;
+    background: #00931B;
+    color: #fff;
+     padding:15px 0;
+ }
+ .three_coupon{
+    display: inline-block;
+    width: 30%;
+    background: #00931B;
+    color: #fff;
+    margin-left: -1px;
+    border-left: 1px solid #fff;
+    text-align: center;
+    cursor: pointer;
+    padding:15px 0;
+ }
+ .confirm_step_span{
+    margin-left: 20px;
+    display: inline-block;
+ }
+ 
+
+ 
+ .coupon_ring{
+    float:left;
+    width:5%;
+    margin-top:3px;
+    margin-right:1%;
+    margin-left:10%;
+ }
+ .wechat_payment_ul{
+    background:#fff;
+    margin-bottom: 30px;
+    padding:0 20px;
+}
+.wechat_payment_ul li{
+    height:35px;
+    line-height:50px;
+    width:95%;
+    padding-right: 20px;
+    color:#333;
+    font-size:15px;
+    border-bottom:1px solid #ccc;
+}
+.payment_input{
+    position: relative;
+    width: 100%;
+}
+ #comment_input{
+    position: absolute;
+    top: 16px;
+    left: 44px;
+    font-size:14px;
+    line-height: 20px;
+    width:88%;
+    border:none;
+    border-bottom: 1px solid #ccc;
+}
+.payment_span{
+    display: inline-block;
+    margin-top: 20px;
+    width: 50px;
+    font-size: 15px;
+}
+ .shipping_address_note{
+    font-size:1.3rem;
+ }
+ .three_shipping_address{
+    width:95%;
+    clear:both;
+    margin-left: 20px;
+ }
+ .three_shipping_address li{
+    position: relative;
+    width:100%; 
+    font-size:14px;
+ }
+ 
+ .three_shipping_main{
+    width: 90%;
+    padding:10px 0;
+ }
+ .three_shipping_title{
+    width: 100%;
+    padding-bottom:5px;
+ }
+ .three_shipping_title span{
+    display: inline-block;
+    margin-left: 10%;
+ }
+ .three_shipping_a img{
+    position: absolute;
+    right: 10%;
+    top: 20px;
+    width: 20px;
+    height: 20px;
+    text-align: center;
+    display: inline-block;
+ }
+ .three_shipping_a a:hover{
+    cursor: pointer;
+ }
+ #three_add_shipping_address{
+    margin-top: 20px;
+    padding:0 20px;
+    font-size: 14px;
+    margin-bottom:
+ }
+ #three_add_shipping_address li{
+    height: 35px;
+ }
+ #three_add_shipping_address li input{
+    width: 75%;
+    position: absolute;
+    left: 18%;
+    margin-top: -10px;
+    line-height: 20px;
+    display: inline-block;
+    border:none;
+    border-bottom: 1px solid #aaa;
+ }
+ 
+ .three_note_div{
+    display: inline-block;
+    line-height:20px;
+ }
+ #company{
+    height:30px;
+    line-height:30px;
+ }
+ .three_company_div{
+    height:40px !important;
+    line-height:40px !important;
+ }
+ .three_next_arrow{
+    width:30%; 
+ }
+ .gray_bg{
+    position:relative;
+    width:120%;
+    z-index:60; 
+    margin-top:-100px;
+ }
+ 
+/*wecaht_member_center*/
+.wechat_member_center{
+    width: 100%;
+    height: 100%;
+    color: #6C6C6C;
+    background: #F5F5F5;
+    
+}
+.wechat_member_center_wrapper{
+    width: 100%;
+    margin: 0 auto;
+    text-align: center;
+}
+.wechat_member_center_title{
+    width: 100%;
+    height: 60px;
+   line-height: 60px;
+   border-bottom: 1px solid #aaa;
+}
+.wechat_member_center_list{
+    width: 96%;
+    display: inline-block;
+	position:relative;
+	left:2%;
+	right:2%;
+	
+}
+.wechat_member_center_list li{
+    float: left;
+    width: 32%;
+    border:1px solid #E6E6E6;
+    text-align: center;
+    padding:20px 0 10px;
+	border-collapse:collapse;
+}
+.wechat_member_center_list li img{
+    width: 30px;
+    height: 30px;
+    display: block;
+    margin: 0 auto 10px;
+    display: block;
+
+}
+.wechat_member_center_quit{
+    	display:inline-block;
+    width: 40%;
+	left:5%;
+	padding:15px 0;
+    color: #fff;
+    margin: 20px auto;
+    font-size: 16px;
+    background: #00931B;
+    border-radius: 2px;
+    -webkit-appearance: none;
+
+}
+
+.wechat_member_center_return{
+    	display:inline-block;
+    width: 40%;
+	
+	right:5%;
+    padding:15px 0;
+    color: #fff;
+    margin: 20px auto;
+    font-size: 16px;
+    background: #00931B;
+    border-radius: 2px;
+    -webkit-appearance: none;
+}
+
+/*wecaht_member_center*/
+
+/*wechat_member_index*/
+
+.wechat_member_index{
+    width: 100%;
+    height: 100%;
+    background: #F5F5F5;
+    text-align: center;
+}
+.wechat_member_index_title{
+    width: 100%;
+    height: 60px;
+    line-height: 60px;
+    border-bottom:1px solid #D0D0D0;
+}
+.wechat_member_index_title h3{
+    vertical-align:bottom;
+    display: inline-block;
+}
+.wechat_member_index_title img{
+    width: 30px;
+    height: 30px;
+    display: inline-block;
+}
+.wechat_member_index_list{
+    width: 100%;
+    background: #fff;
+    text-align: left;
+}
+.wechat_member_index_list li{
+    position: relative;
+    left: 0;
+    width: 90%;
+    height: 40px;
+    line-height: 40px;
+    border-bottom:1px solid #D0D0D0;
+    margin: 0 auto;
+}
+.wechat_member_index_list .wechat_member_index_mobile{
+    position: relative;
+    height: 120px;
+    width: 90%;
+    border:none;
+    box-shadow: 0 0 10px #000;
+    display: none;
+    padding:10px 0;
+}
+.wechat_member_index_list .wechat_member_index_mobile input[type="text"]{
+    width: 100%;
+    height: 40px;
+    line-height: 20px;
+    outline: none;
+    border-bottom:1px solid #D0D0D0;
+	position:relative;
+	text-align:center;
+}
+.wechat_member_index_list .wechat_member_index_mobile input[type="text"]:nth-child(2){
+    width: 70%;
+    margin-bottom: 5px;
+}
+#send_code{
+   
+    display: inline-block;
+}
+#mobile_span{
+    display: inline-block;
+    position: absolute;
+    left: 50%;
+}
+.wechat_member_index_list .wechat_member_index_mobile input[type="button"]{
+    display: block;
+    width: 90%;
+    background: #008D00;
+    margin: 5px 0;
+    color: #fff;
+    padding:10px 0;
+    border-radius: 2px;
+    border:none;
+    margin: 0 auto;
+	font-size:14px;
+    -webkit-appearance: none;
+}
+.wechat_member_index_list li .wechat_member_index_list_left{
+    position: absolute;
+    left: 10px;
+}
+.wechat_member_index_list li .wechat_member_index_sex_check{
+    position: absolute;
+    right: 20%;
+	
+}
+.wechat_member_index_list li .wechat_member_index_gt{
+   position: absolute;
+   right: 10px;
+}
+.wechat_member_index_password{
+    position: relative;
+    margin-top: 10px;
+    width: 100%;
+    display: none;
+}
+.wechat_member_index_password li{
+    width: 100%;
+    height: 30px;
+    padding:10px 0;
+    background: #fff;
+    border-bottom: 1px solid #E0E0E0;
+}
+.wechat_member_index_sex{
+    display: none;
+    box-shadow: 0 0 10px #000;
+    width: 90% !important;
+	padding-left:20px;
+}
+.wechat_member_index_sex .base_info_input{
+    display: inline-block;
+    width: 50%;
+    float: left;
+}
+.wechat_member_index_sex input[type="button"]{
+    width: 30%;
+    float: right;
+    background: #008D00;
+    margin-top: 2px;
+    padding:10px 0;
+    color: #fff;
+    outline: none;
+    border-radius: 2px;
+    margin-right: 10px;
+    -webkit-appearance: none;
+}
+.wechat_member_index_password{
+    width: 100%;
+    padding:10px 0;
+    box-shadow: 0 0 10px #000;
+}
+.wechat_member_index_password li input[type="password"]{
+    width: 80%;
+    height: 100%;
+	line-height:20px;
+    outline: none;
+    text-align: center;
+    font-size: 14px !important;
+}
+.wechat_member_index_password li input[type="button"]{
+    width: 80%;
+    color: #fff;
+    outline: none;
+    font-size: 14px !important;
+    border-radius: 2px;
+    background: #008D00;
+    padding:10px 0;
+    -webkit-appearance: none;
+}
+/*wechat_member_index*/
+
+/*wechat_member_coupons*/
+
+.wechat_member_coupons{
+    width: 100%;
+    height: 100%;
+    background: #F5F5F5;
+}
+.wechat_member_coupons_wrapper{
+    width: 100%;
+    height: 90%;
+    margin: 0 auto;
+    text-align: center;
+}
+.wechat_member_coupons_wrapper .wechat_member_coupons_title{
+    height: 60px;
+    line-height: 60px;
+    border-bottom: 1px solid #aaa;
+}
+.wechat_member_coupons_wrapper .wechat_member_coupons_title img{
+    width: 30px;
+    height: 30px;
+}
+.wechat_member_coupons_wrapper .wechat_member_coupons_title h3{
+    display: inline-block;
+}
+.wechat_member_coupons_wrapper .wechat_member_coupons_list{
+    width: 100%;
+    height: 100%;
+
+}
+.wechat_member_coupons_wrapper .wechat_member_coupons_list li{
+    height: 100px;
+    width: 100%;
+   margin:10px 0;
+}
+.wechat_member_coupons_wrapper .wechat_member_coupons_list li dl{
+    background: #fff;
+    width: 100%;
+
+}
+.wechat_member_coupons_wrapper .wechat_member_coupons_list li .wechat_member_coupons_left{
+    background: url('/images/yhq_left.png') left center no-repeat;
+    display: inline-block;
+    width: 5%;
+    height: 100px;
+    float: left;
+   
+}
+.wechat_member_coupons_wrapper .wechat_member_coupons_list li .wechat_member_coupons_right{
+    background: url('/images/yhq_right.png') right center no-repeat;
+    display: inline-block;
+    width: 5%;
+    height: 100px;
+    float: left;
+   
+}
+.wechat_member_coupons_wrapper .wechat_member_coupons_list li dl{
+    float: left;
+    display: inline-block;
+    height: 100px;
+    width: 90%;
+    position: relative;
+}
+.wechat_member_coupons_wrapper .wechat_member_coupons_list li dl dt{
+    width: 30%;
+    height: 80px;
+    line-height: 80px;
+    position: absolute;
+    left: 0;
+    top: 10px;
+    border-right: 1px solid #ccc;
+}
+.wechat_member_coupons_wrapper .wechat_member_coupons_list li dl dd{
+    width: 70%;
+    height: 100px;
+    position: absolute;
+    left: 35%;
+    text-align: left;
+    color: #757575;
+}
+.wechat_member_coupons_wrapper .wechat_member_coupons_list li dl dt span{
+    color: #009526;
+    font-size: 34px;
+
+}
+.wechat_member_coupons_wrapper .wechat_member_coupons_list li dl dd h3{
+    font-size: 20px;
+    margin: 10px 0;
+}
+.wechat_member_coupons_wrapper .wechat_member_coupons_list li dl dd span{
+    color: #555;
+    font-weight: bold;
+    margin-bottom: 5px;
+    display: inline-block;
+}
+/*wechat_member_coupons*/
+
+/*wechat_member_account*/
+
+.wechat_member_account{
+    width: 100%;
+    height: 100%;
+}
+.wechat_member_account_wrapper{
+    width: 100%;
+    height: 100%;
+    text-align: center;
+}
+.wechat_member_account_wrapper .wechat_member_account_title{
+    height: 60px;
+    line-height: 60px;
+    border-bottom: 1px solid #aaa;
+}
+.wechat_member_account_wrapper .wechat_member_account_title img{
+    height: 30px;
+    width: 30px;
+    display: inline-block;
+}
+.wechat_member_account_wrapper .wechat_member_account_title h3{
+    display: inline-block;
+    vertical-align: bottom;
+}
+.wechat_member_account_wrapper .wechat_member_account_title .wechat_member_account_section{
+    padding-top: 10px;
+}
+.wechat_member_account_wrapper .wechat_member_account_title .wechat_member_account_section input{
+    width: 100px;
+    height: 40px;
+    line-height: 40px;
+    font-size: 16px;
+    border-radius: 2px;
+    margin: 0 5px;
+    outline: none;
+    background: transparent;
+    border:1px solid #00CA00;
+    display: inline-block;
+    -webkit-appearance: none;
+}
+.wechat_member_account_wrapper .wechat_member_list_title{
+    height: 40px;
+    line-height: 40px;
+    text-align: left;
+    background: #fff;
+}
+.wechat_member_account_wrapper .wechat_member_list_title span:nth-child(1){
+    padding:1px 5px;
+    background: #00A538;
+    color: #fff;
+    border-radius: 2px;
+}
+.wechat_member_account_wrapper .wechat_member_list_title span{
+    display: inline-block;
+    padding:0 10px;
+    color: #FF9B00;
+}
+.wechat_member_account_wrapper table{
+    width: 100%;
+    border-collapse: collapse;
+    border-bottom: 1px solid #ccc;
+}
+.wechat_member_account_wrapper table tr{
+	border-bottom: 1px dashed #ccc;
+}
+.wechat_member_account_wrapper  table tr td{
+    font-size: 15px !important;
+}
+.wechat_member_account_wrapper  table thead{
+    height: 40px;
+    line-height: 40px;
+    background: #DDDDDD;
+    color: #727272;
+    
+}
+.wechat_member_account_wrapper  table thead tr td{
+    width: 30%;
+}
+.wechat_member_sore_list{
+    display: none;
+}
+.wechat_member_account_active{
+    background: #ADEBBE!important;
+}
+/*wechat_member_account*/
+
+/*wechat_member_address*/
+
+.container{
+    width: 100%;
+    height: 100%;
+    background: #F5F5F5;
+    text-align: center;
+}
+.wechat_order_title{
+    width: 100%;
+    height: 40px;
+    padding:10px 0;
+    background: #F5F5F5;
+    border-bottom: 1px solid #aaa;
+}
+.wechat_order_title img{
+    width: 30px;
+    height: 30px;
+    vertical-align: bottom;
+}
+.wechat_order_title h3{
+    vertical-align: bottom;
+    display: inline-block;
+}
+.shipping_address_ul{
+    position: relative;
+    width: 100%;
+    height: 100%;
+    padding:10px 0;
+    color: #000;
+    background: #fff;
+    margin-bottom: 10px;
+}
+.shipping_address_ul li{
+    margin: 10px;
+    font-size: 12px!important;
+}
+.shipping_name{
+	width: 60%!important;
+}
+.shipping_address_ul li div{
+    text-align: left;
+}
+.shipping_address_ul li .shipping_class_selected{
+    color: #008D00;
+    font-weight: bold;
+    display: none;
+}
+.shipping_address_ul li ol{
+    position: absolute;
+    top: 20px;
+    right: 20px;
+    z-index: 20;
+}
+.shipping_address_ul > li:nth-child(1){
+	width: 40%!important;
+}
+.shipping_address_ul li ol li{
+    float: left;
+    margin: 0 10px;
+}
+.shipping_address_ul li ol li img{
+     width: 20px;
+    height: 20px;
+}
+#new_address_button{
+    background: #008D00;
+    color: #fff;
+    width: 90%;
+    border-radius: 2px;
+    padding:10px 0;
+    margin-top: 10px;
+    position: relative;
+    left: 5%;
+}
+.new_address_edit{
+    width: 100%;
+    margin-bottom: 20px;
+    text-align: left;
+    display: none;
+}
+.new_address_edit li{
+    height: 40px;
+    padding-left: 10px;
+    line-height:40px;
+    display: block;
+    background: #fff;
+    border-bottom: 1px solid #E1E1E1;
+}
+.new_address_edit li .base_info_title{
+   width: 25%;
+   display: inline-block;
+}
+.new_address_edit li:last-child{
+	background: transparent!important;
+	border:none!important;
+	margin-bottom: 10px;
+	padding-left:0; 
+	text-align: center;
+}
+#save_address {
+    width: 100%;
+    background: #00931B;
+    color: #fff;
+    border:none;
+    font-size: 14px;
+    padding:10px 0;
+    margin: 10px auto;
+    text-align: center;
+    cursor: pointer;
+}
+.iconfont-fanhui1{
+	position: absolute;
+	top: 22px;
+	left: 5%;
+	width: 20px!important;
+	height: 20px!important;
+	display: inline-block;
+}
+#nickname,#mobile{
+    display: inline-block;
+   width: 70%;
+    line-height: 30px;
+    outline: none;
+    background: #fff;
+}
+#extra_building_address,#company_address{
+    width: 70%;
+    line-height: 30px;
+    background: #fff;
+    outline:none;
+}
+.new_address_edit li div{
+    display: inline-block;
+}
+.wechat_member_address_list{
+    display: none;
+    margin-top: 20px;
+}
+/*wechat_member_address*/
+
+/*wechat_member_order*/
+.member_base_infos {
+	background: #fff;
+}
+.wechat_member_order_title{
+    position: relative;
+    height: 40px;
+    padding: 10px 0;
+    background: #F5F5F5;
+    text-align: center;
+    border-bottom: 1px solid #aaa;
+}
+.wechat_member_order_title h3{
+    vertical-align: bottom;
+    display: inline-block;
+}
+.wechat_member_order_title img{
+    width: 30px;
+    height: 30px;
+    vertical-align: bottom;
+    display: inline-block;
+}
+.base_title{
+    position: relative;
+    height: 40px;
+    padding:10px 0;
+    margin-top: -1px;
+    text-align: center;
+    border-bottom: 1px solid #C9C9C9;
+    border-top: 1px dashed #ccc;
+}
+.base_title .order_sn_div{
+    position: absolute;
+    left: 10px;
+    color: #4DA956;
+}
+.base_title .order_sn_div span{
+    display: block;
+    text-align: left;
+}
+.base_title .wechat_order_title_img{
+    position: absolute;
+    right: 10px;
+}
+.base_title .wechat_order_title_img li{
+    float: left;
+    margin: 0 5px;
+}
+.base_title .wechat_order_title_img li img{
+    width: 20px;
+    height: 20px;
+}
+.order_detail_ul{
+    position: relative;
+    margin-bottom: 20px;
+}
+.order_detail_ul li table{
+    width: 100%;
+    position: relative;
+    margin-bottom: 10px;
+    border:none;
+    border-collapse: collapse;
+    text-align: center;
+    border:1px solid #ccc;
+    padding-bottom: 2px;
+}
+.order_detail_ul li table tr{
+    line-height: 30px;
+     width: 100%;
+     border-bottom: 1px dashed #ccc;
+}
+.order_dafail_ul_li_active{
+	background: #f1f1f1;
+}
+.order_detail_ul li table thead{
+    background: #DDDDDD;
+}
+
+.order_detail_ul li table tr td{
+    width: 10%;
+    white-space:nowrap; 
+    text-overflow:ellipsis;
+    -moz-text-overflow:ellipsis;
+    -ms-text-overflow:ellipsis;
+    -o-text-overflow:ellipsis;
+    -webkit-text-overflow:ellipsis;
+}
+.receiver_info{
+    display: none;
+    position: relative;
+    padding:0 10px;
+    text-align: left;
+    font-size: 12px;
+}
+.receiver_info li{
+    width: 100%;
+    line-height: 20px;
+    display: inline-block;
+}
+.receiver_info li{
+    color: #757575;
+}
+.receiver_info li span{
+    color: #000;
+}
+/*wechat_member_order*/
+ /*signup*/
+
+.signupHeader{
+    border-bottom: 1px solid #ddd;
+}
+.signupHeader span{
+    display: inline-block;
+    width: 120px;
+    height: 40px;
+    line-height: 40px;
+    font-size: 16px;
+    margin-right: 20px;
+    -moz-border-radius:4px;
+    border:1px solid #ddd;
+    background-color: #eee;
+    text-align: center;
+}
+#signupBtn:hover,.signupRight a:hover{
+    box-shadow: 0 0 10px #ff4200;
+}
+.signupItem,.signupHeader span,.phoneText .phoneBtn,#signupBtn,.signupRight a{
+    border-radius: 4px;
+}
+a:hover{
+    color: #333;
+}
+.signupHeader .active{
+    border:none;
+    color: #fff;
+    background-color: #c71c60;
+}
+.signupLeft{
+    margin-top: 30px;
+    margin-left: 30px;
+}
+.signupLeft span{
+    display: inline-block;
+    width: 120px;
+    text-align: right;
+}
+.signupLeft span b{
+    color: #c71c60;
+}
+.signupLeft input{
+    width: 50%;
+    height: 40px;
+    padding:0 20px;
+    margin-bottom: 40px;
+    border:none;
+    margin-left: 10px;
+}
+
+#checkbox{
+    width: 20px;
+    height: 20px;
+  margin-bottom:0;
+}
+.signupLeft .text input{
+    width: 100px;
+}
+.signupLeft .textNumber{
+    display: inline-block;
+    height: 40px;
+    line-height: 40px;
+}
+.signupLeft .textNumber a{
+    color: blue;
+}
+.signupLeft .textNumber a:hover{
+    color: #fc6b00;
+    text-decoration: underline;
+}
+.signupLeft .passStrong{
+    margin-left: 20px;
+}
+.signupLeft .passStrong span{
+    font-size: 12px;
+    text-align: left;
+    margin-bottom: 6px;
+}
+.signupLeft .emailSpan{
+    width:140px;
+    color: red;
+}
+.signupLeft .passStrong .passStrongColor span{
+    border:1px solid #ddd;
+    width: 20px;
+    height: 10px;
+    background-color: #aaa;
+}
+
+#signupBtn{
+    width: 240px;
+    height: 40px;
+    color: #fff;
+    font-size: 16px;
+    margin-top: 40px;
+    background-color: #c71c60;
+    word-spacing: 6px;
+}
+.signupRight{
+    top:100px;
+    right: 300px;
+    text-align: center;
+}
+.signupRight .signuppx{
+    width: 1px;
+    height: 200px;
+    background-color: #aaa;
+}
+.signupRight a{
+    display: inline-block;
+    width:140px;
+    height: 30px;
+    line-height: 30px;
+    color: #fff;
+    font-size: 16px;
+    margin-top: 15px;
+    background-color: #c71c60;
+}
+.signupRight img{
+    width:120px;
+    height: 120px;
+    margin-top: 20px;
+}
+.signupRignhtTop{
+    margin-bottom: 50px;
+}
+.signupSideTop{
+    width: 150px;
+    top: 50px;
+    left: 30px;
+    margin-bottom: 30px;
+}
+.signupSideBottom{
+    width: 150px;
+    top: 270px;
+    left: 30px;
+}
+.signupBottom{
+    margin-top: 20px;
+    margin-left: 100px;
+}
+.signupBottom a{
+    color: blue;
+}
+.signupBottom a:hover{
+    color: #ff4200;
+    text-decoration: underline;
+}
+/*loginBar*/
+.loginBar{
+    height: 600px;
+}
+/*loginbar*/
+.loginBar{
+   
+}
+.loginBar-item{
+    border:1px solid #aaa;
+    border-top: 4px solid #c71c60;
+}
+.loginTitle,.loginButton{
+    width:100%;
+    margin:30px 0;
+}
+.loginText,.loginPass{
+    margin:30px 0;
+}
+.loginBar .loginTitle h3,.loginBar .loginTitle span a{
+    color:#c71c60;
+    display: inline-block;
+}
+.loginBar .loginTitle span a:hover,.loginForm .forget:hover{
+    color: #ff4200;
+    text-decoration: underline;
+}
+.loginTitle span{
+    color: #6d6d6d;
+    font-size: 12px;
+}
+.loginForm .loginText,.loginForm .loginPass{
+    height: 40px;
+    border:1px solid #ddd;
+}
+.loginForm .loginText,.loginForm .loginPass{
+    padding:0 10px;
+}
+.loginForm #loginBox{
+    margin-left: 10px;
+    display: inline-block;
+}
+.loginForm .autoLogin:hover{
+    color: #ff4200;
+}
+.loginForm .prompt{
+    height: 40px;
+    line-height: 20px;
+    padding:5px 10px;
+    text-align: left;
+    color: #dc9632;
+    background-color: #fffde4;
+    border:1px solid #dfb86d;
+    border-radius: 4px;
+    z-index: 2;
+}
+.loginForm .forget{
+    float: right;
+    color: #6d6d6d;
+}
+.loginForm .loginButton{
+    color: #fff;
+    height: 50px;
+    font-size: 16px;
+    background-color: #c71c60;
+    border-radius: 6px;
+    cursor: pointer;
+}
+.loginForm .loginButton:hover{
+    box-shadow: 0 0 10px #ff4200;
+}

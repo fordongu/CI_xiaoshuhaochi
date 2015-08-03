@@ -1,0 +1,40 @@
+<?php $this->load->view('main/new_header');?>
+
+  <!-- member_menu -->
+    <?php echo $this->load->view('member/member_left');?>
+  <!-- member_menu_end --> 
+ 
+  <div style="position:absolute;top:110px;left:400px;" class="member_base_infos_eric float_left">
+       
+       
+  <!-- order_info -->
+     <div  class="order_info_eric member_base_info_eric">
+     	<div class="base_title_eric">
+          <div class="config_title_eric float_left">
+            账户余额<?php if($wallet){?>(<?php echo $wallet[0]->tw_valid_balance.'元';?>)<?php }?>
+          </div>
+           
+        </div>
+     
+     <table class="order_list_table_eric member_base_order_list_eric">
+        <tr class="list_title_eric"><td style="font-size:14px;">入账日期</td><td style="font-size:14px;">金额</td><td style="font-size:14px;">入账原因</td><td style="font-size:14px;">对应订单编号</td><td style="font-size:14px;">操作人</td><td style="font-size:14px;">操作时间</td><td style="font-size:14px;">操作内容</td><td style="font-size:14px;">备注</td></tr>
+       <?php if($wallet_data){
+              foreach($wallet_data as $k=>$v){ ?>
+          <tr class="normal_tr_eric"><td style="font-size:14px;"><?php echo date('Y/m/d',strtotime($v->in_time));?></td><td style="font-size:14px;"><?php echo $v->amount;?></td><td style="font-size:14px;"><?php echo $v->reason;?></td><td style="font-size:14px;"><?php echo $v->order_sn;?></td><td style="font-size:14px;"><?php echo $v->oper_username;?></td>
+          <td style="font-size:14px;"><?php echo $v->oper_time;?></td><td style="font-size:14px;"><?php echo $v->oper_content;?></td><td style="font-size:14px;"><?php echo $v->comment;?></td></tr>    
+        <?php } }else{?>
+       	  <tr><td style="font-size:14px;" colspan="8">您暂时没有任何账户记录</td></tr>
+      <?php }?> 
+    </table>
+     </div>
+   
+  <!-- order_info --> 
+     
+</div>
+    
+
+</div>
+<div class="clear"></div>
+ <?php $this->load->view('main/new_footer');?>
+</body>
+</html> 

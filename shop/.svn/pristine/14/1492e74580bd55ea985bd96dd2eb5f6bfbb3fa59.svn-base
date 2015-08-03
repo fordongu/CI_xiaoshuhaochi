@@ -1,0 +1,152 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en">
+<head>
+	<meta http-equiv="Content-Type" content="text/html;charset=UTF-8" />
+	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=0">
+
+	<meta name="description" content="">	
+	<meta property="qc:admins" content="24500242000645756441711056375" />
+	<title>小树好吃</title>  
+	<link href="/css/wechat_new.css" rel="stylesheet"> 
+	<script>
+	  var controller = '<?php echo $this->router->class; ?>';
+	</script>
+	<script type="text/javascript" src="/js/jquery-1.7.2.min.js"></script> 
+   <script type="text/javascript" src="/js/shop_common.js"></script>
+
+<script>
+$(document).ready(function(){
+	$('.shipping_address_li2').click(function(){
+
+		var id = $(this).attr('data_id');
+		var submit_data={address_id:id};
+		var isthis=$(this);
+		  $.post('/member/change_default_address', submit_data,function(data) { 
+				if (data.success == 'yes') {
+					window.location.reload();
+					//var imgSrc="/images/wechat_order_choosen.png";
+					//$(".shipping_address_li2").children(".shipping_class_selected").children("img").remove();
+					//$(isthis).children(".shipping_class_selected").append("<img src='/images/wechat_order_choosen.png'>");
+
+				} 
+			},"json");	
+	})
+	$(".config_title").click(function(){
+		$(".new_address_edit").hide();
+		$(".new_address_div").show();
+	})
+})
+</script>
+</head>
+
+<body> 
+ <?php $user_cookie = isset($_COOKIE['user_cookie'])?$_COOKIE['user_cookie']:'';
+      if($user_cookie){
+      	$user_cookie = unserialize($user_cookie);
+      }
+?>
+<div class="container order_container_width">
+<!-- member_center_title -->
+  <div class="wechat_order_title">
+     <img src="/images/icon_dizhi.png" class=" go_left_button"/>
+     <img class="iconfont-fanhui1" width="10px" height="10px" alt="返回" src="/images/iconfont-fanhui1.png">
+     <h3>配送地址</h3>
+  </div>
+ <input type="hidden" id="new_flag"  value="<?php echo $new_flag;?>" />
+ <input type="hidden" id="edit_flag"  value="<?php echo $edit_flag;?>" />
+ <input type="hidden" id="uid"  value="<?php echo $uid;?>" />
+  <input type="hidden" id="center_flag"  value="1" />
+   <input type="hidden" id="data_address_id"  value="<?php echo $data_address_id;?>" />
+     <!--这个是默认为上海浦东新区-->
+	 <?php 
+		$building = $default_address[0];
+			?> 					
+   <input type="hidden" id="province_id"  value="<?php echo $building->province_id; ?>" />
+   <input type="hidden" id="city_id"  value="<?php echo $building->city_id; ?>" />
+   <input type="hidden" id="area_id"  value="<?php echo $building->area_id; ?>" />
+   <input type="hidden" id="tsa_building_id"  value="<?php echo $building->id; ?>" />
+   <input type="hidden" id="zipcode"  value="" />
+  
+  
+<script type="text/javascript" src="/js/shipping_address.js"></script>
+
+      <!-- base_info --> 
+       <div class="member_base_info">
+        
+        <ul class="new_address_edit">
+         <li><input type="hidden" id="hidden_id"  />
+           <div class="base_info_title ">姓名</div>
+           <input type="text" name="nickname" id="nickname"  /><span class="error_note"></span>
+         </li>
+         <li>
+           <div class="base_info_title ">手机</div>
+           <input type="text" name="mobile" id="mobile"   /><span class="error_note"></span>
+         </li>
+         <li>
+           <div class="base_info_title ">所在地区</div>
+           <span id='new_address_span'>  <?php echo $building->province . '&nbsp;&nbsp;' . $building->city . '&nbsp;&nbsp;' . $building->area . '&nbsp;&nbsp;' . $building->address . '&nbsp;&nbsp;';?></span>
+           <span class="error_note" id="address_note"></span>
+         </li>
+         <li>
+           <div class="base_info_title ">街道</div>
+           <input type="text" name="extra_building_address" id="extra_building_address" placeholder="xx路xx号" value="" />
+           <span class="error_note"></span>
+         </li>
+         <li>
+           <div class="base_info_title ">楼层</div>
+           <input type="text" name="company_address" id="company_address" placeholder="xx楼xx室" value="" />
+           <span class="error_note"></span>
+         </li>
+         <li>
+           <input type="button" value="确定" id="save_address" data_flag="1"/> 
+         </li>
+       </ul> 
+      
+   <?php if($shipping_address){
+            foreach($shipping_address as $k=>$v){ ?>
+    <ul class="shipping_address_ul"> 
+   	   <li data_id="<?php echo $v->tsa_id;?>" class="shipping_address_li2">
+   	            <div class=" shipping_name"><?php echo $v->tsa_nickname;?></div>
+       </li>
+       <li>         
+   	            <div class=" shipping_mobile"><?php echo $v->tsa_mobile;?></div>
+         </li>
+         <li>       
+   	         <!--<div class="shipping_detail_info"><?php echo $v->province.' '.$v->city.' '.$v->area.' '.$v->tsa_address;?>  <?php echo $v->building_address;?>   <?php echo $v->company_address;?></div>-->
+   	         <div class="shipping_detail_info"><?php echo $v->province.' '.$v->city.' '.$v->area;?>  <?php echo $v->building_address;?>   <?php echo $v->company_address;?></div>
+   	   </li>
+       <li>
+         <div class="shipping_class_selected" data_address_id="<?php echo $v->tsa_id;?>">［默认地址］</div>
+       </li>
+       <li>
+         <ol>
+           <li class="edit_address" tsa_building_id="<?php echo $v->tsa_building_id;?>" data_id="<?php echo $v->tsa_id;?>"><img src="/images/xiugai.png"></li>
+           <li class="shipping_address_li2" data_id="<?php echo $v->tsa_id;?>"><img src="/images/moren.png"></li>
+           <li class="delete_default_address"  data_id="<?php echo $v->tsa_id;?>">
+		   <?php if($v-tsa_default==0){<img src="/images/sahnchu.png">};?>
+		   </li>
+         </ol>
+       </li>
+     </ul>     
+  <?php }
+   } 
+  ?>   
+  
+  <div class="new_address_div">
+      <div id="new_address_button">+ 新增地址</div>
+  </div>
+  
+      
+          
+      </div>    
+     <!-- base_info --> 
+</div> 
+</div> 
+
+
+
+
+
+
+</body>
+</html> 

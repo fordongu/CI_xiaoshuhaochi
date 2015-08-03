@@ -1,0 +1,130 @@
+ $(function (){
+     $("#hidden_weeks").val("0");
+$(".person_icon_div").click(function(){
+ var tu_mobile=$("#tu_mobile").val();
+  var user_order=$("#user_order").val();
+ if(tu_mobile||user_order){
+	   window.location.href='/wechat/member_center';
+  }else{
+	  if($(".loginBar_eric").css("display")=="none")
+		{
+		  $('.loginBar_eric').show();
+	  }else{
+		   $('.loginBar_eric').hide();
+	  }
+
+}
+})
+$(".pop_close_but").click(function(){
+	  $('.loginBar_eric').hide();
+})
+  $(".login_out").click(function(){
+    $.post('/main/clear_cookie_member', '',function(data) {
+      if (data.success == 'yes') {
+        window.location.href='/wechat/index';
+      }else{
+        alert(data.msg);
+      }
+    },"json");
+
+  })
+  var choose_pic=parseInt($("#choose_pic").val()-1);
+   if(choose_pic==5||choose_pic==6||choose_pic==7)
+  {
+	  choose_pic=0;
+  }
+  var week=$('.detail_week:eq('+choose_pic+')').html();
+  var day_now=$("#day_now").val();
+        if(day_now==6||day_now==0){
+              var index_start=1;
+        $("#next_week_btn").trigger("click");
+              $("#this_week_btn").attr("class","");
+	      $("#next_week_btn").attr("class","active");
+        }else{
+            var index_start=0;
+            $("#this_week_btn").attr("class","active");
+	    $("#next_week_btn").attr("class","");
+        }
+   $(".choose_button").html(week);
+
+	var swiperH = new Swiper('.swiper-container', {
+		initialSlide :index_start, 
+		//effect : 'coverflow',
+		//coverflow: {
+		//rotate: 90,
+		//stretch: 0,
+		//depth: 30,r
+		//modifier: 1,
+		//slideShadows : false
+	       //		},
+		onTransitionEnd: function(swiperH){
+			var callback=swiperH.activeIndex;
+			//alert(callback);
+				if(callback==0){
+					$("#this_week_btn").attr("class","active");
+					$("#next_week_btn").attr("class","");
+          $("#hidden_weeks").val("0");
+          $(".dinner_time_this_week").show();
+          $(".dinner_time_last_week").hide();  
+
+
+				}else if(callback==1){
+					$("#next_week_btn").attr("class","active");
+					$("#this_week_btn").attr("class","");
+          $("#hidden_weeks").val("1");
+          $(".dinner_time_this_week").hide();
+          $(".dinner_time_last_week").show();
+				}
+                                        
+                              
+
+			//var week=$('.detail_week:eq('+callback+')').html();
+			//$("#choose_pic").val(callback);
+		 // $(".choose_button").html(week);
+		}
+    });
+
+//$('.views_wechat_title ul li:nth-child(1)').addClass('active');
+  $('.views_wechat_title ul li').click(function(){
+  	$(this).siblings().removeClass('active');
+	$(this).addClass('active');
+    var width = document.documentElement.clientWidth;
+  	if($(this).index() == 0){
+
+  		$(this).parents('.views_wechat_title').next().children().css({'transform':'translate3d('+0+',0,0)','-webkit-transform':'translate3d('+0+',0,0)','transition':'all 0.4s','-webkit-transition':'all 0.4s'});
+  	}
+  	else if($(this).index() == 1){
+  		$(this).parents('.views_wechat_title').next().children().css({'transform':'translate3d('+(-width+'px')+',0,0)','-webkit-transform':'translate3d('+(-width+'px')+',0,0)','transition':'all 0.4s','-webkit-transition':'all 0.4s'});
+  	}
+  });
+
+
+$('.delete').click(function(){
+  $('.general_notice').remove();
+});
+
+
+
+
+$('.forget_passwd_eric').click(function(){
+  $('.loginBar_eric').hide();
+  $('.forgot_pass').show();
+});
+
+$('.forget_sign').click(function(){
+   $('.loginBar_eric').hide();
+   $('.signupBar_eric').show();
+});
+
+$("#this_week_btn").click(function(){
+   $(".dinner_time_this_week").show();
+   $(".dinner_time_last_week").hide(); 
+   $("#hidden_weeks").val("0");
+})
+$("#next_week_btn").click(function(){
+    $(".dinner_time_this_week").hide();
+    $(".dinner_time_last_week").show(); 
+    $("#hidden_weeks").val("1");
+})
+ });
+

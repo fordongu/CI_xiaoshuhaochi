@@ -1,0 +1,118 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+<meta charset="UTF-8" />
+<title>小树好吃</title>  
+<link href="/css/main.css" rel="stylesheet">
+<link href="/css/main_eric.css" rel="stylesheet">
+<LINK href="/favicon.ico" type="image/x-icon" rel=icon>
+<LINK href="/favicon.ico" type="image/x-icon" rel="shortcut icon">
+ <script>
+	  var controller = '<?php echo $this->router->class; ?>';
+	</script>
+	<script type="text/javascript" src="/js/jquery-1.7.2.min.js"></script>  
+    <script type="text/javascript" src="/js/shop_common.js"></script> 
+    <script type="text/javascript" src="/js/main_index.js"></script>
+    <script type="text/javascript" src="/js/main_index_common.js"></script> 
+	
+    <script>
+    
+	    $(document).ready(function(){
+			
+              
+
+
+
+
+			$('#search_form').submit(function(){
+				 var keywords = $('#keywords').val();
+
+				 var submitData = {keywords:keywords,from:'main'};
+			      $.post('/member/ajax_get_service_buildings', submitData,function(data) { 
+			    	  var str = '';
+						if (data.success == 'yes') { 
+						    var msg = data.msg;
+						   
+						    for(var i=0;i<msg.length;i++){
+							    str+="<li data_id='"+msg[i].id+"' onclick='change_building(this)'>"+msg[i].name+"</li>";					    
+						    }    
+						}else{
+							alert('未搜索到您输入的写字楼');
+							window.location.href='/main/default_index';
+					    }  
+					$('#service_buildings').html(str);	 
+						
+					},"json");
+		    })
+
+		   
+	    })
+	    
+	    function change_building(build){
+	    	var service_id = $(build).attr('data_id');
+			   if(service_id !=0){
+				   var submitData = {service_id:service_id};
+				      $.post('/main/ajax_update_service_buildings', submitData,function(data) { 
+				    	   
+							if (data.success == 'yes') { 
+							  	window.location.href="/main/index";   
+							} 
+						},"json");
+			   }
+		 } 
+ </script>
+ 
+
+
+ 
+</head>
+
+<?php $user_cookie = isset($_COOKIE['user_cookie'])?$_COOKIE['user_cookie']:'';
+      if($user_cookie){
+      	$user_cookie = unserialize($user_cookie);           
+        $orders=$this->tickets->select('orders',array('to_uid'=>$user_cookie->tu_id));
+        
+      }
+?>
+<body onselectstart="return false"> 
+  <div class="views_main_header">
+     <ul>
+     	<li onclick="location.href='/main/index'"><span></span></li>
+     	<li>
+     		<ol>
+     			<li class="cursor_pointer register_span"><span></span><span></span><span>&gt;</span></li>
+     			<li><span></span><span class="views_main_shopping_cart">我的购物车</span><span class="views_cart_number">0</span></li>
+     		</ol>
+     	</li>
+     	<li>
+     		<ol>
+     			<li><span></span><span>本周</span><span>-日期-</span></li>
+     			<li><span></span><span>下周</span><span>-日期-</span></li>
+     			<li><span><i></i></span><span><i></i></span><span><i></i></span><span><i></i></span></li>
+     		</ol>
+     	</li>
+     	<li>
+     		<ol>
+     			<li><a href="javascript:;">F&Q</a></li>
+     			<li><a href="javascript:;">关于我们</a></li>
+     			<li><a href="javascript:;">用户协议</a></li>
+     			<li><a href="javascript:;">隐私协议</a></li>
+     		</ol>
+     	</li>
+     	<li><span></span><span></span></li>
+     </ul>
+
+ </div>  
+<div style="display:none;" class="default_login_register float_right">
+             <?php if(!$user_cookie){?> 
+             		<span  class="cursor_pointer register_span">登陆</span>&nbsp;&nbsp;|&nbsp;&nbsp;<span id="register_span"  class="cursor_pointer register_span">注册</span>
+             <?php }else{?>
+            	  <span  class="cursor_pointer" id="member_center_span" onclick="location.href='/member/index'">个人中心</span>&nbsp;&nbsp;|&nbsp;&nbsp;<span  class="cursor_pointer" id="logout_sys">退出</span>
+	               
+	           <?php }?>
+             
+             <span class="cursor_pointer default_help">帮助</span><span  class="default_about cursor_pointer">关于</span> 
+           </div> 
+           
+
+

@@ -1,0 +1,60 @@
+
+//本js文件主要放置PC端页面js事件－－－
+
+$(function(){
+	//main => new-header.php  Begin
+   
+   //控制页面高度与屏幕等高
+	setInterval(function(){
+		$('.views_main_content').css({'height':document.documentElement.clientHeight + 'px'});
+	$('.views_main_header').css({'height':document.documentElement.clientHeight + 'px','overflow':'hidden'});
+	$('.views_main_header ul > li:nth-child(1)').css({'height':document.documentElement.clientHeight*0.1 + 'px','min-height':'118px'});
+    $('.views_main_header ul > li:nth-child(2)').css({'height':document.documentElement.clientHeight*0.1 + 'px','min-height':'104px'});
+    $('.views_main_header ul > li:nth-child(3)').css({'height':document.documentElement.clientHeight*0.2 + 'px','min-height':'264px'});
+    $('.views_main_header ul > li:nth-child(4)').css({'height':document.documentElement.clientHeight*0.2 + 'px','min-height':'190px'});
+    },18);
+
+	//控制本周 下周切换 本周默认被选中
+	$('.views_main_header ul > li:nth-child(3) ol li:nth-child(1)').children('span').eq(0).addClass('active');
+    $('.views_main_header ul > li:nth-child(3) ol li:lt(2)').click(function(){
+		$(this).parent().children('li').children('span').attr('class','')
+		$(this).children('span').eq(0).addClass('active');
+    });
+   
+
+   //幻灯片自动播放
+   $('.views_main_index_carouse ul').css('width',1040 * 6 +'px' );
+    	var n = 0;
+    	var timer = null;
+   timer = function carousel(){
+	   	setInterval(function(){
+	   	n++;
+	   	if(n >= 5){
+	   		n=0;
+	   	}
+	   	$('.views_main_index_carouse ul').animate({left:-1040 * n +'px'});
+	   },2000);
+   };
+   
+   carousel();
+
+   $('.views_main_index_carouse ul li').on({
+   	'mouseover':function(){
+   		clearInterval(timer);
+   	},
+   	'mouseout':function(){
+   		carousel();
+   	}
+   });
+	//main => new-header.php  End
+
+
+
+
+
+
+
+
+
+
+});

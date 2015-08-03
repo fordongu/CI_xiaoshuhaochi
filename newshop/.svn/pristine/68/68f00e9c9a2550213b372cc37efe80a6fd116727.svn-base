@@ -1,0 +1,363 @@
+                                         <!-- 头部 Begin -->
+<!DOCTYPE HTML>
+<html>
+<head>
+<meta charset="UTF-8" />
+<title>小树好吃</title>  
+<link rel="stylesheet" href="../css/main.css"/>
+<LINK href="/favicon.ico" type="image/x-icon" rel="icon">
+<LINK href="/favicon.ico" type="image/x-icon" rel="shortcut icon">
+<script type="text/javascript" src="../js/jquery-1.7.2.min.js"></script>  
+<script type="text/javascript" src="../js/main_index_common.js"></script> 
+<body onselectstart="return false"> 
+  <div class="views_main_header">
+     <ul>
+      <li onclick="location.href='/main/index'"><span></span></li>
+      <li>
+        <ol>
+          <li class="person_content"><span></span><span></span><span>&gt;</span></li>
+          <li><span></span><span class="views_main_shopping_cart">我的购物车</span><span class="views_cart_number">0</span></li>
+        </ol>
+      </li>
+      <li>
+        <ol>
+          <li><span></span><span>本周</span><span>-日期-</span></li>
+          <li><span></span><span>下周</span><span>-日期-</span></li>
+          <li><span><i></i></span><span><i></i></span><span><i></i></span><span><i></i></span></li>
+        </ol>
+      </li>
+      <li>
+        <ol>
+          <li><a href="javascript:;">F&Q</a></li>
+          <li><a href="javascript:;">关于我们</a></li>
+          <li><a href="javascript:;">用户协议</a></li>
+          <li><a href="javascript:;">隐私协议</a></li>
+        </ol>
+      </li>
+      <li><span></span><span></span></li>
+     </ul>
+ </div>  
+                                          <!-- 头部 End -->
+
+                                          <!-- 主体 Begin -->
+<input type="hidden" id="dav_memory" value="<?php echo $index;?>">
+ <input type="hidden" id="dav_select" value="<?php echo $dav_select;?>">
+ <input type="hidden" id="cookie_good_count" value="<?php echo $cookie_count;?>">
+<input type="hidden" id="choose_pic" value="<?php echo $day_choose;?>">
+<input type="hidden" id="per_count_limit" value="<?php echo $per_count_limit;?>" />
+<input type="hidden" id="total_count_limit" value="<?php echo $total_count_limit;?>" />
+  
+<div class="views_main_content">
+    <div class="views_main_wrap">
+      <dl>
+        <dt>
+          <ul>
+            <li><img src="../images/index_menu02.png" alt="主菜"></li>
+            <li><h5>大骨汤、孜然牛肉卷</h5></li>
+            <li><img src="" alt="牛肉卷"/><img src="" alt="大骨汤"/></li>
+          </ul>
+        </dt>
+        <dd>
+        <ul>
+          <li>
+             <h3><?php echo $v->name;?></h3>
+          </li>
+          <li>
+            <ol>
+              <li>
+                  <span>用餐时间:</span>
+                  <span class="week_day_chinese">
+                      <?php if($key==0){
+                        echo "星期一";
+                        }
+                        if($key==1){
+                          echo "星期二";
+                        }
+                        if($key==2){
+                          echo "星期三";
+                        }
+                        if($key==3){
+                          echo "星期四";
+                        }
+                        if($key==4){
+                          echo "星期五";
+                      }?>
+                  </span>
+                  <span class="week_day"><?php echo $val;?></span>
+              </li>
+              <li><span>餐厅:</span><span><?php echo $v->supplier_name;?></span></li>
+            </ol>
+          </li>
+          <li>
+             <p></p>
+          </li>
+          <li>
+            <span><small>¥</small><?php echo $v->price;?></span>
+            <button class="views_main_plus_button" data_good_id="<?php echo $v->good_id?>" cate_id="<?php echo $v->cate_id?>">点餐</button>
+          </li>
+        </ul>
+       </dd>
+      </dl>
+      <dl class="views_main_content_small">
+        <dt>
+          <img src="" alt="主菜">
+        </dt>
+        <dd>
+          <ul>
+            <li>
+             <ol>
+               <li>
+                 <h3><?php echo $v->name;?></h3>
+               </li>
+               <li>
+                  <span>用餐时间:</span>
+                  <span class="week_day_chinese">
+                      <?php if($key==0){
+                        echo "星期一";
+                        }
+                        if($key==1){
+                          echo "星期二";
+                        }
+                        if($key==2){
+                          echo "星期三";
+                        }
+                        if($key==3){
+                          echo "星期四";
+                        }
+                        if($key==4){
+                          echo "星期五";
+                      }?>
+                  </span>
+                  <span class="week_day"><?php echo $val;?></span>
+              </li>
+             </ol> 
+            </li>
+            <li>
+              <span><small>¥</small><?php echo $v->price;?></span>
+              <button class="views_main_plus_button" data_good_id="<?php echo $v->good_id?>" cate_id="<?php echo $v->cate_id?>">点餐</button>
+            </li>
+          </ul>
+        </dd>
+      </dl>
+      <dl  class="views_main_content_small">
+        <dt>
+          <img src="" alt="主菜">
+        </dt>
+        <dd>
+          <ul>
+            <li>
+             <ol>
+               <li>
+                 <h3><?php echo $v->name;?></h3>
+               </li>
+               <li>
+                  <span>用餐时间:</span>
+                  <span class="week_day_chinese">
+                      <?php if($key==0){
+                        echo "星期一";
+                        }
+                        if($key==1){
+                          echo "星期二";
+                        }
+                        if($key==2){
+                          echo "星期三";
+                        }
+                        if($key==3){
+                          echo "星期四";
+                        }
+                        if($key==4){
+                          echo "星期五";
+                      }?>
+                  </span>
+                  <span class="week_day"><?php echo $val;?></span>
+              </li>
+             </ol> 
+            </li>
+            <li>
+              <span><small>¥</small><?php echo $v->price;?></span>
+              <button class="views_main_plus_button" data_good_id="<?php echo $v->good_id?>" cate_id="<?php echo $v->cate_id?>">点餐</button>
+            </li>
+          </ul>
+        </dd>
+      </dl>
+      <dl  class="views_main_content_small">
+        <dt>
+          <img src="" alt="主菜">
+        </dt>
+        <dd>
+          <ul>
+            <li>
+             <ol>
+               <li>
+                 <h3><?php echo $v->name;?></h3>
+               </li>
+               <li>
+                  <span>用餐时间:</span>
+                  <span class="week_day_chinese">
+                      <?php if($key==0){
+                        echo "星期一";
+                        }
+                        if($key==1){
+                          echo "星期二";
+                        }
+                        if($key==2){
+                          echo "星期三";
+                        }
+                        if($key==3){
+                          echo "星期四";
+                        }
+                        if($key==4){
+                          echo "星期五";
+                      }?>
+                  </span>
+                  <span class="week_day"><?php echo $val;?></span>
+              </li>
+             </ol> 
+            </li>
+            <li>
+              <span><small>¥</small><?php echo $v->price;?></span>
+              <button class="views_main_plus_button" data_good_id="<?php echo $v->good_id?>" cate_id="<?php echo $v->cate_id?>">点餐</button>
+            </li>
+          </ul>
+        </dd>
+      </dl>
+      <dl  class="views_main_content_small">
+        <dt>
+          <img src="" alt="主菜">
+        </dt>
+        <dd>
+          <ul>
+            <li>
+             <ol>
+               <li>
+                 <h3><?php echo $v->name;?></h3>
+               </li>
+               <li>
+                  <span>用餐时间:</span>
+                  <span class="week_day_chinese">
+                      <?php if($key==0){
+                        echo "星期一";
+                        }
+                        if($key==1){
+                          echo "星期二";
+                        }
+                        if($key==2){
+                          echo "星期三";
+                        }
+                        if($key==3){
+                          echo "星期四";
+                        }
+                        if($key==4){
+                          echo "星期五";
+                      }?>
+                  </span>
+                  <span class="week_day"><?php echo $val;?></span>
+              </li>
+             </ol> 
+            </li>
+            <li>
+              <span><small>¥</small><?php echo $v->price;?></span>
+              <button class="views_main_plus_button" data_good_id="<?php echo $v->good_id?>" cate_id="<?php echo $v->cate_id?>">点餐</button>
+            </li>
+          </ul>
+        </dd>
+      </dl>
+      <div class="views_main_index_carouse">
+        <ul>
+          <li><img src=""><span>1</span></li>
+          <li><img src=""><span>2</span></li>
+          <li><img src=""><span>3</span></li>
+          <li><img src=""><span>4</span></li>
+          <li><img src=""><span>5</span></li>
+        </ul>
+        <ol>
+          <li class="normal"><a href="javascript:;"></a></li>
+          <li class="normal"><a href="javascript:;"></a></li>
+          <li class="normal"><a href="javascript:;"></a></li>
+          <li class="normal"><a href="javascript:;"></a></li>
+          <li class="normal"><a href="javascript:;"></a></li>
+        </ol>
+      </div>
+   </div>
+   
+
+   <!-- 详情 Begin -->
+   
+   <div class="views_main_detail">
+     <span class="delete"><img src="../icon/delete.png" alt="删除" /></span>
+     <dl>
+        <dt>
+          <ul>
+            <li><img src="../images/index_menu02.png" alt="主菜"></li>
+            <li><h3>套餐配菜</h3><span>大骨汤、孜然牛肉卷</span></li>
+            <li><img src="" alt="牛肉卷"/><img src="" alt="大骨汤"/><img src="" alt="大骨汤"/></li>
+          </ul>
+        </dt>
+        <dd>
+        <ul>
+          <li>
+             <h3><?php echo $v->name;?></h3>
+          </li>
+          <li>
+            <ol>
+              <li><span>餐厅:</span><span><?php echo $v->supplier_name;?></span></li>
+              <li>
+                  <span>用餐时间:</span>
+                  <span class="week_day_chinese">
+                      <?php if($key==0){
+                        echo "星期一";
+                        }
+                        if($key==1){
+                          echo "星期二";
+                        }
+                        if($key==2){
+                          echo "星期三";
+                        }
+                        if($key==3){
+                          echo "星期四";
+                        }
+                        if($key==4){
+                          echo "星期五";
+                      }?>
+                  </span>
+                  <span class="week_day"><?php echo $val;?></span>
+              </li>
+              
+            </ol>
+          </li>
+          <li>
+             <p></p>
+          </li>
+          <li>
+            <span><small>¥</small><?php echo $v->price;?></span>
+            <button class="views_main_plus_button" data_good_id="<?php echo $v->good_id?>" cate_id="<?php echo $v->cate_id?>">点餐</button>
+          </li>
+        </ul>
+       </dd>
+      </dl>
+      <div>
+        <img src="" alt="详情图片" /><span>详情</span>
+      </div>
+   </div>
+   <!-- 详情 End -->
+   <!-- 页尾 Begin -->
+  <div class="views_mian_footer">
+    <ul>
+      <li>
+        <span>版权所有©2014</span>
+        <span>上海小树好吃有限公司</span>
+      </li>
+      <li>
+        <h5>ICP备案号:</h5>
+        <span>京ICP备15001635号-1</span>
+      </li>
+    </ul>
+  </div>  
+   <!-- 页尾 End -->                                      
+</div>
+ <!-- 遮罩 Begin -->
+   <div id="cover"></div>
+   <!-- 遮罩 End -->                                         <!-- 主体 End -->                                        
+</body>
+</html>
+ 

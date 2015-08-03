@@ -1,0 +1,355 @@
+ <?php $this->load->view('main/new_header');?> 
+<style>
+
+ 
+ #wechat_popup{
+  background-color: white; 
+    display: none;
+  filter:alpha(opacity=90); 
+  -moz-opacity:0.9; 
+  opacity:0.9;   
+    margin-left: -20%;
+    margin-top: 25px;
+    overflow: hidden;
+    position: fixed;
+    text-align: center;
+    top: 20%; 
+    z-index: 51; 
+    color:#000; 
+
+ }
+ #popup_ul{
+  height:400px; 
+    overflow-y:auto;
+    border-right:2px solid #d6d6d6;
+    width:40%;
+ }
+ #popup_area_ul{
+  height:400px; 
+    overflow-y:auto;
+  width:40%;
+ }
+ 
+#popup_area_ul li{
+  cursor:pointer;
+}
+ .popup_ul li{
+  cursor:pointer;
+  height:40px;
+    line-height:40px;
+    border-bottom:1px solid #d6d6d6;
+    padding:0 20px;
+    width:110px;
+ }  
+</style>
+<script type="text/javascript" src="/js/main_index.js"></script>
+
+<script type="text/javascript">
+// Window load event used just in case window height is dependant upon images
+$(window).bind("load", function() {
+var footerHeight = 0,
+footerTop = 0,
+$footer = $(".default_index_footer_new");
+positionFooter();
+//定义position Footer function
+function positionFooter() {
+//取到div#footer高度
+footerHeight = $footer.height();
+//div#footer离屏幕顶部的距离
+footerTop = ( $(window).scrollTop()+$(window).height()-footerHeight)+"px";
+/* DEBUGGING STUFF 
+console.log("Document height: ", $(document.body).height());
+console.log("Window height: ", $(window).height());
+console.log("Window scroll: ", $(window).scrollTop());
+console.log("Footer height: ", footerHeight);
+console.log("Footer top: ", footerTop); console.log("-----------")
+*/
+
+//如果页面内容高度小于屏幕高度，div#footer将绝对定位到屏幕底部，否则div#footer保留它的正常静态定位
+if ( ($(document.body).height()+footerHeight) < $(window).height()) {
+
+$footer.css({
+position: "absolute",
+bottom:"0px"
+})
+} else {
+$footer.css({
+position: "static"
+});
+
+}
+}
+$(window).scroll(positionFooter).resize(positionFooter);
+});
+
+
+
+$(function(){
+
+
+$('.plus_good_main').click(function(){
+	 var pic=$(this).parent().parent().prev("dt").children("img");
+	 var flyElm = $(pic).clone().css('opacity','0.8');
+     flyElm.css({
+     'z-index': 9000,
+      'display': 'block',
+      'position': 'absolute',
+      'top': $(this).parent().parent().parent().offset().top +'px',
+      'left': $(this).parent().parent().parent().offset().left +'px',
+      'width': $('.good_img').width() +'px',
+      'height': $('.good_img').height() +'px'
+     })
+    $('body').append(flyElm);
+	flyElm.animate({
+      top:$('.views_cart_wrap').offset().top,
+      left:$('.views_cart_wrap').offset().left,
+      width:40+'px',
+      height:40+'px',
+    });
+	
+	
+	setTimeout(function(){$(flyElm).remove();},400);
+});
+
+
+
+
+	$(".views_cart_img1").mouseover(function(){
+		if(parseInt($(".views_cart_number").html())!==0){
+			
+			$(".views_main_table").show();	
+		}
+	
+		
+		})
+		$(".views_main_table").mouseleave(function(){
+				$(".views_main_table").hide();
+	})
+})
+
+</script>
+
+
+
+ <input type="hidden" id="cookie_good_count" value="<?php echo $cookie_count;?>">
+<input type="hidden" id="choose_pic" value="<?php echo $day_choose;?>">
+<input type="hidden" id="per_count_limit" value="<?php echo $per_count_limit;?>" />
+<input type="hidden" id="total_count_limit" value="<?php echo $total_count_limit;?>" />
+
+<div id="wechat_popup" <?php if(!$building_flag){?>style="display:block;"<?php }?> >
+   <ul id="popup_ul" class="float_left popup_ul" <?php if(!$building_flag){?>style="display:block;"<?php }?>> 
+    <?php foreach($area as $k=>$v){?>
+       <li data_id = '<?php echo $v->area_id;?>'><?php echo $v->area;?><img src="/images/wechat_area_arrow.png" class="wechat_area_arrow" /></li>
+    <?php }?> 
+   </ul>
+   
+    <ul id="popup_area_ul" class="float_left popup_ul">
+    <?php foreach($service_buildings as $k=>$v){?>  
+     <li data_id = "<?php echo $v->id;?>" onclick='change_user_building(this)'><?php echo $v->name;?></li>
+    <?php }?> 
+      
+   </ul>
+
+</div>
+<div style="height:auto;min-height:100%;width:100%;position:relative;margin:0px auto;">
+<div class="default_index_content container_width_index"> 
+   <!-- index_header_end -->  
+   <div class="new_index_title cursor_pointer">
+     <!-- <div class="new_index_left">
+          <div class="new_index_building float_left"><?php echo $default_building;?></div>
+          <img src="/images/new_index_building_change.png"  class="new_index_building_change" />
+      </div>-->
+   </div>
+ <!-- index_header_end -->
+ 
+ <!-- new_goods_list_start --> 
+<div class="views_main_content">
+    <h4>生活有你，美食有我!</h4>
+    <ul class="views_main_section"> 
+    <?php 
+    $current_time = date('H:i:s');
+    $current_date = date('Y-m-d');
+    $date_no = 0;
+    foreach($week_orders as $key=>$val){
+      
+  $date_no++;
+  $date=str_replace("-","/",$val);
+  ?>
+       <li class="data_week" data_date="<?php echo $val;?>" data_week="<?php echo $key;?>" data_week_up="<?php echo $date;?>" >
+     <?php foreach($goods as $j=>$good){   
+      foreach($good->temp_goods as $k=>$v){   		
+        if(in_array($key,$v->week)){ 
+		$end_time=str_split($v->end_time,11);
+	   if($val<$end_time[0]){
+		 //不显示过期菜//
+		?>
+          <dl class="good_id" data_good_id="<?php echo $v->good_id;?>">
+             <dt>
+			 
+			  <?php
+		  if((strtotime($val) < strtotime($current_date))||
+		  (strtotime($current_time) > strtotime($valid_time))&&(strtotime($val)==strtotime($current_date))){
+		  
+		?><!--已售罄-->
+		     <img src="/images/wx_sq.png" class="wx_sq"/>
+           <img src="<?php echo $v->coverurl0;?>" class="good_img"/>
+		   <?php }else{?>
+		   <!--有货-->
+		   <img src="<?php echo $v->coverurl0;?>" class="good_img"/>
+		   <?php }?>
+                
+                <span class="week_day_chinese"><?php if($key==0){
+    echo "星期一";
+    }
+    if($key==1){
+      echo "星期二";
+    }
+    if($key==2){
+      echo "星期三";
+    }
+    if($key==3){
+      echo "星期四";
+    }
+    if($key==4){
+      echo "星期五";
+    }
+    ?></span>
+	 <span class="week_day_change"><?php if($key==0){
+    echo "星期一";
+    }
+    if($key==1){
+      echo "星期二";
+    }
+    if($key==2){
+      echo "星期三";
+    }
+    if($key==3){
+      echo "星期四";
+    }
+    if($key==4){
+      echo "星期五";
+    }
+    ?></span>
+             </dt>
+             <dd>
+              <h5 class="views_main_section_dd_h5_left"><?php echo $v->name;?></h5>
+			  <h5 class="views_main_section_dd_h5_right">来自：<?php echo $v->supplier_name;?></h5>
+			  <!--<?php print_r($v);?>-->
+              <span>
+			  <del>
+				<?php if($v->supplier_id=="2"){
+				echo "¥ 35元/份";
+				}?>
+			  </del>
+			  &nbsp;&nbsp;&nbsp;&nbsp;¥<big><?php echo $v->price;?></big>元／份<br/>
+			  </span>
+           <div>
+         <?php if($cookie_good){
+                            $count = 0;
+                            
+                               foreach($cookie_good as $m=>$j){
+                      foreach($j as $l=>$n){
+                        if(($l==$key)&&($n['id']==$v->good_id)){
+                        $count =  $n['count'];
+                                   } 
+                                 }
+                  }
+                  $cookie_counts = $count;
+                           }else{ $cookie_counts = 0;} 
+              ?>
+               <button class="index_buy_icon_minus index_buy_icon float_left minus_good_main">-</button>
+                  <big><?php if($cookie_good){
+                            $count = 0;
+                            
+                               foreach($cookie_good as $m=>$j){
+                      foreach($j as $l=>$n){
+                        if(($l==$key)&&($n['id']==$v->good_id)){
+                        $count =  $n['count'];
+                                   } 
+                                 }
+                  }
+                  echo $count;
+                           }else{ echo 0;} 
+              ?></big>
+                  
+          <?php if((strtotime($current_time) < strtotime($valid_time))&&(strtotime($val)==strtotime($current_date))){?>
+                     <button class="index_buy_icon float_left plus_good_main">+</button> 
+                  <?php }else if(strtotime($val) > strtotime($current_date)){?>
+                     <button class="index_buy_icon float_left plus_good_main">+</button> 
+                  <?php }else{?>
+                     <button class="index_buy_icon float_left">+</button> 
+                  <?php }?> 
+                </div>
+             </dd>
+          </dl>
+	  <?php }}}}?>
+       </li>
+    <?php }?>
+    </ul>
+    <div class="views_main_content">
+      <div class="views_main_title_wrap">
+    
+    <div>
+    <button></button>
+       <i></i>
+     </div>
+	
+    <ul class="views_main_title">
+      <li class="will_delete"><span class="mon">Mon</span><big>星期一</big></li>
+      <li class="will_delete"><span class="tues">Tue</span><big>星期二</big></li>
+      <li class="will_delete"><span class="wed">Wed</span><big>星期三</big></li>
+      <li class="will_delete"><span class="thur">Thu</span><big>星期四</big></li>
+      <li class="will_delete"><span class="fri">Fri</span><big>星期五</big></li>
+    </ul>
+
+
+   </div>
+   
+   </div>
+    
+      <div class="views_cart_eric grey">
+        <div class="views_cart_wrap">
+         <span><img class="views_cart_img1" width="40px" height="40px" src="/images/iconfont-gouwucheman.png" alt="购物车"></span>
+         <span class="views_cart_number"><?php echo $cookie_count;?></span>
+        </div>
+      </div>
+ 
+ 
+ <div class="views_main_table" style="display:none;"> 
+        <div class="views_main_menu">
+          <div class="views_main_wrap">
+          <ul>
+          <li class="views_menu_title"><span class="views_menu_sure">订单确认</span><span class="views_menu_delete empty_cart">清空</span></li>   
+      <?php foreach($cart_goods as $k=>$val){ $v=$val['goods'];if($val['week_count']['count']){
+        $date_date=str_replace("/","-",$v->date);
+      ?> 
+             <li class="totle_price_check" data_good_add_delete="<?php echo $v->id."_".$val['week_count']['week'];?>" data_good_id="<?php echo $v->id;?>" data_date=<?php echo $date_date;?> data_week="<?php echo $val['week_count']['week'];?>">
+                <span class="views_menu_time"><?php echo $v->date;?></span>
+                <span class="views_menu_name"><?php echo $v->name;?></span>
+                <span class="views_menu_price">¥ <span class="views_menu_price_color"><?php echo $v->price;?></span></span>
+                <span class="views_menu_button">
+                  <button class="minus_goods_main">-</button>
+                  <span class="views_menu_number add_delete"><?php echo $val['week_count']['count'];?></span>
+                  <button class="plus_goods_main">+</button>
+                </span>
+             </li>
+       
+      <?php }}?>
+             
+          </ul>
+          </div>
+        </div>
+      <div class="views_cart grey">
+        <div class="views_cart_wrap">
+         <span><img class="views_cart_img1" width="35px" height="35px" src="/images/iconfont-gouwucheman.png" alt="购物车"></span>
+         <span class="views_menu_total">总计: ¥<span class="views_menu_total_number">0</span></span>
+         <span  class="views_menu_total_btn">立即支付</span>
+         <span class="views_cart_number"><?php echo $cookie_count;?></span>
+        </div>
+      </div>
+    </div>  
+   </div>
+</div> 
+</div>
+  
+ <?php $this->load->view('main/new_footer');?>

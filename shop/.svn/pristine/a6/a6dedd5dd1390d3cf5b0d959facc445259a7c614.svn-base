@@ -1,0 +1,37 @@
+$(function(){
+    $("#login_btn").click(function(){
+
+        var login_cell=$("#login_cell").val();
+        var login_password=$("#login_password").val();
+        var remember_flag = $('#remember_password').attr('checked');
+        if(remember_flag){
+    			remember_flag = 1;
+    		}else{
+    			remember_flag = 2;
+    		}
+                var submitdata ={
+    				mobile_email:login_cell,
+    				password:login_password,
+    				remember_flag:remember_flag
+    		}
+
+        $.ajax({
+            type: "get",
+            async: false,
+            url: "http://dev.xiaoshuhaochi.com/main/user_login",
+            dataType: "jsonp",
+            jsonp: "callback",//传递给请求处理程序或页面的，用以获得jsonp回调函数名的参数名(一般默认为:callback)
+            data: submitdata,
+            jsonpCallback:"callback_login",//自定义的jsonp回调函数名称，默认为jQuery自动生成的随机函数名，也可以写"?"，jQuery会自动为你处理数据
+            success: function(json){
+                alert(json.msg);
+            },
+            error: function(err){
+                alert('请求超时，请重试');
+            },
+            timeout:300000000000
+        });
+        return;
+      })
+})
+

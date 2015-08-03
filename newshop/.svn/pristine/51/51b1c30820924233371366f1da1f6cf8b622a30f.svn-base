@@ -1,0 +1,176 @@
+<?php
+
+defined('BASEPATH') OR exit('No direct script access allowed');
+
+class Main extends CI_Controller {
+
+    function __construct() {
+        parent::__construct();
+        $this->load->service('Goods_service');
+        $this->load->service('User_service');
+    }
+
+    public function index() {
+
+        $this->load->service("Main_service");
+        //$this->load->model('base');
+        $uid = $this->User_service->getUid();
+        $building_id = 43;
+        $all_good = $this->Goods_service->getAllGood($building_id);
+
+        $static_url = $this->config->item('static_url');
+        $base_url = $this->config->item('base_url');
+        $data["uid"] = $uid;
+        $data["goods"] = $all_good["final_goods"];
+        $data["first"] = $all_good["first"];
+        $data["date_day"] = $this->Main_service->getDate();
+        $old_website = $this->config->item('old_website');
+        $data["old_website"] = $old_website;
+        //$date[0]是日期$date[1]是周几
+        $data["week"] = $this->Main_service->getWeek();
+        //超过规定时间￥date就会改变目前是10:00
+        $getWeeks = $this->Main_service->getWeeks();
+        $data["weeks_contorl"] = $getWeeks;
+
+        //取出本周与下周供应时间段的方法
+        // $this->load->view('main/main_header',array('static_url' => $static_url));
+        $notice = $this->input->cookie('notice');
+        if (!$notice) {
+            $this->input->set_cookie("notice", 1, 86400); //保存24小时
+        }
+        $data['notice'] = $notice;
+
+        $remember_flag = $this->input->cookie("remember_flag");
+        if (!$remember_flag) {
+            $remember_flag = "";
+        }
+        // $data["remember_flag"]=$remember_flag;
+
+
+        $user_cookie = unserialize($this->input->cookie('user_cookie'));
+        $mobile_check = "";
+        $mobile = "游客";
+        if ($user_cookie) {
+            if ($user_cookie->tu_mobile) {
+
+                // $mobile=$user_cookie->tu_mobile;
+                $mobile_check = 1;
+            } else {
+                $mobile_check = 0;
+                // $mobile="游客";
+            }
+        }
+        $order = $this->User_service->findOrder($uid); //加入用户已购买过商品就能点击个人中心跳转至界面
+
+
+        $this->load->view('main/main_header', array('static_url' => $static_url, 'weeks_contorl' => $getWeeks, 'remember_flag' => $remember_flag, 'mobile_check' => $mobile_check, 'order_check' => $order['msg']));
+
+
+        $this->load->view('main/index', $data);
+        $this->load->view('main/main_footer', array('base_url' => $base_url, 'static_url' => $static_url, 'old_website' => $old_website));
+    }
+
+    public function userRister() {
+
+        $username = $this->input->post("mobile_email");
+        $password = $this->input->post("password");
+        $code = $this->input->post("code");
+        $type = $this->input->post("reg_type");
+        //  $username="18516244053";
+        // $password=123123;
+        //  $code=243067;
+        // $type="reg";
+        $data = $this->User_service->userRister($username, $password, $code, $type);
+
+
+        echo json_encode(array("success" => $data["success"], "msg" => $data["msg"]));
+    }
+
+    public function dosendSms() {
+
+        $mobile = $this->input->post("mobile_email");
+        $check = $this->input->post("check");
+
+        $send_sms = $this->User_service->dosendSms($mobile, $check);
+        if ($send_sms["success"] == "used") {
+            //已使用
+            echo json_encode(array("success" => "used", "msg" => "该账号已经注册过"));
+        } else if ($send_sms["success"] == "time_limit") {
+            //一分钟后再试
+            echo json_encode(array("success" => "time_limit", "msg" => "请一分钟后再试"));
+        } else if ($send_sms["success"] == "send_error") {
+            //发送失败
+            echo json_encode(array("success" => "send_error", "msg" => "发送失败"));
+        } else if ($send_sms["success"] == "send_yes") {
+            //发送成功
+            echo json_encode(array("success" => "send_yes", "msg" => "发送成功"));
+        }
+    }
+
+    public function checkMobileCode() {
+        $cell_number = $this->input->$cell_number();
+        $cell_number = $this->input->$code();
+        $data = $this->User_service->checkMobileCode($cell_number, $code);
+    }
+
+    public function userLogin() {
+
+        $username = $this->input->post("mobile_email");
+        $password = $this->input->post("password");
+        $remember_flag = $this->input->post('remember_flag') ? $this->input->post('remember_flag') : '';
+        $data = $this->User_service->userLogin($username, $password, $remember_flag);
+        echo json_encode($data);
+    }
+
+    public function loginOut() {
+        $login_out = $this->User_service->loginOut();
+        echo json_encode($login_out);
+    }
+
+    public function passwordForget() {
+
+        $username = $this->input->post("mobile_email");
+        $password = $this->input->post("password");
+        $code = $this->input->post("code");
+        $check = $this->input->post("check");
+
+        $result = $this->User_service->checkMobileCode($username, $code);
+
+        if ($result["success"] == "no") {
+            echo json_encode($result);
+        } else if ($result["success"] == "yes") {
+
+            $chang_password = $this->User_service->changPassword($username, $password);
+            echo json_encode($chang_password);
+        }
+    }
+
+    public function orderingNotice() {
+        $uid = $this->User_service->getUid();
+        $this->load->service("Main_service");
+        $getWeeks = $this->Main_service->getWeeks();
+        $remember_flag = $this->input->cookie("remember_flag");
+        $base_url = $this->config->item('base_url');
+        $old_website = $this->config->item('old_website');
+        if (!$remember_flag) {
+            $remember_flag = "";
+        }
+        $user_cookie = unserialize($this->input->cookie('user_cookie'));
+        if ($user_cookie) {
+            if ($user_cookie->tu_mobile) {
+
+                // $mobile=$user_cookie->tu_mobile;
+                $mobile_check = 1;
+            } else {
+                $mobile_check = 0;
+                // $mobile="游客";
+            }
+        }
+        $order = $this->User_service->findOrder($uid); //加入用户已购买过商品就能点击个人中心跳转至界面
+        $static_url = $this->config->item('static_url');
+        $this->load->view('main/main_header', array('static_url' => $static_url, 'weeks_contorl' => $getWeeks, 'remember_flag' => $remember_flag, 'mobile_check' => $mobile_check, 'order_check' => $order['msg']));
+        $this->load->view("main/ordering_notice");
+        $this->load->view('main/main_footer', array('base_url' => $base_url, 'static_url' => $static_url, 'old_website' => $old_website));
+    }
+
+}

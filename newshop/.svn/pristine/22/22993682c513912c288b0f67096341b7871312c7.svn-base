@@ -1,0 +1,107 @@
+
+
+                                          <!-- 主体 Begin -->
+<input type="hidden" id="dav_memory" value="<?php //echo $index;?>">
+ <input type="hidden" id="dav_select" value="<?php //echo $dav_select;?>">
+ <input type="hidden" id="cookie_good_count" value="<?php //echo $cookie_count;?>">
+<input type="hidden" id="choose_pic" value="<?php //echo $day_choose;?>">
+<input type="hidden" id="per_count_limit" value="<?php //echo $per_count_limit;?>" />
+<input type="hidden" id="total_count_limit" value="<?php //echo $total_count_limit;?>" />
+ <input type="hidden" id="uid" value="<?php echo $uid;?>" />
+
+<div class="views_main_content">
+    <div class="views_main_wrap">
+     <?php 
+     foreach ($goods[0]->temp_goods as $key=>$val){
+  
+         if($val->week[0]=="1"){
+          if($key=="0"){
+              //取首元素
+              $arr = explode("+", $val->name);
+     ?>   
+      <dl>
+        <dt>
+          <ul>
+              <li><img src="<?php echo $val->coverurl0;?>" alt="主菜"></li>
+            <li><h5><?php echo $val->name;?></h5></li>
+            <li><img src="<?php echo $val->coverurl0;?>" alt="<?php echo $arr[0];?>"/><img src="<?php echo $val->coverurl0;?>" alt="<?php echo $arr[1];?>"/></li>
+          </ul>
+        </dt>
+        <dd>
+        <ul>
+          <li>
+             <h3><!--商品名--></h3>
+          </li>
+          <li>
+            <ol>
+              <li>
+                  <span>用餐时间:</span>
+                  <span class="week_day_chinese">
+                      <?php echo date("Y-m-d");?>
+                  </span>
+                  <span class="week_day"><?php //echo $val;?></span>
+              </li>
+              <li><span>餐厅:</span><span><?php echo $val->supplier_name;?></span></li>
+            </ol>
+          </li>
+          <li>
+             <p></p>
+          </li>
+          <li>
+            <span><small>¥</small></span>
+            <button class="plus_good_main" data_good_id="<?php echo $val->good_id;?>" cate_id="<?php echo $val->cate_id;?>">点餐</button>
+          </li>
+        </ul>
+       </dd>
+      </dl>
+          <?php }
+             if($key!=="0"){
+          ?>
+     <dl class="views_main_content_small">
+        <dt>
+          <img src="<?php echo $val->coverurl0;?>" alt="主菜">
+        </dt>
+        <dd>
+          <ul>
+            <li>
+             <ol>
+               <li>
+                 <h3><?php echo $val->name;?></h3>
+               </li>
+               <li>
+                  <span>用餐时间:</span>
+                  <span class="week_day_chinese">
+                     
+                  </span>
+                  <span class="week_day"><?php echo date("Y-m-d");?></span>
+              </li>
+             </ol> 
+            </li>
+            <li>
+              <span><small>¥</small><?php echo $val->price;?></span>
+              <button class="plus_good_main" data_good_id="<?php echo $val->good_id;?>" cate_id="<?php echo $val->cate_id;?>">点餐</button>
+            </li>
+          </ul>
+        </dd>
+      </dl>
+    
+             <?php }}}?>
+      <div class="views_main_index_carouse">
+        <ul>
+          <li><img src=""><span>1</span></li>
+          <li><img src=""><span>2</span></li>
+          <li><img src=""><span>3</span></li>
+          <li><img src=""><span>4</span></li>
+          <li><img src=""><span>5</span></li>
+        </ul>
+        <ol>
+          <li class="normal"><a href="javascript:;"></a></li>
+          <li class="normal"><a href="javascript:;"></a></li>
+          <li class="normal"><a href="javascript:;"></a></li>
+          <li class="normal"><a href="javascript:;"></a></li>
+          <li class="normal"><a href="javascript:;"></a></li>
+        </ol>
+      </div>
+   </div>
+</div>
+                                          <!-- 主体 End -->

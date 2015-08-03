@@ -1,0 +1,17 @@
+<?php
+if (!defined('BASEPATH'))
+    exit('No direct script access allowed');
+class Check extends CI_Controller {
+
+    function __construct() {
+        parent::__construct();
+        $this->load->service('Goods_service');
+    }
+
+    public function index()
+    {
+    
+    }
+    public function  
+   
+}

@@ -1,0 +1,16 @@
+                                          <!-- 页尾 Begin -->
+
+
+<script type="text/javascript">
+    var base_url = "<?=$base_url?>";
+</script>
+
+<script type="text/javascript" src="<?=$static_url?>/js/main_index_common.js"></script>
+<script type="text/javascript" src="<?=$static_url?>/js/cart.js"></script>
+<script type="text/javascript" src="<?=$static_url?>/js/MainController.js"></script>
+<script type="text/javascript" src="<?=$static_url?>/js/user_center.js"></script>
+<script type="text/javascript" src="<?=$static_url?>/js/shop_common.js"></script>
+<script type="text/javascript" src="<?=$static_url?>/js/main_index.js"></script>
+</body>
+</html>
+                                          <!-- 页尾 End -->

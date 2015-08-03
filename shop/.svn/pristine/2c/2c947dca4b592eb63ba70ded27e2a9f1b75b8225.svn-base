@@ -1,0 +1,90 @@
+.module-cont{
+	border: 1px solid #d9d9d9;
+	width: 1007px;
+}
+.module{
+	width: 320px;
+	padding: 0px 0px 10px 15px; 
+	margin: 0;
+	float: left;
+	position: relative;
+}
+.module .vip{
+	position: absolute;
+	top: 0px;
+	left: 0px;
+	width: 48px;
+	height: 50px;
+}
+.module .vip-only{
+	line-height: 30px;
+	color: red;
+	font-size: 18px;
+	margin-top: 20px;
+	margin-bottom: 10px;
+	font-weight: bold;
+}
+.module .header{
+	height: 157px;
+	position: relative;
+}
+.module .header .title{
+	left: 5px;
+	top: 33px;
+	position: absolute;
+}
+.module .header h1{
+	font-size: 28px;
+	color: #535353;
+	line-height: 28px;
+	margin: 0;
+	padding: 0;
+}
+.module .header h2{
+	font-size: 24px;
+	color: #939393;
+	line-height: 24px;
+	margin: 0;
+	padding: 0;
+}
+.module .header .h-img{
+	position: absolute;
+	right: 0px;
+	bottom: 0px;
+}
+.module .desc{
+	line-height: 23px;
+	margin-top: 6px;
+	height: 95px;
+}
+.module .detail{
+	text-decoration: underline;
+}
+.module .price-cont{
+	margin-top: 10px;
+	margin-bottom: 3px;
+}
+.module .price{
+	font-size: 18px;
+}
+.module .old-price{
+	text-decoration: line-through;
+}
+.module .module-btns {
+	margin-top:10px;
+}
+.bold{
+	font-weight: bold;
+}
+.db-t{
+	border-top: 1px dashed #d9d9d9;
+}
+.db-r{
+	border-right: 1px dashed #d9d9d9;
+}
+.db-b{
+	border-bottom: 1px dashed #d9d9d9;
+}
+.db-l{
+	border-left: 1px dashed #d9d9d9;
+}

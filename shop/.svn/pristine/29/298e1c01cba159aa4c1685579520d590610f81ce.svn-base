@@ -1,0 +1,53 @@
+body{font-size: 12px;}
+#maintab{
+	margin-top: 15px;
+}
+.cont{
+	background-color: #fbfbfb;
+	border: 1px solid #d9d9d9;
+	width: 1050px;
+	margin-bottom: 20px;
+}
+.cont .title{
+	width: 482px;
+}
+.btn-cont{
+	text-align: center;
+	width: 1050px;
+}
+.cont-left{
+	float: left;
+	width: 339px;
+}
+.cont-right{
+	background-color: #f2f2f2;
+	border-left: 1px solid #d9d9d9;
+	float: left;
+	width: 680px;
+	padding: 10px 10px 0px 20px;
+}
+.msg-item{
+	background: none;
+	border: 0;
+}
+.form-horizontal .controls {
+	margin-left: 130px;
+}
+.form .control-label{
+	display: inline-block;
+}
+.form .help-inline{
+	margin-bottom: 5px;
+}
+.form-horizontal .control-label {
+	width: 100px;
+}
+.other-setting .form-horizontal .control-label{
+	width: 140px;
+}
+.other-setting .form-horizontal .controls {
+	margin-left: 160px;
+}
+#startDate,#endDate{
+	width: 135px;
+}

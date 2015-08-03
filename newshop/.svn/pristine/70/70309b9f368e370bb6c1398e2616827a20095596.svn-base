@@ -1,0 +1,76 @@
+<?php
+
+class Goods_service extends MY_Service
+{
+    /**
+     * 获取商品的某天的库存
+     *
+     * @param int|array $goods_ids 商品id或者商品id组
+     * @param string $data
+     *
+     * @return int|array 库存
+     */
+    public function getGoodsStore($goods_ids, $date)
+    {
+        $week = date('w', strtotime($date));
+        if (is_array($goods_ids)) {
+            $this->load->model('goods_model');
+            $store = $this->goods_model->getStoreList($goods_ids, $date, $week);
+        } else {
+            $this->load->model('goods_model');
+            $store = $this->goods_model->getStore($goods_ids, $date, $week);
+        }
+        return $store;
+    }
+
+    /**
+     * 获取商品信息
+     *
+     * @param int $goods_id 商品id
+     *
+     * @return object 商品对象
+     */
+    public function getGoodsInfo($goods_id)
+    {
+        $this->load->model('goods_model');
+        $goods = $this->goods_model->getGoodsInfo((int)$goods_id);
+        return $goods;
+    }
+
+    /**
+     * 获取商品列表
+     * @param array $params 筛选条件
+     *
+     * @return array 商品对象列表
+     */
+    public function getGoodsList($params)
+    {
+        $this->load->model('goods_model');
+        $goods_list = $this->goods_model->getGoodsList($params);
+        return $goods_list;
+    }
+      /**
+     * 获取商品详细信息
+     * @param int $good_id 商品ID
+     *
+     * @return int $building_id building_id 
+     */
+    public function getGoodDetail($good_id,$building_id){
+       $this->load->model('goods_model');
+       $good_detail=$this->goods_model->getGoodDetail($good_id,$building_id);
+       return $good_detail;
+    }
+     /**
+     * 获取当前building商品详细信息
+     * 
+     *
+     * @return int $building_id building_id 
+     */
+     public function getAllGood($building_id)
+    {
+      $this->load->model('Product_model');
+      $service_goods = $this->Product_model->getGoodsValid($building_id);
+      return $service_goods;
+       
+    }
+}

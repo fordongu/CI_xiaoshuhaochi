@@ -1,0 +1,44 @@
+                                         <!-- 头部 Begin -->
+<!DOCTYPE HTML>
+<html>
+<head>
+<meta charset="UTF-8" />
+<title>小树好吃</title>
+<link rel="stylesheet" href="<?=$static_url?>/css/main.css"/>
+<LINK href="/favicon.ico" type="<?=$static_url?>/image/x-icon" rel="icon">
+<LINK href="/favicon.ico" type="<?=$static_url?>/image/x-icon" rel="shortcut icon">
+<script type="text/javascript" src="<?=$static_url?>/js/jquery-1.7.2.min.js"></script>
+<script type="text/javascript" src="<?=$static_url?>/js/main_index_common.js"></script>
+<script type="text/javascript" src="<?=$static_url?>/js/cart.js"></script>
+<script type="text/javascript" src="<?=$static_url?>/js/MainController.js"></script>
+
+
+<body onselectstart="return false">
+  <div class="views_main_header">
+     <ul>
+      <li onclick="location.href='/main/index'"><span></span></li>
+      <li>
+        <ol>
+          <li class="person_content"><span></span><span></span><span>&gt;</span></li>
+          <li><span></span><span class="views_main_shopping_cart_tips">我的购物车</span><span class="views_cart_number">0</span><span></span></li>
+        </ol>
+      </li>
+      <li>
+        <ol>
+          <li><span></span><span>本周 </span><span> 4/5 - 8/5</span></li>
+          <li><span></span><span>下周 </span><span> 4/5 - 8/5</span></li>
+          <li><span><i></i></span><span><i></i></span><span><i></i></span><span><i></i></span></li>
+        </ol>
+      </li>
+      <li>
+        <ol>
+          <li><a href="javascript:;">F&Q</a></li>
+          <li><a href="javascript:;">关于我们</a></li>
+          <li><a href="javascript:;">用户协议</a></li>
+          <li><a href="javascript:;">隐私协议</a></li>
+        </ol>
+      </li>
+      <li><span></span><span></span></li>
+     </ul>
+ </div>
+                                          <!-- 头部 End -->

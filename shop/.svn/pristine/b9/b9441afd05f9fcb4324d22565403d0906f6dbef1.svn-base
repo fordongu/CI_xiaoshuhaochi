@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="UTF-8" />
+	<!-- <meta name="viewport" content="width=640,initial-scale=.5,maximum-scale=.5,minimum-scale=.5,user-scalable=no,minial-ui" /> -->
+	<meta name="viewport" content="width=device-width,initial-scale=1.0,user-scalable=no" />
+	<meta name="baidu-site-verification" content="DaB7aTEuf9" />
+	<meta name="360-site-verification" content="b5ee01669c37bdcd217103b2cde25bff" />
+	<title>小树好吃</title>  
+	
+	<style>
+   
+   body{
+	width:100%; 
+position:relative;
+margin:0 auto;
+   }
+   img{
+	   width:100%;
+   }
+   .main_div{
+	width:100%;
+	position:relative;
+  	margin:0 auto;
+   }
+</style>
+
+</head>
+
+<body>
+<div>  
+	<!--<div class="title"><h1><?php echo $material->tm_title;?></h1></div>-->
+	<?php echo $material->tm_content;?>
+</div>
+</body>
+</html> 

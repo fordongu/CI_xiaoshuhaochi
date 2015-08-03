@@ -1,0 +1,111 @@
+<?php $this->load->view('main/new_header');?>
+<script type="text/javascript" src="/js/shipping_address.js"></script>
+<div class="main_member_aside">
+  <!-- member_menu -->
+    <?php echo $this->load->view('member/member_left');?>
+  <!-- member_menu_end --> 
+
+  <div class="main_member_right main_member_address">
+      <!-- base_info --> 
+        <div class="main_member_title">
+           <span></span>
+          <h4>配送地址</h4>
+          <button id="new_shipping_address">新增配送地址</button>
+        </div>
+          <div class="base_title_eric shipping_address_detail_eric new_address_edit_eric">
+           <!--新增地址--> 
+		 <div class="config_title_eric float_left">
+             新增地址:
+          </div>
+		<input type="hidden" id="center_flag"  value="0" />
+          <div class="member_normal_line_eric float_left ">
+             <div class="edit_shipping_address"></div>
+          </div>
+        </div>
+   
+   
+		   
+   
+	 <!--新增地址--> 
+	
+   <?php if($shipping_address){
+            foreach($shipping_address as $k=>$v){ ?>
+   	   
+       
+       <ul class="main_member_address_list">
+         <li class="current">
+           
+         </li>
+         <li>
+           <?php echo $v->tsa_nickname;?> 
+         </li>
+         <li>
+           <?php echo $v->tsa_mobile;?>
+         </li>
+         <li>
+           <?php echo $v->province.' '.$v->city.' '.$v->area.' '.$v->building_address;?> <?php echo $v->tsa_address;?>
+         </li> 
+       </ul>
+
+
+  <?php }
+   } 
+  ?>     
+    <ul class="add_new_address">
+        
+        <li><input type="hidden" id="hidden_id" value="0" />
+            <span class="base_info_title "><i>*</i>姓名:</span> <span class="base_info_input "><input type="text" name="nickname" placeholder="请输入您的姓名" id="nickname" class="cookie_val" value="<?php echo $address_cookie_nickname; ?>" /><span class="error_note"></span></span>  
+        </li>
+        <li>
+            <span class="base_info_title "><i>*</i>电话:</span> <span class="base_info_input "><input type="text" name="mobile" placeholder="请输入您的联系方式" id="mobile" class="cookie_val" value="<?php echo $address_cookie_mobile; ?>" /><span class="error_note"></span></span>  
+        </li>
+
+        <li>
+            <span class="base_info_title "><i>*</i>地址:</span> 
+            <span class="base_info_input ">
+                <span id='new_address_span'>  <?php $building = $default_building[0];
+echo $building->province . '&nbsp;&nbsp;' . $building->city . '&nbsp;&nbsp;' . $building->area . '&nbsp;&nbsp;' . $building->address . '&nbsp;&nbsp;';
+?></span><input type="text" name="extra_building_address" id="extra_building_address" placeholder="请输入您所在写字楼地址" value="" /><span class="error_note"></span>
+               <input type="text" name="company_address" id="company_address" placeholder="请输入您所在公司的地址" value="" /><span class="error_note"></span>
+            
+                <span class="error_note" id="address_note"></span>
+            </span>  
+            <input type="hidden" id="province_id"  value="<?php echo $building->province_id; ?>" />
+            <input type="hidden" id="city_id"  value="<?php echo $building->city_id; ?>" />
+            <input type="hidden" id="area_id"  value="<?php echo $building->area_id; ?>" />
+            <input type="hidden" id="tsa_building_id"  value="<?php echo $building->id; ?>" />
+
+            <input type="hidden" id="zipcode"  value="" />
+            <input type="hidden" id="uid"  value="<?php echo $uid; ?>" />
+            <input type="hidden" id="new_flag"  value="<?php echo $new_flag; ?>" />
+            <input type="hidden" id="edit_flag"  value="<?php echo $edit_flag; ?>" />
+        </li>
+       <li style="display:none;" class="last_li">
+            <div class="base_info_title float_left">&nbsp;</div> 
+            <div class="base_info_input float_left address_detail">
+                <input type="text" name="extra_company" id="extra_company" placeholder="请输入公司名称" value="" /><span class="error_note"></span>
+                <input type="text" name="address" id="address" placeholder="请输入X楼X室" value="" /><span class="error_note"></span>
+
+        
+            </div>  
+        </li>
+      
+        <li class="base_info_input float_left" style="margin-left:115px;margin-top:-10px">
+               
+
+        </li>
+          <li class="base_info_input">
+             <button id="save_address" data_flag='0' class="base_info_input">保存</button>  
+        </li>
+    </ul> 
+     <!-- base_info -->
+   
+     
+</div>
+</div>   
+
+</div>
+<div class="clear"></div>
+  <?php $this->load->view('main/new_footer');?>
+</body>
+</html> 

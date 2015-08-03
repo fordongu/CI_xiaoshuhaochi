@@ -1,0 +1,50 @@
+<?php
+
+function vget($url,$cookie = array()){
+    $curl = curl_init();
+    curl_setopt($curl, CURLOPT_URL, $url);
+    curl_setopt($curl, CURLOPT_SSL_VERIFYPEER, 0);
+    //curl_setopt($curl, CURLOPT_SSL_VERIFYHOST, 1);
+    curl_setopt($curl, CURLOPT_USERAGENT, $_SERVER['HTTP_USER_AGENT']); // 模拟用户使用的浏览器
+    curl_setopt($curl, CURLOPT_HTTPHEADER, $cookie);
+    curl_setopt($curl, CURLOPT_FOLLOWLOCATION, 1);
+    curl_setopt($curl, CURLOPT_AUTOREFERER, 1);
+    //curl_setopt($curl, CURLOPT_COOKIEFILE, '/');
+    curl_setopt($curl, CURLOPT_HTTPGET, 1);
+    curl_setopt($curl, CURLOPT_TIMEOUT, 30);
+    curl_setopt($curl, CURLOPT_HEADER, 0);
+    curl_setopt($curl, CURLOPT_RETURNTRANSFER, 1);
+
+    $tmpInfo = curl_exec($curl);
+    if (curl_errno($curl)) {
+        echo 'Errno'.curl_error($curl);
+    }
+
+    curl_close($curl);
+    return $tmpInfo;
+ }
+
+ function vpost($url, $data, $cookie = array()){
+    $curl = curl_init();
+    curl_setopt($curl, CURLOPT_URL, $url);
+    curl_setopt($curl, CURLOPT_SSL_VERIFYPEER, 0);
+    //curl_setopt($curl, CURLOPT_SSL_VERIFYHOST, 1);
+    curl_setopt($curl, CURLOPT_USERAGENT, $_SERVER['HTTP_USER_AGENT']); // 模拟用户使用的浏览器
+    curl_setopt($curl, CURLOPT_HTTPHEADER, $cookie);
+    curl_setopt($curl, CURLOPT_FOLLOWLOCATION, 1);
+    curl_setopt($curl, CURLOPT_AUTOREFERER, 1);
+    curl_setopt($curl, CURLOPT_POST, 1);
+    curl_setopt($curl, CURLOPT_POSTFIELDS, $data);
+    //curl_setopt($curl, CURLOPT_COOKIEFILE, $this->cookie_file);
+    curl_setopt($curl, CURLOPT_TIMEOUT, 30);
+    curl_setopt($curl, CURLOPT_HEADER, 0);
+    curl_setopt($curl, CURLOPT_RETURNTRANSFER, 1);
+
+    $tmpInfo = curl_exec($curl);
+    if (curl_errno($curl)) {
+        echo 'Errno'.curl_error($curl);
+    }
+
+    curl_close($curl);
+    return $tmpInfo;
+ }

@@ -1,0 +1,32 @@
+<?php
+
+class User_service extends MY_Service
+{
+    public function login($username, $password)
+    {
+        $this->load->model('user_model');
+        $user = $this->user_model->findUserByUsername($username);
+        //print_r($user);exit;
+        if ($user && $user->tu_password == md5($password)) {
+            return true;
+        }
+        return false;
+    }
+        public function get_uid(){
+		$user_cookie = isset($_COOKIE['user_cookie'])?$_COOKIE['user_cookie']:'';
+		
+		if($user_cookie){
+			$user_cookie = unserialize($user_cookie);
+			return $user_cookie->tu_id;
+		}else{
+			 
+			$temp_user_data = array('tu_user_type'=>1,'tu_created'=>date('Y-m-d H:i:s'),'tu_nickname'=>'游客');
+			$result = $this->db->insert('users',$temp_user_data);
+                        $id = $this->db->insert_id();
+                        $sql="select * from t_users where tu_id=?";
+                        $user=$this->db->query($sql,array($id))->result();
+			setcookie('user_cookie',serialize($user[0]),time()+3600*24,'/'); 
+			return $result;
+		}
+	}
+}

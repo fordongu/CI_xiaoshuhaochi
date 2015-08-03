@@ -1,0 +1,252 @@
+                                         <!-- 头部 Begin -->
+<!DOCTYPE HTML>
+<html>
+<head>
+<meta charset="UTF-8" />
+<title>小树好吃</title>  
+<link rel="stylesheet" href="../css/main.css"/>
+<LINK href="/favicon.ico" type="image/x-icon" rel="icon">
+<LINK href="/favicon.ico" type="image/x-icon" rel="shortcut icon">
+<script type="text/javascript" src="../js/jquery-1.7.2.min.js"></script>  
+<script type="text/javascript" src="../js/main_index_common.js"></script> 
+</head>
+<body onselectstart="return false"> 
+  <div class="views_main_header">
+     <ul>
+      <li onclick="location.href='/main/index'"><span></span></li>
+      <li>
+        <ol>
+          <li class="person_content"><span></span><span></span><span>&gt;</span></li>
+          <li><span></span><span class="views_main_shopping_cart_tips">我的购物车</span><span class="views_cart_number">0</span><span></span></li>
+        </ol>
+      </li>
+      <li>
+        <ol>
+          <li><span></span><span>本周 </span><span> 4/5 - 8/5</span></li>
+          <li><span></span><span>下周 </span><span> 4/5 - 8/5</span></li>
+          <li><span><i></i></span><span><i></i></span><span><i></i></span><span><i></i></span></li>
+        </ol>
+      </li>
+      <li>
+        <ol>
+          <li><a href="javascript:;">F&Q</a></li>
+          <li><a href="javascript:;">关于我们</a></li>
+          <li><a href="javascript:;">用户协议</a></li>
+          <li><a href="javascript:;">隐私协议</a></li>
+        </ol>
+      </li>
+      <li><span></span><span></span></li>
+     </ul>
+ </div>  
+
+ <!-- 注册登录 Begin -->
+ <div class="views_main_login_sign_one">
+   <span class="delete">
+      <img src="../icon/delete.png" alt="删除"/>
+   </span>
+   <div class="views_main_login">
+    <h3>登录</h3>
+    <form method="post" action="www.xiaoshuhaochi.com">
+     <ul>
+       <li><input type="text" placeholder="手机号码"/></li>
+       <li><input type="password" placeholder="密码"/></li>
+       <li>
+         <label>
+           <input type="checkbox" checked /> 记住密码
+         </label>
+         <a id="fogetpass" href="javascript:;">忘记密码 ？</a>
+       </li>
+       <li><button>立即登录</button></li>
+       <li>你也可以通过以下方式登录</li>
+       <li><span></span><span></span></li>
+     </ul>
+     </form>
+   </div>
+   <div class="views_main_sign">
+     <h3>注册</h3>
+     <p>我已有<a>小树好吃</a>账号</p>
+     <p>登录后，享受会员专属待遇</p>
+     <button class="sign_now">立即注册</button>
+   </div>
+ </div>
+
+ <div class="views_main_login_sign_two">
+   <span class="delete">
+      <img src="../icon/delete.png" alt="删除"/>
+   </span>
+   <div class="views_main_sign">
+     <h3>登录</h3>
+     <p>我已有<a>小树好吃</a>账号</p>
+     <p>登录后，享受会员专属待遇</p>
+     <ul>
+       <li><button id="login_now">立即登录</button></li>
+       <li>你也可以通过以下方式登录</li>
+       <li><span></span><span></span></li>
+     </ul>
+   </div>
+   <div class="views_main_login">
+    <h3>注册</h3>
+    <form method="post" action="www.xiaoshuhaochi.com">
+     <ul>
+       <li><input type="text" placeholder="手机号码"/></li>
+       <li>
+          <input type="text" placeholder="验证码">
+          <a href="javascript:;">发送验证码</a>
+       </li>
+       <li><input type="password" placeholder="密码"/></li>
+       <li><input type="password" placeholder="重复密码"/></li>
+       <li>
+         <input type="checkbox" checked>
+         我已阅读并同意<a href="javascript:;">用户协议</a>
+       </li>
+       <li><button>立即注册</button></li>
+     </ul>
+     </form>
+   </div>
+ </div>
+
+ <div class="views_main_login_sign_three">
+   <span class="delete">
+      <img src="../icon/delete.png" alt="删除"/>
+   </span>
+   <div class="views_main_login">
+    <h3>忘记密码</h3>
+    <form method="post" action="www.xiaoshuhaochi.com">
+     <ul>
+       <li><input type="text" placeholder="手机号码"/></li>
+       <li>
+          <input type="text" placeholder="验证码">
+          <a href="javascript:;">发送验证码</a>
+       </li>
+       <li><input type="password" placeholder="密码"/></li>
+       <li><input type="password" placeholder="重复密码"/></li>
+       <li><button>确认修改</button></li>
+     </ul>
+     </form>
+   </div>
+   <div class="views_main_sign">
+     <h3>注册</h3>
+     <p>我已有<a>小树好吃</a>账号</p>
+     <p>登录后，享受会员专属待遇</p>
+     <button class="sign_now">立即注册</button>
+   </div>
+ </div>
+ <!-- 注册登录 End -->
+                                          <!-- 头部 End -->
+
+                                          <!-- 主体 Begin --> 
+
+<!-- member_menu -->
+<div class="main_member_aside">
+    <div class="main_member_left">
+           <ul>
+             <li><h4>个人信息管理</h4></li>
+             <li onclick="location.href='/member/index'">基本信息</li>
+             <li onclick="location.href='/member/shipping_address'">配送地址</li>
+             <li onclick="location.href='/member/password'">登录密码设置</li>
+             <li><h4>订单中心</h4></li>
+             <li onclick="location.href='/member/order_list'">我的订单</li>
+             <li><h4>资产中心</h4></li>
+             <li onclick="location.href='/member/coupons'">优惠券</li>
+             <li onclick="location.href='/member/account'">我的账户</li>
+             <li onclick="location.href='/member/score'">积分</li>
+           </ul>
+           <div class="clear"></div>
+    </div>
+  <!-- member_menu_end --> 
+                                          
+<div class="main_member_aside">
+  <!-- member_menu -->
+    <?php echo $this->load->view('member/member_left');?>
+  <!-- member_menu_end --> 
+ 
+  <div class="main_member_order_list main_member_right">
+     
+  <!-- order_info -->
+     	<div class="main_member_title">
+             <span></span><h4>我的订单</h4>
+      </div>
+          <!--  img src="/images/search.png" class="order_search_button float_right"/>
+             <input type="text" name="search_keywords" placeholder="商品名称，商品编号，订单编号" class="search_keywords float_right"/ -->              
+          
+  <?php if($orders){
+  			foreach($orders as $key=>$val){
+  	?> 
+    <div class="main_member_content">     
+      <div class="main_member_order_list_title">
+          <ul>
+             <li><?php echo $val->to_created;?></li>
+             <li>订单编号：<?php echo $val->to_order_sn;?></li>
+          </ul> 
+          <ol>
+             <li><img src="/images/jiage.png" class="pay_now" data_sn="<?php echo $val->to_order_sn;?>" data_pay_way="<?php echo $val->to_pay_way;?>"></li>
+            <li><img src="/images/xiangqing.png"></li>
+            <li><img src="/images/wx_delete_h.png" class="close_order" data_id=<?php echo $val->to_id;?>></li>
+          </ol>
+      </div>  
+     <table class="order_list_table_eric member_base_order_list_eric">
+      <thead>
+       <tr class="list_title_eric">
+         <td>用餐日期</td>
+         <td>菜品</td>
+         <td>单价(元)</td>
+         <td>份数</td>
+         <td>合计</td>
+       </tr>
+      </thead> 
+       <?php $temp_count = count($val->order_detail);foreach($val->order_detail as $k=>$v){
+       		 
+       	?>
+       <tr>
+         <td><?php echo $v->service_date;?></td>
+         <td><?php for($i=0;$i<5;$i++){$title = 'title'.$i;if($v->$title){ if($i){echo '+';}echo $v->$title;}}?></td>
+         <td><?php echo $v->now_price;?></td>
+         <td><?php if($val->event){echo $v->count;}else{echo $v->count;}?></td><?php }?>
+         <td><?php if($val->coupon_amount){
+
+           	echo '优惠券:'.$val->coupon_amount.'元';
+           }
+           if ($val->to_order_amount){
+               if ($val->to_pay_way == 'alipay'){
+               	echo '&nbsp;&nbsp;支付宝:&nbsp;';
+               }else if($val->to_pay_way == 'wechat'){
+               	echo '&nbsp;&nbsp;微信支付:&nbsp;';
+               }else if($val->to_pay_way == 'daofu'){
+               	echo '&nbsp;&nbsp;货到付款:&nbsp;';
+               }
+               echo $val->to_order_amount.'元';      	
+           }
+           ?>   
+         </td>
+       </tr>
+    </table>
+    <div class="order_shipping_info_eric">
+        <ul class="receiver_info_eric">
+          <li><h5>收货人:</h5><?php echo $val->to_receiver;?></li>
+          <li><h5>电话:</h5><?php echo $val->to_mobile;?></li>
+          <li><h5>订单来源:</h5><?php if ($val->to_order_type){echo '微信订单';}else{ echo '网站订单';}?></li>
+          <li><h5>订单状态:</h5><?php echo $order_status[$val->to_status];?></li>
+          <li><h5>地址:</h5>地址:<?php echo $val->to_address;?></li>
+        </ul>
+        <div class="main_member_order_list_address receiver_address_eric">
+             <?php ?><?php $current_time=date('H:i:s');$current_date = strtotime(date('Y-m-d')); if(($val->to_status == 10)&&($val->to_pay_way != 'daofu')&&(($val->first_server_date > $current_date)||(($val->first_server_date == $current_date)&&($current_time < $order_time->tc_title)))){?>
+                  <button class="extra_span_eric pay_now_eric float_right" data_sn="<?php echo $val->to_order_sn;?>" data_pay_way="<?php echo $val->to_pay_way;?>">去付款</button>
+           <?php }?>  
+         </div>
+         
+     </div> 
+   </div>  
+   <?php 
+     }
+}?> 
+  </div>
+  
+  <!-- order_info --> 
+     
+</div>
+</div>
+    
+                                        <!-- 主体 Begin --> 
+
+</body>
+</html> 

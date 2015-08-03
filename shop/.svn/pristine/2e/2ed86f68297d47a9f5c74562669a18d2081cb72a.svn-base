@@ -1,0 +1,142 @@
+$(function () {
+
+	 $('#file_upload').each(function(){
+			var $fileInput = $(this);
+			var $cont =  $fileInput.closest(".cover-area");
+			setTimeout(function(){
+			$fileInput.uploadify({			 
+				'swf'      : '/resource/swf/uploadify.swf', 
+				'uploader' : '/uploads.php',
+				'onUploadSuccess' : function(file,data,response)  {
+					var jsonData = eval("("+data+")");
+					$cont.find("#img-area").show();
+					var img = "<img src='"+jsonData.fileUrl+"' />";
+					$cont.find("#img-area").prepend(img);
+			    //	$cont.show().find("img").attr("src",jsonData.fileUrl);
+			    	var url = $cont.find('.cover-input').val();
+			    	$cont.find('.cover-input').after("<span style='display:block'>filesize:"+jsonData.fileSize+"</span>");
+			    	if(url){
+			    		$cont.find('#coverurl').val(url+";"+jsonData.fileUrl);
+			    	}else{
+			    		$cont.find('#coverurl').val(jsonData.fileUrl);
+			    	} 
+			    }			 
+			});
+			},10);
+		});
+	 $(".cover-del").click(function(){
+			var $cont =  $(this).closest(".cover-area");
+			 
+			$(".img-area").find('img').remove();
+			$(".cover-input",$cont).val("");
+			//$(".cover .i-img",$cont).hide();
+		 });
+	 
+	 $(".msg-editer #title").bind("keyup",function(){
+		 $(".i-title").text($(this).val());
+	 });
+	 $(".msg-editer #summary").bind("keyup",function(){
+		 $(".msg-text").text($(this).val());
+	 });
+	 $('#desc-block-link').click(function(){
+		 $('#desc-block').show();
+		 $(this).hide();
+	 });
+	 $('#url-block-link').click(function(){
+		 $('#url-block').show();
+		 $(this).hide();
+	 });
+	 $("#delImg").click(function(){
+		 $(".default-tip").show();
+		 $("#imgArea").hide();
+		 $("#coverurl").val('');
+		 $(".cover .i-img").hide();
+	 });
+	 $("#cancel-btn").click(function(event){
+		 event.stopPropagation();
+		 location.href = "/main/materials_index";
+		 return ;
+	 });
+	 var validator = $("#appmsg-form").validate({
+			rules: {
+				title: {
+					required: true,
+					maxlength: 64
+				},
+				summary: {
+					maxlength: 120
+				},
+				source_url:{
+					url : true
+				}
+			},
+			messages: {
+				title: {
+					required: "请输入标题",
+					maxlength: "标题不能超过64个字"
+				},
+				summary: {
+					maxlength: "标题不能超过120个字"
+				},
+				source_url:{
+					url : "必须输入正确的url格式"
+				}
+			},
+			showErrors: function(errorMap, errorList) {
+				if (errorList && errorList.length > 0) {
+					$.each(errorList,
+							function(index, obj) {
+						var item = $(obj.element);
+						// 给输入框添加出错样式
+						item.closest(".control-group").addClass('error');
+						item.attr("title",obj.message);
+					});
+				} else {
+					var item = $(this.currentElements);
+					item.closest(".control-group").removeClass('error');
+					item.removeAttr("title");
+				}
+			},
+			submitHandler: function() {
+				if($("#coverurl").val() == ''){
+					alert("必须上传一张图片");
+					return false;
+				}
+				var editorContent = msg_editor.getContent();
+				if(editorContent.length <= 0 || editorContent > 20000){
+					alert("正文的内容必须填写且不能超过20000个字");
+					msg_editor.focus();
+					return false;
+				}
+				var $form = $("#appmsg-form");
+				var $btn = $("#save-btn");
+				if($btn.hasClass("disabled")) return;
+				var submitData = {
+						title: $("input[name='title']", $form).val(),
+						summary: $("textarea[name='summary']", $form).val(),
+						coverurl: $("input[name='coverurl']", $form).val(),
+						source_url: $("input[name='source_url']" , $form).val(),
+						link: $("input[name='link']", $form).val(),
+						rid: $("input[name='rid']", $form).val(),
+						m_id: $("input[name='m_id']", $form).val(),
+						action: $("input[name='action']", $form).val(),
+						maincontent: editorContent
+				};
+				$btn.addClass("disabled");
+				$.post('/main/single_material_manage', submitData,function(data) {
+					$btn.removeClass("disabled");
+					if (data.success == 'yes') {
+					 
+						location.href = "/main/materials_index";
+					}  else{
+						if("1" == data.errorCode){
+							alert("图文条数已经达到上限100条了!");
+						}else{
+							alert("保存失败");
+						}
+					}
+				},"json");
+				return false;
+			}
+		}); 
+});

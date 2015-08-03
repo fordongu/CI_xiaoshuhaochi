@@ -1,0 +1,70 @@
+<?php
+defined('BASEPATH') OR exit('No direct script access allowed');
+
+class Cart extends CI_Controller {
+
+    function __construct() {
+        parent::__construct();
+        $this->load->service('cart_service');
+    }
+
+    public function index()
+    {
+        //$this->load->service('cart_service');
+        $goods_list = $this->cart_service->getCartInfo();
+        print_r($goods_list);exit;
+        $this->load->view('welcome_message');
+    }
+
+    public function getCart()
+    {
+        $goods_list = $this->cart_service->getCartInfo();
+        echo json_encode($goods_list);
+        exit;
+    }
+
+    public function addCart()
+    {
+        /*$goods_id = (int)$this->input->post('goods_id');
+        $date = $this->input->post('date');
+        $num = (int)$this->input->post('num');
+        $type = (int)$this->input->post('goods_type');
+        $week_flag = (int)$this->input->post('week_flag');*/
+        //
+        $goods_id = 31;
+        $date = '0';
+        $num = 1;
+        $type = 0;
+        $week_flag = 0;
+        $flag = $this->cart_service->addCart($goods_id, $date, $num, $type, $week_flag);
+    }
+
+    public function delCart()
+    {
+
+    }
+
+    public function clearCart()
+    {
+        $flag = $this->cart_service->clearCart();
+    }
+
+    public function incrCart()
+    {
+        $goods_key = $this->input->post('goods_key');
+        $flag = $this->cart_service->incrCart();
+    }
+
+    public function decrCart()
+    {
+        $goods_key = $this->input->post('goods_key');
+        $flag = $this->cart_service->decrCart();
+    }
+
+    public function updateCartDate()
+    {
+        $date = '2015-5-8';
+        $flag = $this->cart_service->updateCartDate($date, 0);
+        var_dump($flag);
+    }
+}

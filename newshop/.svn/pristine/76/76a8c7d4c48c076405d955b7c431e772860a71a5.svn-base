@@ -1,0 +1,44 @@
+date_day<?php
+defined('BASEPATH') OR exit('No direct script access allowed');
+
+class Main extends CI_Controller {
+
+
+	public function index()
+	{
+        $this->load->service('Goods_service');
+        $this->load->service('User_service');
+        $this->load->service("Main_service");
+        //$this->load->model('base');
+        $uid=  $this->User_service->get_uid();
+        $building_id=43;
+	$all_good=  $this->Goods_service->getAllGood($building_id);
+
+        $static_url = $this->config->item('static_url');
+        $base_url = $this->config->item('base_url');
+         $data["uid"]=$uid;
+        $data["goods"]=$all_good["final_goods"];
+        $data["first"]=$all_good["first"];
+        $data["date_day"]=  $this->Main_service->getDate();
+        $data["old_website"] = $this->config->item('old_website');
+        //$date[0]是日期$date[1]是周几
+         $data["week"]=$this->Main_service->getWeek();
+        //超过规定时间￥date就会改变目前是10:00
+         $getWeeks=$this->Main_service->getWeeks();
+            $data["weeks_contorl"]=$getWeeks;
+           $data1["weeks_contorl"]=$getWeeks; //取出本周与下周供应时间段的方法
+        // $this->load->view('main/main_header',array('static_url' => $static_url));
+
+         $this->load->view('main/main_header',array('static_url' => $static_url));
+         $this->load->view('main/main_header',$data1);
+         $this->load->view('main/index',$data);
+        $this->load->view('main/main_footer', array('base_url' => $base_url, 'static_url' => $static_url));
+	}
+        public function user_login(){
+        $mobile = $this->input->post('mobile_email');
+    	$password = $this->input->post('password');
+    	$remember_flag = $this->input->post('remember_flag')?$this->input->post('remember_flag'):'';
+        }
+
+
+}

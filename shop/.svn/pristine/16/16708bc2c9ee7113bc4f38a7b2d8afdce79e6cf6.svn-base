@@ -1,0 +1,21 @@
+<?php
+class picup extends Model {
+    function addpic($picture,$id){
+        //将图片地址存入数据库
+          
+                if(!empty($id)){
+                    $this->tickets->update('supplier_image',$picture,array('supplier_id'=>$id)); 
+                }else{
+                    $this->tickets->insert('supplier_image',$picture); 
+                }
+              
+        
+        
+    }
+    
+    
+    
+    
+}
+
+?>

@@ -1,0 +1,37 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en">
+<head>
+	<meta http-equiv="Content-Type" content="text/html;charset=UTF-8" />
+	<!-- <meta name="viewport" content="width=640,initial-scale=.5,maximum-scale=.5,minimum-scale=.5,user-scalable=no,minial-ui" /> -->
+	<meta name="viewport" content="width=640" />
+	<meta name="baidu-site-verification" content="DaB7aTEuf9" />
+	<meta name="360-site-verification" content="b5ee01669c37bdcd217103b2cde25bff" />
+	<title>小树好吃</title>  
+	<style>
+   body{
+	 
+   	margin-left:auto;
+   	margin-right:auto;
+   }
+   img{
+	width:100%;
+   }
+   .title{
+	width:100%;
+    text-align:center;
+   }
+   .main_div{
+	width:640px;
+  	margin-left:auto;
+  	margin-right:auto;
+   }
+</style>
+</head>
+
+<body>
+<div class="main_div">  
+	<div class="title"><h1><?php echo $material->tm_title;?></h1></div>
+	<?php echo $material->tm_content;?>
+</div>
+</body>
+</html> 

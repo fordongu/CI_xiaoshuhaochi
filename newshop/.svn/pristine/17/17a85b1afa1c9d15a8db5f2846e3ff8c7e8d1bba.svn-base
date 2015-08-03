@@ -1,0 +1,190 @@
+<?php
+
+class User_service extends MY_Service {
+
+    public function __construct() {
+        $this->load->helper('cookie');
+        $this->load->model('User_model');
+    }
+
+    public function login($username, $password) {
+        $this->load->model('user_model');
+        $user = $this->user_model->findUserByUsername($username);
+        //print_r($user);exit;
+        if ($user && $user->tu_password == md5($password)) {
+            return true;
+        }
+        return false;
+    }
+
+    public function get_uid() {
+        $this->load->helper("cookie");
+        $user_cookie = isset($_COOKIE['user_cookie']) ? $_COOKIE['user_cookie'] : '';
+
+        if ($user_cookie) {
+            $user_cookie = unserialize($user_cookie);
+            return $user_cookie->tu_id;
+        } else {
+
+            $temp_user_data = array('tu_user_type' => 1, 'tu_created' => date('Y-m-d H:i:s'), 'tu_nickname' => '游客');
+            $result = $this->db->insert('users', $temp_user_data);
+            $id = $this->db->insert_id();
+            $sql = "select * from t_users where tu_id=?";
+            $user = $this->db->query($sql, array($id))->result();
+            set_cookie('user_cookie', serialize($user[0]), time() + 3600 * 24);
+            return $result;
+        }
+    }
+
+    /*
+     * 
+     * 用户注册
+     * 
+     * $mobile手机号码
+     * $password
+     * @return json
+     */
+
+    public function userRister() {
+
+        $mobile_email = int($this->input->post('mobile_email'));
+        $password = trim($this->input->post('password'));
+        $code = int($this->input->post('code'));
+        $check = $this->User_model->checkMobileCode($mobile_email, $code);
+    }
+
+    /*
+     * 
+     * 发送验证码
+     * 
+     * $mobile手机号码
+     * $check  0注册，1找回密码
+     * @return arr
+     */
+
+    public function dosendSms($mobile = "", $check = "") {
+
+        $user_check = $this->User_model->sendSmsCheck($mobile, $check);
+        if ($user_check["sussuces"] == "used") {
+            return $user_check;
+        } else if ($user_check["sussuces"] == "time_limit") {
+            return $user_check;
+        } else if ($user_check["sussuces"] == "yes") {
+            $code = $this->generateCode(6);
+            $msg_template = "【小树好吃】您的验证码是：" . $code; //$msg[0]->tc_content; 
+            $res = $this->sendSms($mobile, $msg_template);
+            if (!$res) {
+                $msg = array('success' => 'send_error', 'msg' => '发送失败');
+                return $msg;
+            } else {
+                $code_data = array('tmc_mobile' => $mobile, 'tmc_code' => $code, 'tmc_created' => time());
+                $this->db->insert('mobile_codes', $code_data);
+                $msg = array('success' => 'send_yes', 'msg' => '发送成功');
+            }
+        }
+    }
+
+    /*
+     * 
+     * 验证码
+     * 
+     * $mobile手机号码
+     * $code验证码
+     * @return json
+     */
+
+    public function checkMobileCode($mobile, $code) {
+        $mobile = $this->input->post("mobile");
+        $code = $this->input->post("code");
+        $check = $this->User_model->checkMobileCode($mobile, $code);
+        if (!$check) {
+            $r = array('success' => 'no', 'msg' => '验证码失效');
+        } else {
+
+            if ($check[0]->tmc_code == $code) {
+                return true;
+            } else {
+
+                $r = array('success' => 'no', 'msg' => '验证码错误');
+            }
+        }
+        return $r;
+    }
+
+    public function generateCode($len = 20) {
+        if ($len == 12) {
+            $chars = '0123456789';
+        } else {
+            $chars = '0123456789';
+        }
+        for ($i = 0, $count = strlen($chars); $i < $count; $i++) {
+            $arr[$i] = $chars[$i];
+        }
+
+        mt_srand((double) microtime() * 1000000);
+        shuffle($arr);
+        $code = substr(implode('', $arr), 0, $len);
+        return $code;
+    }
+
+    private function sendSms($mobile, $content) {
+        require_once APPPATH . 'libraries/sms/Client.php';
+        //$sms_config = $this->tickets->select('configs',array('tc_type'=>'sms_config'));
+        $sql = "select * from t_configs where 1=1 and tc_type='sms_config'";
+        $sms_config = $this->db->query($sql)->row();
+
+        if (!$sms_config) {
+            return false;
+        } else {
+            $config = $sms_config;
+        }
+        /**
+         * 网关地址
+         */
+        $gwUrl = 'http://sdk4report.eucp.b2m.cn:8080/sdk/SDKService';
+
+        /**
+         * 序列号,请通过亿美销售人员获取
+         */
+        $serialNumber = $config->tc_title; //'6SDK-EMY-6688-KGZSP';
+
+        /**
+         * 密码,请通过亿美销售人员获取
+         */
+        $password = $config->tc_content; //'845379';
+
+        /**
+         * 登录后所持有的SESSION KEY，即可通过login方法时创建
+         */
+        $sessionKey = '123456';
+
+        /**
+         * 连接超时时间，单位为秒
+         */
+        $connectTimeOut = 2;
+
+        /**
+         * 远程信息读取超时时间，单位为秒
+         */
+        $readTimeOut = 10;
+
+        $proxyhost = false;
+        $proxyport = false;
+        $proxyusername = false;
+        $proxypassword = false;
+
+        $client = new Client($gwUrl, $serialNumber, $password, $sessionKey, $proxyhost, $proxyport, $proxyusername, $proxypassword, $connectTimeOut, $readTimeOut);
+        /**
+         * 发送向服务端的编码，如果本页面的编码为GBK，请使用GBK
+         */
+        $client->setOutgoingEncoding("utf8");
+        $statusCode = $client->login();
+        $statusCode = $client->sendSMS(array($mobile), $content);
+        if ($statusCode == 0) {
+            return true;
+        } else {
+            return false;
+        }
+    }
+
+}

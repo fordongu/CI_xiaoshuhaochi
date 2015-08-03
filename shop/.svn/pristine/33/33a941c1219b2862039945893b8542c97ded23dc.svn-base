@@ -1,0 +1,86 @@
+//显示购物车商品数量
+function showCount() {
+    $.ajax({
+        url: base_url + '/cart/getCartCount',
+        data: '',
+        type: 'get',
+        dataType: 'text',
+        success: function(data) {
+            $('.views_cart_number').text(data);
+        },
+        error: function(er) {
+            //网络请求超时
+            alert("网络请求超时，请重试");
+        }
+    });
+}
+//展示购物车
+function showCart() {
+    $.ajax({
+        url: '/cart/getCart',
+        data: '',
+        type: 'get',
+        dataType: 'text',
+        success: function(data) {
+            var result = eval("(" + data + ")");
+            if (result.goods_count == 0) {
+                window.location.href = "/";
+                return;
+            }
+            var this_week = '';
+            for (var i in result.cart_goods[0]) {
+                this_week +='<tr class="normal_tr"><td>'+result.cart_goods[0][i].date+'</td><td>'+result.cart_goods[0][i].goods_name+'</td><td>￥<span>'+result.cart_goods[0][i].price+'</span></td><td><div class="add_goods"><button class="btn minus good_button float_left" onclick="decrCart(\''+result.cart_goods[0][i].goods_key+'\',0)">-</button><div class="float_left main_confirm_order_count confirm_order_count good_date">'+result.cart_goods[0][i].goods_num+'</div><button class="btn plus good_button high_but float_left" onclick="incrCart(\''+result.cart_goods[0][i].goods_key+'\',0)">+</button></div></td><td>'+(result.cart_goods[0][i].goods_num * result.cart_goods[0][i].price).toFixed(2)+'</td></tr>';
+            }
+
+            var next_week = '';
+            for (var i in result.cart_goods[1]) {
+               next_week +='<tr class="normal_tr"><td>'+result.cart_goods[1][i].date+'</td><td>'+result.cart_goods[1][i].goods_name+'</td><td>￥<span>'+result.cart_goods[1][i].price+'</span></td><td><div class="add_goods"><button class="btn minus good_button float_left" onclick="decrCart(\''+result.cart_goods[1][i].goods_key+'\',1)">-</button><div class="float_left main_confirm_order_count confirm_order_count good_date">'+result.cart_goods[1][i].goods_num+'</div><button class="btn plus good_button high_but float_left" onclick="incrCart(\''+result.cart_goods[1][i].goods_key+'\',1)">+</button></div></td><td>'+(result.cart_goods[1][i].goods_num * result.cart_goods[1][i].price).toFixed(2)+'</td></tr>';
+            }
+
+            $('#cart_goods_list').html(this_week+next_week);
+            $('#cost_price').text(result.total_price.toFixed(2));
+            $('#preferential_price').text(result.total_price.toFixed(2));
+            return;
+        },
+        error: function(er) {
+            //网络请求超时
+            alert("网络请求超时，请重试");
+        }
+    });
+}
+
+//增加商品数量
+function incrCart(goods_key, week_flag) {
+    $.ajax({
+        url: '/cart/incrCart',
+        data: 'goods_key=' + goods_key + '&goods_num=1&week_flag=' + week_flag,
+        type: 'post',
+        dataType: 'text',
+        success: function(data) {
+            //刷新购物车
+            showCart();
+        },
+        error: function(er) {
+            //网络请求超时
+            alert("网络请求超时，请重试");
+        }
+    });
+}
+
+//减少商品数量
+function decrCart(goods_key, week_flag) {
+    $.ajax({
+        url: '/cart/decrCart',
+        data: 'goods_key=' + goods_key + '&goods_num=1&week_flag=' + week_flag,
+        type: 'post',
+        dataType: 'text',
+        success: function(data) {
+            //刷新购物车
+            showCart();
+        },
+        error: function(er) {
+            //网络请求超时
+            alert("网络请求超时，请重试");
+        }
+    });
+}

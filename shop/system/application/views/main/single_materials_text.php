@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<link rel="stylesheet" href="/bootstrap/css/bootstrap.min.css" media="screen" />
+<link rel="stylesheet" href="/resource/css/admin/admin.css" media="screen" />
+<link rel="stylesheet" href="/resource/css/admin/appmsg.css" media="screen" />
+<link rel="stylesheet" href="/jquery-ui/css/uploadify.css" media="screen" />
+<script type="text/javascript" src="/resource/js/jquery-1.7.2.min.js"></script>
+<script type="text/javascript" src="/bootstrap/js/bootstrap.min.js"></script>
+<script type="text/javascript" src="/resource/js/plugin/operamasks-ui.min.js"></script>
+<script type="text/javascript" src="/resource/js/page/appmsg_single_text.js"></script>
+<script type="text/javascript">window.UEDITOR_HOME_URL = '/ueditor/';</script>
+<!--<script type="text/javascript" src="/ueditor/ueditor.config.js"></script>
+<script type="text/javascript" src="/ueditor/ueditor.all.min.js"></script>
+<link rel="stylesheet" href="/ueditor/themes/default/css/ueditor.css" />-->
+<!--<script type="text/javascript" src="/jquery-ui/js/jquery.uploadify.min.js"></script>-->
+<title>单文本编辑</title>
+<style>
+label{
+	display: inline-block;
+}
+.help-inline{
+	vertical-align: top;
+}
+.row{
+	padding-top: 20px;
+	padding-bottom: 20px;
+}
+</style>
+</head>
+<script>
+ $(function(){
+   $(".check_enable").click(function(){
+	    var enable_check = 1;
+        if(!$(this).attr('checked')){
+            enable_check = 0;
+         }
+        var submitData = {
+            enable_check:enable_check,
+            type:'single'
+                }
+        $.post('/main/check_enable',submitData,function(data){
+			 
+			
+		},"json");
+    })
+ })
+</script>
+<body>
+	<div class="row">
+	
+		<div class="span7">
+			<div class="msg-editer-wrapper">
+				<div class="msg-editer">
+					<form id="appmsg-form" class="form">
+						<div class="control-group">
+							<label class="control-label">标题</label><span class="maroon">*</span><span class="help-inline">(必填,不能超过64个字)</span>
+							<div class="controls">
+						    	<input type="text" value="<?php if($material){ echo $material->tm_title;}?>" id="title" class="span5" style="width: 482px;" name="title" />
+						    </div>
+					    </div>
+					
+					
+					  	<div class="control-group">
+						<label class="control-label">正文</label> <span class="maroon">*</span><span class="help-inline">(必填,不能超过2000个字)</span>     
+						    <div class="controls">
+								<!--<script type="text" id="editor"><?php if($material){ echo $material->tm_content;}?></script>-->
+								<!--<textarea type="text" style="width:482px; height:80px;" id="editor" value="<?php if($material){ echo $material->tm_content;}?>"></textarea>-->
+							<!--<input type="text" value="<?php if($material){ echo $material->tm_content;}?>" id="tm_content" class="span5" style="width: 482px;" name="tm_content" />-->
+							<textarea type="text" style="width:482px; height:80px;" id="tm_content" name="tm_content"><?php if($material){ echo $material->tm_content;}?></textarea>
+							</div>
+						</div>												
+						<div class="control-group">
+							<label class="control-label">回复关键字</label><span class="maroon">*</span><span class="help-inline">(必填)</span>
+							<div class="controls">
+						    	<input type="text" value="<?php if($material){ echo $material->tm_keyword;}?>" id="keyword" class="span5" style="width: 482px;" name="keywords" />
+						    </div>
+					    </div>
+					    
+					  	<div class="control-group">
+						    <div class="controls">
+						      <button id="save-btn" type="submit" class="btn btn-primary btn-large" where_to_post="text">保存</button>
+						      <button id="cancel-btn" type="button" class="btn btn-large">取消</button>
+						      
+						    </div>
+					    </div>
+					     
+					    <input id="m_id" name="m_id" type="hidden" value="<?php if($material){ echo $material->tm_id;}?>" />
+					</form> 
+				</div>
+				<span class="abs msg-arrow a-out" style="margin-top: 0px;"></span>
+				<span class="abs msg-arrow a-in" style="margin-top: 0px;"></span>
+			</div>
+		</div>
+	</div>
+</body>
+</html>

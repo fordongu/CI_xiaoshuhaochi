@@ -1,0 +1,16 @@
+<?php
+
+class Main_index_service extends MY_Service
+{
+    /**
+     * 获取商品主页所需要的信息
+     *
+     * @param int|array $goods_ids 商品id或者商品id组
+     * @param string $data
+     *
+     * @return int|array 库存
+     */
+   
+
+    
+}

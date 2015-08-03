@@ -1,0 +1,6 @@
+<?php
+header('Content-Type: text/html; charset=UTF-8');
+define('APIKEY','0c9aba74ec56c13725d02f5ec50443a5');
+define('Secret','879abe73d78de145');
+define( "CALLBACK_URL" ,'http://www.foundshow.com/doubancallback.php' );//回调地址
+define('AUTH_URL','https://www.douban.com/service/auth2/auth');

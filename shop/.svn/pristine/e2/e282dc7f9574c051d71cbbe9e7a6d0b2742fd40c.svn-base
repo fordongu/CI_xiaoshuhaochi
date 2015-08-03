@@ -1,0 +1,731 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta http-equiv="Content-Type" content="text/html;charset=UTF-8" />
+	<meta content="IE=edge" http-equiv="X-UA-Compatible">
+	<meta content="width=device-width,initial-scale=1.0,maximum-scale=1.0,user-scalable=0" name="viewport"> 
+	<meta content="yes" name="apple-mobile-web-app-capable">
+	<meta content="black" name="apple-mobile-web-app-status-bar-style">
+	<meta content="telephone=no" name="format-detection">
+	<title>小树好吃</title>  
+	<link href="/css/wechat_new.css" rel="stylesheet">  
+    <script type="text/javascript" src="/js/jquery-1.7.2.min.js"></script> 
+    <script type="text/javascript" src="/js/cart_wechat.js"></script> 
+    <style>
+      #address{
+	   margin-top:0;
+      }
+</style> 
+<script>
+$(document).ready(function(){
+    showCount();
+    
+        function getCookie(name)
+{
+    var arr,reg=new RegExp("(^| )"+name+"=([^;]*)(;|$)");
+
+    if(arr=document.cookie.match(reg))
+
+        return unescape(arr[2]);
+    else
+        return null;
+}
+    
+	$(".confirm_step-two_submit").click(function(){
+		location.href="wechat/index";
+	})
+	$('#company').change(function(){
+   		var company_id = $(this).val();
+   		if(company_id == -1){
+   			$('#extra_company').show();
+   			$('#address').show();
+   			$('#three_last_li').show();
+   		}else{
+   			$('#extra_company').hide();
+   			$('#address').hide();
+   			$('#three_last_li').hide();
+   		}
+   	})
+   		$('.new_address_confirm').click(function(){
+		$('#three_add_shipping_address').toggle();
+     })
+	$('.shipping_address_li2').click(function(){
+		var id = $(this).attr('data_id');
+	 
+		var submit_data={address_id:id};
+		  $.post('/wechat/change_default_address', submit_data,function(data) { 
+			 
+				if (data.success == 'yes') {
+				
+					window.location.href='/wechat/confirm_step_two';
+				} 
+			},"json");	
+	})
+
+	$('#new_building').click(function(){
+		
+		$('.three_company_div').toggle();
+		$('#extra_company').toggle();
+		$('#extra_building_address').toggle();
+		$('#extra_building_name').toggle();
+		$('#address').toggle();
+		$('#three_last_li').toggle();
+		$('#three_last_li2').toggle();
+	})
+
+	
+	    
+    $('#save_address').click(function(){ 
+    					 var center_flag = $('#center_flag').val();
+        	   	     	 var city_id = $('#city_id').val();
+        	   	      	 var province_id = $('#province_id').val();
+           	   	     	 var area_id = $('#area_id').val();
+                	   	 var address = $('#address').val();
+                	   	 var zipcode = $('#zipcode').val();
+                	   	 var nickname = $('#nickname').val();
+                	   	 var mobile  = $('#mobile').val();
+                	   	 var company = $('#company').val();
+                	   	 var uid = $('#uid').val();
+                	   	 var extra_company = $('#extra_company').val();
+                	   	 var tsa_building_id = $('#tsa_building_id').val();
+                	   
+                 	   	var v = /^13[0-9]{1}[0-9]{8}$|15[0123456789]{1}[0-9]{8}$|17[0123456789]{1}[0-9]{8}$|18[0123456789]{1}[0-9]{8}$/;
+                 	   	if(!nickname){ 
+ 						    $('#nickname').next('span').html('请填写昵称');
+ 							return false;
+                  	      }else{
+                    	    	$('#nickname').next('span').html('');
+                      	  }
+
+                  	   if(!mobile){ 
+						    $('#mobile').next('span').html('请填写手机号码');
+							return false;
+                	      }else{
+                  	    	$('#mobile').next('span').html('');
+                    	  }
+                    	 if(!v.test(mobile)){ 
+                 	  		$('#mobile').next('span').html('请输入正确的手机号');
+                	  		 return false;
+                	  	 }
+                    	  
+                    	 
+                    	  if((company==-1)&&(!extra_company)){ 
+ 						    $('#extra_company').next('span').html('请填写公司名称');
+ 							return false;
+                	      }else{
+                  	    	$('#extra_company').next('span').html('');
+                    	  }
+                    	
+                    	  if(company == -1){
+                    		  company = extra_company;
+                    	  }
+                    	 if(!province_id){ 
+   						    $('#address_note').html('请选择省份');
+   							return false;
+                  	      }else{
+                    	    $('#address_note').html('');
+                      	  }
+                    	 if(!city_id){ 
+ 						    $('#address_note').html('请选择城市');
+ 							return false;
+                	      }else{
+                  	    $('#address_note').html('');
+                    	  }
+                    	 if(!area_id){ 
+ 						    $('#address_note').html('请选择省份');
+ 							return false;
+                	      }else{
+                	    	  $('#address_note').html('');
+                    	  } 
+                    	 
+                    	 
+                    	 if(!tsa_building_id){ 
+  						    alert('请选择配送区域');
+  							return false;
+                 	      } 
+                    	 
+                	   	var id=$('#hidden_id').val(); 
+                	   	var data_flag = $(this).attr('data_flag');
+                	   	var new_flag = $('#new_flag').val();
+          	   		     var edit_flag = $('#edit_flag').val();
+          	   		   // var  extra_building_name = $('#extra_building_name').val();
+              	   		var  extra_building_address = $('#extra_building_address').val();
+              	   		/*if(extra_building_name){
+							company= extra_company;
+                  	   	}*/
+        	   		     var submitData = {
+                	   		    province_id:province_id,
+         	   		    		city_id:city_id,
+             	   		    	area_id:area_id,
+                 	   		    address:address,
+                     	   		nickname:nickname,
+                     	   		mobile:mobile,
+                     	   		company:company,
+								id:id,
+								tsa_building_id:tsa_building_id,
+								new_flag:new_flag,
+								uid:uid,
+								extra_building_address:extra_building_address,
+								//extra_building_name:extra_building_name
+                     	   		};
+        	   		     
+        	   		      $.post('/member/shipping_address_add', submitData,function(data) { 
+        	   					if (data.success == 'yes') {  
+            	   					if((new_flag==1)||(edit_flag==1)){
+            	   						if(data_flag==1){
+            	   							if(center_flag == 1){
+            	   								window.location.href="/wechat/member_address";
+            	   							}else{
+            	   							   window.location.href="/wechat/confirm_step_two";
+            	   							}
+            	   						}else{
+            	   							window.location.href="/main/order_confirm";
+            	   						}
+            	   						
+            	   					}else{
+            	   						if(data_flag==1){
+            	   							if(center_flag == 1){
+            	   								window.location.href="/wechat/member_address";
+            	   							}else{
+            	   							   window.location.href="/wechat/confirm_step_two";
+            	   							}
+            	   						}else{
+            	   							window.location.href="/member/shipping_address";
+            	   						}
+               	   					    
+            	   					}
+        	   					}else{
+									alert(data.msg);
+            	   				} 
+        	   },"json");
+   	   })
+
+    $('#building').change(function(){
+		var building_id = $(this).val();
+		if(building_id==-1){
+           $('#three_last_li2').show();
+           $('#three_last_li').show();
+           $('.three_company_div').hide();
+	    }else{
+	    	$('#three_last_li2').hide();
+	    	$('.three_company_div').show();
+	        $('#three_last_li').hide();
+
+	        var submit_data={id:building_id,type:'companys'};
+			  $.post('/member/ajax_get_building_name', submit_data,function(data) { 
+				 
+					if (data.success == 'yes') {
+						$('#tsa_building_id').val(building_id);
+					    var len = data.msg.length;
+					    var msg = data.msg;
+					    var str = '';
+					    for(var i=0;i<len;i++){
+							str+="<option value='"+msg[i].id+"'>"+msg[i].name+"</option>";
+						}
+						str+="<option value='-1'>新增公司</option>";
+						$('#company').html(str);
+					} 
+				},"json");	
+		}
+    })
+   	   //原来的confirm_step_three
+			$('#save_order').click(function(){
+		 var this_week_cart_str = getCookie('this_week_cart');
+            var this_week_cart = eval("("+this_week_cart_str+")");
+            for (var i in this_week_cart){
+                var goods_key = i.split('_');
+                var date = goods_key[1];
+                if (date == 0) {
+                    alert("请选择本周用餐日期");
+                    return false;
+                }
+            }
+
+            var next_week_cart_str = getCookie('next_week_cart');
+            var next_week_cart = eval("("+next_week_cart_str+")");
+            for (var i in next_week_cart){
+                var goods_key = i.split('_');
+                var date = goods_key[1];
+                if (date == 0) {
+                    alert("请选择下周用餐日期");
+                    return false;
+                }
+            }
+ 		var comment_input = $('#comment_input').val();
+ 		var payway = $('#hidden_pay_config').val(); 
+ 		var coupons_id = $('#coupons_id_used').val();
+ 		var submitdata = {
+ 				comment_input:comment_input,
+ 				payway:payway,
+ 				coupons_id:coupons_id
+ 		 		};
+			/*	
+ 		var shipping_address_flag = $('#shipping_address_flag').val();
+ 		if(shipping_address_flag != 1){
+ 			alert_frame('请选择配送地址',1);
+ 			return false;
+ 	 	}
+ 		if(invalid_flag == 1){
+ 			alert_frame('请选择正确的配送区域',1);
+ 			return false;
+ 		}
+		*/
+	
+		$.post('/wechat/save_order',submitdata,function(data) { 
+			if (data.success == 'yes') {
+				 if(data.price == 0){
+					 window.location.href="/wechat/member_order";
+			     }else{
+                                        if(window.localStorage){
+                  //  alert('This browser supports localStorage');
+                        }else{
+                    alert('This browser does NOT support localStorage');
+                            }
+                            var platform = localStorage.getItem("platform");
+                            if(platform){
+                                var sn=data.order_sn;
+                                $.post("wechat/getPayConfig",{order_sn:sn},function(order_pay){
+                                   if(order_pay==0){
+                                         uexWeiXin.gotoPay('order_pay.partnerid','order_pay.prepayid','order_pay.package','order_pay.noncestr','order_pay.timestamp','order_pay.sign');
+                                   }else{
+                                       alert(order_pay.data);
+                                   } 
+                                },"json");
+                               
+                            }else{
+                               if(data.pay_config == 'alipay'){
+					    window.location.href="/wechat/pay_order/"+data.order_sn;
+					 }else if(data.pay_config =='daofu'){
+					    window.location.href="/wechat/member_order";
+					 }else if(data.pay_config == 'wechat'){
+						 window.location.href="/index.php?c=wechat&m=wechat_pay&order_sn="+data.order_sn;
+				     } 
+                            }
+					 
+			     }
+			}else{
+				alert(data.msg);
+			}
+		},"json"); 
+   })
+  	  
+	   
+	   	//order_confirm的JS文件
+	   // var invalid_flag = '<?php //echo $invalid_flag;?>';
+	    $('.wechat_payment_li').click(function(){
+		 var selected_img = '<img src="/images/wechat_order_choosen.png" />';
+		 $('.wechat_payment_ul .payment_selected').html('');
+		 var va = $(this).attr('data_id');
+		 $('#hidden_pay_config').val(va);
+		 $(this).children('.payment_selected').html(selected_img);
+	  })
+
+	  $('.wechat_coupon_div').click(function(){
+        
+       $("#coupons").animate({
+           height: 'toggle'
+       }, 0);
+    })
+
+    $('#coupons li').click(function(){
+    	var normal_url = '/images/li_normal.png'; 
+		var select_url = '/images/li_selected.png';
+		$('#coupons img').attr('src',normal_url);
+		$(this).children('img').attr('src',select_url);
+		var data_id = $(this).attr('data_id');
+		var real_total_price = parseInt($('#real_total_amount').val());
+		var price = 0;
+		if(data_id !=0){
+			price = parseInt($(this).children('span').html()); 
+			
+		}
+		
+		var left_price = real_total_price - price; 
+		if(left_price <0){
+			left_price = 0;
+		}
+		left_price+=".00";
+		$('.coupons_price').html('￥'+price+'.00');
+		$('.order_total').html('￥'+left_price);
+       
+		$('#coupons_id_used').val(data_id);
+    })
+
+   /* $('#config_info').click(function (){
+        $('#config_i').toggleClass('config_title_i config_title_ii'); 
+        $('#three_add_shipping_address').toggle();
+      }
+    );
+
+    $('#config_pay').click(function (){
+        $('#config_i2').toggleClass('config_title_i config_title_ii'); 
+        $('#payment').toggle();
+      }
+    );
+*/
+    	
+	    })
+     
+	   
+	   
+
+
+	   
+
+</script>
+</head>
+<body id="confirm_step_one_body"> 
+   <!--<div class="confirm_step_three_header">
+   	<span class="float_left shipping_address_note">配送信息</span><span class="new_address_confirm float_right">新增地址</span>
+   </div>-->
+   
+   <!--<div class="confirm_step_one_title">
+     <div class="float_left shipping_address_note" style="margin-left:20px;height:20px;font-size:18px;">配送信息</div>
+     <div class="new_address_confirm float_right" style="width:20%;font-size:14px;">新增地址</div> 
+  </div>-->
+  <!-- order_list -->
+    <div class="views_order_confirm_new container_width_left_new">
+    <div class="shipping_config order_configs">
+       <span class="confirm_step_two_title"><span class="confirm_step_two_title_1"></span>餐品清单</span>
+        <ul class="main_order_confirm_title">
+          <li></li>
+            <li></li>
+            <li></li>
+            <li></li>
+            <li></li>
+      </ul>
+    </div>
+   <table class="order_list_table_new" id="this_goods_list">
+   <?php
+if ($cart_goods[0]) {
+    
+?>
+       <thead>
+            <tr>
+			
+           
+            <td colspan="4">
+              <span>本周：</span><select id="select_dinner_date_0" data-week="0" class="dinner_dates">
+                   <option selected="selected" value="0">请选择用餐日期</option>
+                   <?php
+                    foreach($this_week_list as $k => $day){
+                        $selected = '';
+                        if ($k == $cart_goods[0][0]['date']) {
+                            $selected = ' selected="selected"';
+                        }
+                        
+                        echo '<option value="'.$k.'"'.$selected.'>'.$day.'</option>';
+                    }?>
+                </select> 
+            </td>
+          <!--  <td>原价(元)</td>
+            <!--<td>优惠</td>
+            <td>份数</td><td>小计(元)</td>  -->
+            </tr>
+        </thead>
+        <tbody  id="this_goods_list">
+
+
+
+<?php
+    foreach ($cart_goods[0] as $k => $goods) {
+?>
+    <tr class="normal">
+ <!--       <td><?php echo $goods['date']; ?></td> -->
+        <td><?php echo $goods['goods_name'];?></td>
+        <td>￥<span><?php echo $goods['price'];?></span></td>
+        <!--<td class="youhui"><?php echo $v->event_name; ?></td>-->
+        <td>
+            <div class="add_goods">
+                <button class="btn minus good_button minus_goods float_left"  onclick="decrCart('<?=$goods['goods_key']?>',0,'wechat')">-</button>
+                <div class='float_left main_confirm_order_count confirm_order_count good_date'><?php echo $goods['goods_num']; ?></div>
+                <button class="btn plus good_button high_but float_left" onclick="incrCart('<?=$goods['goods_key']?>',0)">+</button>
+            </div>
+        </td>
+      <td class="totle">
+           <?php echo number_format($goods['goods_num'] * $goods['price'], 2, '.', '');  ?>
+        </td> 
+    </tr>
+<?php
+    }
+}
+?>
+
+       </tbody>
+    </table>
+    <table class="order_list_table_new" id="next_goods_list">
+   <?php
+if ($cart_goods[1]) {
+?>
+<thead>
+            <tr>
+		
+            <td colspan="4">
+               <span>下周：</span>
+			   <select id="select_dinner_date_1" data-week="1" class="dinner_dates">
+                   <option value="0" selected="selected">请选择用餐日期</option>
+                      <?php
+                    foreach($next_week_list as $k => $day){
+                        $selected = '';
+                        if ($k == $cart_goods[1][0]['date']) {
+                            $selected = ' selected="selected"';
+                        }
+                        echo '<option value="'.$k.'"'.$selected.'>'.$day.'</option>';
+                    }?>
+                </select>
+            </td>
+          <!--  <td>原价(元)</td>
+            <!--<td>优惠</td>
+            <td>份数</td><td>小计(元)</td>  -->
+            </tr>
+        </thead>
+        <tbody id="next_goods_list">
+<?php
+    foreach ($cart_goods[1] as $k => $goods) {
+?>
+    <tr class="normal_tr">
+  <!--    <td><?php echo $goods['date']; ?></td>  -->
+      <td><?php echo $goods['goods_name'];?></td>
+        <td>￥<span><?php echo $goods['price'];?></span></td>
+        <!--<td class="youhui"><?php echo $v->event_name; ?></td>-->
+        <td>
+            <div class="add_goods">
+                <button class="btn minus good_button float_left" onclick="decrCart('<?=$goods['goods_key']?>',1,'wechat')">-</button>
+                <div class='float_left main_confirm_order_count confirm_order_count good_date'><?php echo $goods['goods_num']; ?></div>
+                <button class="btn plus good_button high_but float_left" onclick="incrCart('<?=$goods['goods_key']?>',1)">+</button>
+            </div>
+        </td>
+    <td class="totle">
+           <?php echo number_format($goods['goods_num'] * $goods['price'], 2, '.', '');  ?>
+        </td> 
+    </tr>
+<?php
+    }
+}
+?>
+
+       </tbody>
+    </table>
+
+   <div class="confirm_step_three_amount float_left">
+         <input type="hidden" id="hidden_order_amount" value="<?php echo $total_count;?>" />
+         共&nbsp;&nbsp;<span class="views_cart_number">份</span>
+         原价:￥<span id="cost_price"><?php echo number_format($orignal_amount, 2, '.', ''); ?></span>
+		 <span>&nbsp;&nbsp;</span>
+         优惠价:￥<span id="preferential_price"><?php echo number_format($total_count, 2, '.', ''); ?></span>
+      </div>
+  
+    </div>
+	
+	
+	
+    <!-- order_list_end -->
+  
+<div class="confirm_step-two_submit" >
+   <a>
+    <img src="/images/iconfont-fanhui1.png" width="10px" height="10px" alt="返回">
+    </a><span>提交订单</span>
+</div>
+<div id="config_info" class="order_configs">
+        <div class="confirm_step_two_title"><span class="confirm_step_two_title_2"></span>配送信息<button class="new_address_confirm">+ 新增</button></div>
+     </div>
+
+     <ul class="three_add_shipping_address" id="three_add_shipping_address" <?php if(!$shipping_address){?>style='display: block;'<?php }else{?>  style='display: none;'  <?php }?>>
+         <li>
+            <span class="left_title">
+               姓名：
+            </span>
+              <input type="text" name="nickname" id="nickname" class="cookie_val" value="<?php if($edit_address){ echo $edit_address->tsa_nickname;}?>"></input><span class="error_note"></span>
+         </li>
+         <li>
+            <span class="left_title">
+               电话：
+            </span>
+              <input type="text" name="mobile" id="mobile" class="cookie_val" value="<?php if($edit_address){ echo $edit_address->tsa_mobile;}?>"></input><span class="error_note"></span>
+         </li>
+
+         <li>
+            <span class="left_title">
+                地址：
+            </span>
+           <div class="three_input_div three_note_div">
+              <?php $building = $default_building[0];
+                  echo $building->province.'&nbsp;&nbsp;&nbsp;&nbsp;'.$building->city.'&nbsp;&nbsp;&nbsp;&nbsp;'.$building->area.'&nbsp;&nbsp;&nbsp;&nbsp;';if(!$event_building_flag){echo $building->address.'&nbsp;&nbsp;&nbsp;&nbsp;';}
+              ?>
+           </div>
+         </li>
+         
+		  <input type="hidden" id="hidden_pay_config" value="<?php echo $payment[0]->name;?>" />
+          <input type="hidden" id="province_id"  value="<?php echo $building->province_id;?>" />
+       <input type="hidden" id="city_id"  value="<?php echo $building->city_id;?>" />
+        <input type="hidden" id="area_id"  value="<?php echo $building->area_id;?>" />
+        <input type="hidden" id="tsa_building_id"  value="<?php echo $building->id;?>" />
+        <input type="hidden" id="zipcode"  value="" />
+        <input type="hidden" id="uid"  value="<?php echo $uid;?>" />
+        <input type="hidden" id="new_flag"  value="<?php echo $new_flag;?>" />
+ 		<input type="hidden" id="edit_flag"  value="<?php echo $edit_flag;?>" />
+ 	    <input type="hidden" id="center_flag"  value="0" />
+ 		<input type="hidden" id="event_building_flag"  value="<?php if($event_building_flag){echo 1;}else{echo 0;}?>" />
+          
+          
+        <!--  <li class="three_company_div" <?php if($event_building_flag){?>style="display:block;"<?php }?>>
+            <div class="left_title float_left">
+               &nbsp;
+            </div>
+            <div class="float_left three_input_div shipping_company_div">
+               <select id="company" name="company" style="width:100px;" class="cookie_val">
+                  <option value="">请选择公司</option>
+                <?php if($company){  foreach($company as $k=>$v){?>
+                  <option value="<?php echo $v->id;?>" <?php if($edit_address&&($edit_address->tsa_company==$v->id)){?>selected<?php }?>><?php echo $v->name;?></option>
+                <?php }}?>
+                  <option value="-1">新增公司</option>
+              </select><span class="error_note"></span>
+            </div>
+         </li>
+         -->
+         
+         <li id="three_last_li2" >
+           <div class="left_title float_left">&nbsp;</div>
+           <div class="three_input_div float_left address_detail">
+             <!-- <input type="hidden" name="extra_building_name" id="extra_building_name"  placeholder="请输入写字楼名称" value="" /><span class="error_note"></span>
+              <br/>-->
+              <input type="text" name="extra_building_address" id="extra_building_address" placeholder="xx路xx号" value="" /><span class="error_note"></span>
+              </div>  
+         </li>
+         
+       <!--  <li id="three_last_li" >
+           <div class="three_input_div float_left address_detail" >    
+              <input type="hidden" name="extra_company" id="extra_company"  style="display:block;" placeholder="请输入公司名称" value="" />      
+              <input type="text" name="address" id="address" placeholder="xx楼xx室" value="" /><span class="error_note"></span>
+            </div> <br/>-->
+            <button class="extra_div" id="save_address" data_flag="1">保存并使用</button> 
+         </li>
+         <li style="display:none;" class="three_company_div"  <?php if($event_building_flag){?>style="display:block;"<?php }else{?>style="display:none;" <?php }?>>
+            
+          <!--  <div class="float_left three_input_div shipping_company_div">
+               <select id="building" name="building" style="width:100px;" class="cookie_val">        
+                  <option value="">请选择写字楼</option>
+                <?php if($service_buildings){ 
+                    unset($service_buildings[7]);
+                    foreach($service_buildings as $k=>$v){
+                       
+                        ?>
+                  <option value="<?php echo $v->id;?>" >
+                      <?php echo $v->name;?>
+                  </option>
+                <?php 
+                }
+                    }?>
+                  <option value="-1">新增写字楼</option>
+              </select><span class="error_note"></span>
+            </div>-->
+         </li>
+         
+    
+         <li>
+            
+           <!-- <div class="float_left three_input_div three_coupon_normal extra_div" onclick='history.go(-1);' style="margin-top:-20px;height:35px;line-height:35px;text-align:center;">
+                返回
+                
+            </div>-->
+         </li>
+     </ul>
+   
+   
+     <?php if($shipping_address){?> 
+	 
+      <ul class="three_shipping_address">
+      <?php foreach($shipping_address as $k=>$v){?>
+         <li class="shipping_address_li2" data_id="<?php echo $v->tsa_id;?>">
+           <div class="three_shipping_main">
+             <?php if($v->tsa_default||($default_id==$v->tsa_id)){?>
+             <?php }else{?>
+             <?php }?>
+             
+             <div class="three_shipping_title">
+                 <div class="three_shipping_username"><?php echo $v->tsa_nickname;?><span class="three_shipping_mobile"><?php echo $v->tsa_mobile;?></span></div>
+                 
+             </div>
+             
+             <div class="three_shipping_detail" >
+                <?php echo $v->province.'&nbsp;&nbsp;&nbsp;&nbsp;'.$v->city.'&nbsp;&nbsp;&nbsp;&nbsp;'.$v->area;?>&nbsp;&nbsp;&nbsp;&nbsp;<?php echo $v->building_address.'&nbsp;&nbsp;&nbsp;&nbsp;'.$v->company_address.'&nbsp;&nbsp;&nbsp;&nbsp;';?> 
+             </div>
+          </div>
+          <div class="three_shipping_a">
+            <a href="">
+              <img src="/images/iconfont-fanhui2.png" alt="返回">
+              </a>
+          </div>   
+             </li>
+      <?php }?>    
+      </ul>
+      <?php }?> 
+ <!--<div class="confirm_step_one_footer">
+   <div class="float_left confirm_total_count">共&nbsp;<?php echo $cookie_count;?>&nbsp;份
+   	</div>
+   <div class="float_left confirm_total_count_amount">￥<?php echo number_format($total_count,2,'.','');?>
+   	</div>-->
+       <!--<div class="float_right confirm_next_step" <?php if($default_building_flag){?>onclick="location.href='/wechat/confirm_step_three'" <?php }?>>下一步
+  <img src="/images/confirm_three_arrow.png"  class="three_next_arrow"/>
+   </div> -->
+ 
+ <!--</div>-->
+
+
+<div id="config_pay" class="order_configs">
+        <div class="confirm_step_two_title"><span class="confirm_step_two_title_3"></span>支付方式<i class="config_title_ii"></i></div>
+     </div>
+
+ <!--<div class="confirm_step_one_title">
+     <div class="float_left shipping_address_note" style="margin-left:20px;height:20px;font-size:18px;">选择支付方式</div>
+   </div>-->
+
+ <ul id="payment" class="wechat_payment_ul">
+  <?php if($payment){
+     	  foreach($payment as $k=>$v){	
+  			 if($v->name == 'alipay'){
+     	?> 
+       <li data_id="<?php echo $v->name;?>" class="wechat_payment_li ">支付宝 <div class="payment_selected float_right"><?php if($k==0){?><img src="/images/wechat_order_choosen.png" /><?php }?></div></li> 
+   <?php }else if($v->name == 'wechat'){?>
+       <li data_id="<?php echo $v->name;?>" class="wechat_payment_li">微信支付 <div class="payment_selected float_right"><?php if($k==0){?><img src="/images/wechat_order_choosen.png" /><?php }?></div></li> 
+   <?php }else{?>
+     	<li data_id="<?php echo $v->name;?>" class="wechat_payment_li">货到付款 <div class="payment_selected float_right"><?php if($k==0){?><img src="/images/wechat_order_choosen.png" /><?php }?></div></li> 
+    <?php }}}
+    ?>   
+    <div class="payment_input">
+      <span class="payment_span">备注：</span>
+      <input type="text" name="comment" id="comment_input"  placeholder=''/>
+    </div>
+    
+ </ul> 
+
+
+ <div class="confirm_step_three_content">
+
+   <!--<div class="three_coupon_normal"><input type="button"  id="save_order" value="确认提交"></div>-->
+  <!-- 金额 --> 
+     
+      
+      <div class="three_coupon float_right" id="save_order" >确认下单</div>
+      
+      <input type="hidden" id="coupons_id_used" value="0" /> 
+       <input type="hidden" id="wechat_only" value="1" /> 
+       <?php if($coupons){?>  
+  <!-- 金额_end-->    
+      <div class="confirm_step_three_coupon_title"><img src='/images/confirm_selected_ring.png' class="coupon_ring"/>使用优惠券抵扣</div> 
+   
+      <ul class="three_coupon three_coupon_ul">
+        <?php foreach($coupons as $k=>$v){?>
+	         <li><div class="three_coupon_normal" data_id="<?php echo $v->tcr_id;?>" data_price="<?php echo $v->tc_price;?>"><?php echo $coupon_lang[$v->tc_title];?>  <?php echo $v->tc_price;?></div></li> 
+        <?php }?> 
+      </ul>
+    <?php }?>  
+    
+
+   
+
+	 
+   
+   </div>    
+</body>
+</html>

@@ -1,0 +1,76 @@
+ $(function (){
+$(".person_icon_div").click(function(){	
+ var tu_mobile=$("#tu_mobile").val();
+ if(tu_mobile){
+	   window.location.href='/wechat/member_center';
+  }else{
+	  if($(".loginBar_eric").css("display")=="none")
+		{
+		  $('.loginBar_eric').show(); 
+	  }else{		  
+		   $('.loginBar_eric').hide();
+	  }	   
+	  
+}
+})
+$(".pop_close_but").click(function(){
+	  $('.loginBar_eric').hide();
+})
+  $(".login_out").click(function(){
+    $.post('/main/clear_cookie_member', '',function(data) { 
+      if (data.success == 'yes') {
+        window.location.href='/wechat/index';
+      }else{
+        alert(data.msg);
+      }
+    },"json");  
+    
+  })
+  var choose_pic=parseInt($("#choose_pic").val()-1);
+   if(choose_pic==5||choose_pic==6||choose_pic==7)
+  {
+	  choose_pic=0;
+  }
+  var week=$('.detail_week:eq('+choose_pic+')').html();	
+   $(".choose_button").html(week);
+
+	var swiperH = new Swiper('.swiper-container', {
+		initialSlide :choose_pic,
+		//effect : 'coverflow',
+		//coverflow: {
+		//rotate: 90,
+		//stretch: 0,
+		//depth: 30,
+		//modifier: 1,
+		//slideShadows : false	
+	       //		},
+		onTransitionEnd: function(swiperH){		
+			var callback=swiperH.activeIndex;	
+			//alert(callback);			
+			var week=$('.detail_week:eq('+callback+')').html();	
+			$("#choose_pic").val(callback);		
+		  $(".choose_button").html(week);					
+		}
+    });
+
+		
+			
+	
+		
+
+
+
+
+$('.forget_passwd_eric').click(function(){
+  $('.loginBar_eric').hide();
+  $('.forgot_pass').show();
+});
+
+$('.forget_sign').click(function(){
+   $('.loginBar_eric').hide();
+   $('.signupBar_eric').show();
+});
+
+
+ });
+

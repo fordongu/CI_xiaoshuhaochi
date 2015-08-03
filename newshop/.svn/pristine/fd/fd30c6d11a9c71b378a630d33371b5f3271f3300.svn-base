@@ -1,0 +1,13 @@
+<?php
+
+class User_model extends CI_Model
+{
+    public function findUserByUsername($username)
+    {
+        $sql = 'SELECT * FROM t_users WHERE tu_username = ? LIMIT 1';
+        $query = $this->db->query($sql, array($username));
+        $user = $query->first_row();
+        return $user;
+    }
+
+}

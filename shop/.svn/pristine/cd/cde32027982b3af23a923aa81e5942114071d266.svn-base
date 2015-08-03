@@ -1,0 +1,30 @@
+<?php $method= $this->uri->segment(2);?>
+<?php $user_cookie = isset($_COOKIE['user_cookie'])?$_COOKIE['user_cookie']:'';
+      if($user_cookie){
+         $user_cookie = unserialize($user_cookie);       
+      }else{
+         redirect('/main/index');
+      } 
+?>
+<!--
+<div class="order_search_div header_img">
+   <div class="container_width order_search_content">
+      <img src="/images/logo.png" class="logo_img float_left cursor_pointer"  onclick="location.href='/main/index'"/>
+      <div class="order_confirm_title float_left">个人中心</div> 
+   </div>
+</div>--> 
+
+<div class="order_container_eric container_width_eric no_bottom_border_eric">
+<div style="min-height:795px;background:#fafafa;padding:;text-align:center;" class="member_menu_eric float_left">
+       <h4 style="height:50px;line-height:50px;width:100px;border-bottom:1px solid #ccc;margin:0 auto;">个人中心</h4>
+       <ul style="margin-top:10px;" class="member_menu_ul_eric">
+         <li style="height:30px;line-height:30px;" <?php if($method=='index'){?>class="" <?php }?> onclick="location.href='/member/index'">基本信息</li>
+         <li style="height:30px;line-height:30px;" <?php if($method=='shipping_address'){?>class="" <?php }?> onclick="location.href='/member/shipping_address'">配送地址</li>
+         <li style="height:30px;line-height:30px;" <?php if($method=='order_list'){?>class="" <?php }?> onclick="location.href='/member/order_list'">我的订单</li>
+         <li style="height:30px;line-height:30px;" <?php if($method=='coupons'){?>class="" <?php }?> onclick="location.href='/member/coupons'">优惠券</li>
+         <li style="height:30px;line-height:30px;" <?php if($method=='account'){?>class="" <?php }?> onclick="location.href='/member/account'">我的账户</li>
+         <li style="height:30px;line-height:30px;" <?php if($method=='score'){?>class="" <?php }?> onclick="location.href='/member/score'">积分</li>
+       </ul>
+     </div>
+	 </div>
+	 <div class="clear"></div>

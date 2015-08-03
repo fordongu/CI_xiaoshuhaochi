@@ -1,0 +1,52 @@
+<?php
+defined('BASEPATH') OR exit('No direct script access allowed');
+
+class cart extends Controller {
+
+    function __construct() {
+        parent::__construct();
+        $this->load->helper('curl');
+    }
+
+    public function getCart()
+    {
+        $new_website = $this->config->item('new_website');
+        $goods_list = vget($new_website."/cart/getCart",array('Cookie:this_week_cart='.$_COOKIE['this_week_cart'].';next_week_cart='.$_COOKIE['next_week_cart']));
+        //$count = $this->cart_service->getCartCount();
+        echo $goods_list;
+        exit;
+    }
+
+    public function getCartCount()
+    {
+        //$this->load->helper('curl');
+        $new_website = $this->config->item('new_website');
+        $count = vget($new_website."/cart/getCartCount",array('Cookie:this_week_cart='.$_COOKIE['this_week_cart'].';next_week_cart='.$_COOKIE['next_week_cart']));
+        echo $count;
+        exit;
+    }
+
+    public function incrCart()
+    {
+        $new_website = $this->config->item('new_website');
+        $goods_key = $this->input->post('goods_key');
+        $goods_num = (int)$this->input->post('goods_num');
+        $data = array('goods_key' => $goods_key, 'goods_num' => $goods_num);
+
+        $result = vpost($new_website."/cart/incrCart", $data, array('Cookie:this_week_cart='.$_COOKIE['this_week_cart'].';next_week_cart='.$_COOKIE['next_week_cart']));
+        echo $result;
+        exit;
+    }
+
+    public function decrCart()
+    {
+        $new_website = $this->config->item('new_website');
+        $goods_key = $this->input->post('goods_key');
+        $goods_num = (int)$this->input->post('goods_num');
+        $data = array('goods_key' => $goods_key, 'goods_num' => $goods_num);
+
+        $result = vpost($new_website."/cart/decrCart", $data, array('Cookie:this_week_cart='.$_COOKIE['this_week_cart'].';next_week_cart='.$_COOKIE['next_week_cart']));
+        echo $result;
+        exit;
+    }
+}

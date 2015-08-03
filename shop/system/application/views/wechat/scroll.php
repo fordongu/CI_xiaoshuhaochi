@@ -1,0 +1,137 @@
+
+<!DOCTYPE HTML>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no"/>
+
+    <link href="/css/bootstrap-combined.min.css" rel="stylesheet">
+    
+    <link href="/css/mains.css" type="text/css" rel="stylesheet"/>
+
+    <script type="text/javascript" src="/js//jquery-1.8.2.min.js"></script>
+   
+    <script type="text/javascript" src="/js/jquery.touchSwipe.min.js"></script> 
+
+    <title>touchSwipe</title>
+
+    <style>
+        
+
+        #imgs {
+            float: left;
+            display: inline;
+            padding: 0;
+            margin: 0;
+            width: 1510px;
+
+            transition-property: transform;
+            transition-duration: 0.5s;
+            transition-timing-function: ease-out;
+
+            /*apply a transform to kick in the hardware acceleration.  Without this, the first
+            time we add the transform you get odd rendering of the divs (half missing) */
+            transform: translate(0, 0);
+        }
+
+        #imgs div {
+            padding: 0;
+            margin: 0;
+            width: 500px;
+            height: 340px;
+		    float:left;
+            /*apply a transform to kick in the hardware acceleration.  Without this, the first
+            time we add the transform you get odd rendering of the divs (half missing) */
+            transform: translate(0, 0);
+        }
+    </style>
+
+    <script id='code_1'>
+        var IMG_WIDTH = 500;
+        var currentImg = 0;
+        var maxImages = 3;
+        var speed = 500;
+
+        var imgs;
+
+        var swipeOptions = {
+            triggerOnTouchEnd: true,
+            swipeStatus: swipeStatus,
+            allowPageScroll: "vertical",
+            threshold: 75
+        };
+
+        $(function () {
+            imgs = $("#imgs");
+            imgs.swipe(swipeOptions);
+        });
+
+
+        /**
+         * Catch each phase of the swipe.
+         * move : we drag the div
+         * cancel : we animate back to where we were
+         * end : we animate to the next image
+         */
+        function swipeStatus(event, phase, direction, distance) {
+            //If we are moving before swipe, and we are going L or R in X mode, or U or D in Y mode then drag.
+            if (phase == "move" && (direction == "left" || direction == "right")) {
+                var duration = 0;
+
+                if (direction == "left") {
+                    scrollImages((IMG_WIDTH * currentImg) + distance, duration);
+                } else if (direction == "right") {
+                    scrollImages((IMG_WIDTH * currentImg) - distance, duration);
+                }
+
+            } else if (phase == "cancel") {
+                scrollImages(IMG_WIDTH * currentImg, speed);
+            } else if (phase == "end") {
+                if (direction == "right") {
+                    previousImage();
+                } else if (direction == "left") {
+                    nextImage();
+                }
+            }
+        }
+
+        function previousImage() {
+            currentImg = Math.max(currentImg - 1, 0);
+            scrollImages(IMG_WIDTH * currentImg, speed);
+        }
+
+        function nextImage() {
+            currentImg = Math.min(currentImg + 1, maxImages - 1);
+            scrollImages(IMG_WIDTH * currentImg, speed);
+        }
+
+        /**
+         * Manually update the position of the imgs on drag
+         */
+        function scrollImages(distance, duration) {
+            imgs.css("transition-duration", (duration / 1000).toFixed(1) + "s");
+
+            //inverse the number we set in the css
+            var value = (distance < 0 ? "" : "-") + Math.abs(distance).toString();
+            imgs.css("transform", "translate(" + value + "px,0)");
+        }
+    </script>
+</head>
+<body> 
+
+<div class="container">
+    <p>Below is a very simple image gallery to demonstrate how to implement touchSwipe.<br/><br/>
+        Swipe the images below left and right. Swipe up and down will scroll the page. Uses HTML5
+        CSS to animate.</p>
+    <br/>
+ 
+        <div id="imgs">
+        <div><img src='/api_images/0384651927.jpg' /></div>
+        <div><img src='/api_images/0624513879.jpg' /></div>
+        <div><img src='/api_images/0754168923.jpg' /></div> 
+        </div>
+    
+</div>
+</body>
+</html>

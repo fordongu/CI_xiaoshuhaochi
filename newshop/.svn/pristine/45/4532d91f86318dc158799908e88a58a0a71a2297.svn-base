@@ -1,0 +1,105 @@
+<?php
+
+class Main_service extends MY_Service
+{
+    /**
+     * 
+     *
+     * 
+     * 
+     *
+     * @return arr $date
+     */
+        public function getDate(){
+            //获取当天用餐时间超过改时间则只能订购下一天的菜
+        $this->load->model("Product_model");
+        $limit=  $this->Product_model->getDate();
+        $usetime=$limit->tc_title;
+        $date=date("H:i:s");
+        if(strtotime($date)>strtotime($usetime)){
+            $usetime=date("Y-m-d",  strtotime("+1 day"));
+            $date_time=date("w")+1;
+        }else{
+            $usetime=date("Y-m-d");
+            $date_time=date("w");
+        }
+        return array($usetime,$date_time);
+        }  
+          /**
+     * 
+     *
+     * 获取当前周
+     * 
+     *
+     * 0是本周1下周
+     */
+        public function getWeek(){    
+                 $week=$this->input->get("week")?$this->input->get("week"):0;          
+            return $week;
+        }
+          /**
+     * 
+     *获取当前天首个菜
+     * 
+     * $goods=从数据库取出的商品大全信息
+     *
+     * @return arr $date
+     */
+        public function getFirstId($data){
+          $this->load->model("Product_model");
+          //$goods=$this->Product_model->getGoodsValid();
+          $goods=$data["final_goods"];
+             foreach ($goods as $key=>$val){
+                
+            }
+        }
+          /**
+     * 
+     *
+     * 首页显示下周时间切换的算法
+     * 
+     *
+     * @return arr $date
+     */
+        public function getWeeks(){
+        $day_now=date("w");
+        $week_day=date("Y/m/d");
+        if($day_now=="1"){
+            $this_mon= date("Y/m/d");
+            $this_fri=date("Y/m/d",  strtotime("+4 day"));
+            $next_mon=date("Y/m/d",strtotime("+7 day"));
+            $next_fri=date("Y/m/d",strtotime("+11 day"));
+        }else if($day_now==2){
+            $this_mon= date("Y/m/d", strtotime("-1 day"));
+            $this_fri=date("Y/m/d",  strtotime("+3 day"));
+             $next_mon=date("Y/m/d",strtotime("+6 day"));
+            $next_fri=date("Y/m/d",strtotime("+10 day"));
+        }else if($day_now==3){
+            $this_mon= date("Y/m/d", strtotime("-2 day"));
+            $this_fri=date("Y/m/d",  strtotime("+2 day"));
+             $next_mon=date("Y/m/d",strtotime("+5 day"));
+            $next_fri=date("Y/m/d",strtotime("+9 day"));
+        }else if($day_now==4){
+            $this_mon= date("Y/m/d", strtotime("-3 day"));
+            $this_fri=date("Y/m/d",  strtotime("+1 day"));
+             $next_mon=date("Y/m/d",strtotime("+4 day"));
+            $next_fri=date("Y/m/d",strtotime("+8 day"));
+        }else if($day_now==5){
+            $this_mon= date("Y/m/d", strtotime("-4 day"));
+            $this_fri=date("Y/m/d");
+            $next_mon=date("Y/m/d",strtotime("+3 day"));
+            $next_fri=date("Y/m/d",strtotime("+7  day"));
+        }else if($day_now==6){
+            $this_mon= date("Y/m/d", strtotime("-5 day"));
+            $this_fri=date("Y/m/d",strtotime("-1 day"));
+            $next_mon=date("Y/m/d",strtotime("+2 day"));
+            $next_fri=date("Y/m/d",strtotime("+6  day"));
+        }else if($day_now==7){
+            $this_mon= date("Y/m/d", strtotime("-6 day"));
+            $this_fri=date("Y/m/d",strtotime("-2 day"));
+            $next_mon=date("Y/m/d",strtotime("+1 day"));
+            $next_fri=date("Y/m/d",strtotime("+5  day"));
+        }
+        return array(array($this_mon,$this_fri),array($next_mon,$next_fri));
+    }
+}

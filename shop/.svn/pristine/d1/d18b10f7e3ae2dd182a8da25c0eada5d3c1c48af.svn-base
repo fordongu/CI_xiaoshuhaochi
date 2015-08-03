@@ -1,0 +1,412 @@
+$(document).ready(function() {
+
+    $('#new_address_button').click(function() {
+        $('.new_address_div').hide();
+        $('.new_address_edit').show();
+    })
+
+
+    $('#province_id').change(function() {
+        var province_id = $(this).val();
+        var str = '<option value="" >请选择</option>';
+        var submitData = {id: province_id, type: 'city'};
+        $.post('/member/ajax_get_city_area', submitData, function(data) {
+            if (data.success == 'yes') {
+                var msg = data.msg;
+                for (var i = 0; i < msg.length; i++) {
+                    str += "<option value='" + msg[i].city_id + "'>" + msg[i].city + "</option>";
+                }
+            }
+
+            $('#city_id').html(str);
+        }, "json");
+
+    })
+
+
+    $('#city_id').change(function() {
+        var city_id = $(this).val();
+        var str = '<option value="" >请选择</option>';
+        var submitData = {id: city_id, type: 'area'};
+
+        $.post('/member/ajax_get_city_area', submitData, function(data) {
+            if (data.success == 'yes') {
+                var msg = data.msg;
+                for (var i = 0; i < msg.length; i++) {
+                    str += "<option value='" + msg[i].area_id + "'>" + msg[i].area + "</option>";
+                }
+            }
+
+            $('#area_id').html(str);
+        }, "json");
+    });
+
+    $('#area_id').change(function() {
+        var area_id = $(this).val();
+        //异步获取区域 	   	 		     
+        var str2 = '<option value="" >请选择写字楼</option>';
+        var submitData = {id: area_id, type: 'service_buildings'};
+        //异步获取公司   
+        $.post('/member/ajax_get_companys', submitData, function(data) {
+
+            if (data.success == 'yes') {
+                var msg = data.msg;
+                var le = msg.length;
+                if (le > 0) {
+                    for (var i = 0; i < le; i++) {
+                        str2 += "<option value='" + msg[i].id + "'>" + msg[i].name + "</option>";
+                    }
+                }
+                $('#tsa_building_id').html(str2);
+            } else {
+
+                $('#tsa_building_id').html(str2);
+            }
+        }, "json");
+    });
+
+
+    $('#tsa_building_id').change(function() {
+        var building_id = $(this).val();
+        var submitData = {id: building_id, type: 'companys'};
+        //异步获取公司   
+        $.post('/member/ajax_get_building_name', submitData, function(data) {
+            var str = "<option value=''>请选择公司</option>";
+            if (data.success == 'yes') {
+                var msg = data.msg;
+                var le = msg.length;
+
+                if (le > 0) {
+                    for (var i = 0; i < le; i++) {
+                        str += "<option value='" + msg[i].id + "'>" + msg[i].name + "</option>";
+                    }
+                }
+            }
+            str += "<option value='-1'>新增公司</option>"
+            $('#company').html(str);
+        }, "json");
+
+    })
+
+    $('#company').change(function() {
+        var company_id = $(this).val();
+        if (company_id == -1) {
+            $('#extra_company').show();
+            $('#address').show();
+            $('#three_last_li').show();
+        } else {
+            $('#extra_company').hide();
+            $('#address').hide();
+            $('#three_last_li').hide();
+        }
+    })
+
+    $('.new_address_confirm').click(function() {
+        $('#three_add_shipping_address').toggle();
+    })
+    $(".set_default_address_eric").click(function() {
+        var id = $(this).attr('data_id');
+        var isthis = $(this);
+        var submitdata = {address_id: id};
+        $.post('/member/change_default_address', submitdata, function(data) {
+            if (data.success == 'yes') {
+
+                window.location.reload();
+
+
+            } else {
+                alert(data.msg);
+            }
+        }, "json");
+
+    })
+
+
+    $('#save_address').click(function() {
+
+        var building_id = $(this).attr("tsa_building_id");
+        var center_flag = $('#center_flag').val();
+        var city_id = $('#city_id').val();
+        var province_id = $('#province_id').val();
+        var area_id = $('#area_id').val();
+        var extra_building_address = $('#extra_building_address').val();
+        var zipcode = $('#zipcode').val();
+        var nickname = $('#nickname').val();
+        var mobile = $('#mobile').val();
+        var company_address = $('#company_address').val();
+        var uid = $('#uid').val();
+
+        // var extra_company = $('#extra_company').val();
+        var tsa_building_id = $('#tsa_building_id').val();
+
+        var v = /^13[0-9]{1}[0-9]{8}$|15[0123456789]{1}[0-9]{8}$|17[0123456789]{1}[0-9]{8}$|18[0123456789]{1}[0-9]{8}$/;
+        if (!nickname) {
+            $('#nickname').next('span').html('请填写昵称');
+            return false;
+        } else {
+            $('#nickname').next('span').html('');
+        }
+
+        if (!mobile) {
+            $('#mobile').next('span').html('请填写手机号码');
+            return false;
+        } else {
+            $('#mobile').next('span').html('');
+        }
+        if (!v.test(mobile)) {
+            $('#mobile').next('span').html('请输入正确的手机号');
+            return false;
+        }
+        if (!company_address) {
+            $('#company_address').next('span').html('公司地址不能空');
+            return false;
+        } else {
+            $('#company_address').next('span').html('');
+        }
+
+        if (!extra_building_address) {
+            $('#extra_building_address').next('span').html('地址不能空');
+            return false;
+        } else {
+            $('#extra_building_address').next('span').html('');
+        }
+
+
+
+        if (!province_id) {
+            $('#address_note').html('请选择省份');
+            return false;
+        } else {
+            $('#address_note').html('');
+        }
+        if (!city_id) {
+            $('#address_note').html('请选择城市');
+            return false;
+        } else {
+            $('#address_note').html('');
+        }
+        if (!area_id) {
+            $('#address_note').html('请选择省份');
+            return false;
+        } else {
+            $('#address_note').html('');
+        }
+
+
+        if (!tsa_building_id) {
+            alert('请选择配送区域');
+            return false;
+        }
+
+        var id = $('#hidden_id').val();
+        var data_flag = $(this).attr('data_flag');
+        var new_flag = $('#new_flag').val();
+        var edit_flag = $('#edit_flag').val();
+        var submitData = {
+            tsa_id: building_id,
+            province_id: province_id,
+            city_id: city_id,
+            area_id: area_id,
+            company_address: company_address,
+            nickname: nickname,
+            mobile: mobile,
+            extra_building_address: extra_building_address,
+            id: id,
+            tsa_building_id: tsa_building_id,
+            new_flag: new_flag,
+            uid: uid
+        };
+        $("#save_address").unbind("disabled");
+        $.post('/member/shipping_address_add', submitData, function(data) {
+
+            if (data.success == 'yes') {
+                if ((new_flag == 1) || (edit_flag == 1)) {
+                    if (data_flag == 1) {
+                        if (center_flag == 1) {
+                            window.location.href = "/wechat/member_address";
+                        } else {
+                            window.location.href = "/wechat/confirm_step_two";
+                        }
+                    } else {
+                        window.location.href = "/main/order_confirm";
+                    }
+
+                } else {
+                    if (data_flag == 1) {
+                        if (center_flag == 1) {
+                            window.location.href = "/wechat/member_address";
+                        } else {
+                            window.location.href = "/wechat/confirm_step_two";
+                        }
+                    } else {
+                        window.location.href = "/member/shipping_address";
+                    }
+
+                }
+            } else {
+                alert(data.msg);
+            }
+        }, "json");
+    })
+//设置默认地址   	   
+    $('.set_default_address').click(function() {
+
+        var id = $(this).attr('data_id');
+        var submitdata = {address_id: id};
+        $.post('/member/change_default_address', submitdata, function(data) {
+            if (data.success == 'yes') {
+                window.location.reload();
+            } else {
+                alert(data.msg);
+            }
+        }, "json");
+
+    })
+
+//设置默认地址   	   
+    $('.delete_default_address').click(function() {
+        if (confirm('确认删除此快递地址吗？')) {
+            var id = $(this).attr('data_id');
+            var submitdata = {address_id: id};
+            $.post('/member/delete_default_address', submitdata, function(data) {
+                if (data.success == 'yes') {
+                    window.location.reload();
+                } else {
+                    alert(data.msg);
+                }
+            }, "json");
+        }
+    })
+//修改地址
+    $(".edit_address").click(function() {
+        var id = $(this).attr('data_id');
+        var tsa_building_id = $(this).attr("tsa_building_id");
+        var submitdata = {address_id: id, tsa_building_id: tsa_building_id};
+        $.post('/member/get_default_address', submitdata, function(data) {
+            if (data.success == 'yes') {
+                var msg = data.msg;
+
+                $('#nickname').val(msg.tsa_nickname);
+                $('#mobile').val(msg.tsa_mobile);
+                $('#extra_building_address').val(msg.new_building_address);
+                $('#company_address').val(msg.tsa_address);
+                $('#hidden_id').val(msg.tsa_id);
+                $("#save_address").attr("tsa_building_id", tsa_building_id);
+                $(".new_address_edit").show();
+            }
+
+        }, "json")
+
+        $(".add_new_address").toggle();
+    })
+    $('.edit_shipping_address').click(function() {
+
+        var id = $(this).attr('data_id');
+        var tsa_building_id = $(this).attr("tsa_building_id");
+        var submitdata = {address_id: id, tsa_building_id: tsa_building_id};
+        $.post('/member/get_default_address', submitdata, function(data) {
+            if (data.success == 'yes') {
+
+                var msg = data.msg;
+
+                $('#nickname').val(msg.tsa_nickname);
+                $('#mobile').val(msg.tsa_mobile);
+                $('#extra_building_address').val(msg.new_building_address);
+                $('#company_address').val(msg.tsa_address);
+                $('#hidden_id').val(msg.tsa_id);
+                $("#save_address").attr("tsa_building_id", tsa_building_id);
+                //$("#save_address").attr("data_id",id);
+                /*
+                 var province = data.province;
+                 var province_str = '<option value="" >请选择</option>'; 	
+                 for(var i=0;i<province.length;i++){
+                 province_str+="<option value='"+province[i].province_id+"' ";
+                 if(msg.tsa_province==province[i].province_id){
+                 province_str+=" selected=true ";
+                 }	
+                 province_str+=">"+province[i].province+"</option>";				    
+                 }
+                 $('#province_id').html(province_str);
+                 
+                 var city = data.city;
+                 var city_str = '<option value="" >请选择</option>'; 	
+                 for(var i=0;i<city.length;i++){
+                 city_str+="<option value='"+city[i].city_id+"' ";
+                 if(msg.tsa_city==city[i].city_id){
+                 city_str+=" selected=true ";
+                 }	
+                 city_str+=">"+city[i].city+"</option>";				    
+                 }
+                 $('#city_id').html(city_str);
+                 
+                 var area = data.area;
+                 var area_str = '<option value="" >请选择</option>'; 	
+                 for(var i=0;i<area.length;i++){
+                 area_str+="<option value='"+area[i].area_id+"' ";
+                 if(msg.tsa_district==area[i].area_id){
+                 area_str+=" selected=true ";
+                 }	
+                 area_str+=">"+area[i].area+"</option>";				    
+                 }
+                 $('#area_id').html(area_str);
+                 
+                 var company = data.companys;
+                 var company_str = '<option value="" >请选择</option>'; 	
+                 for(var i=0;i<company.length;i++){
+                 company_str+="<option value='"+company[i].id+"' ";
+                 if(msg.tsa_company==company[i].id){
+                 company_str+=" selected=true ";
+                 }	
+                 company_str+=">"+company[i].name+"</option>";				    
+                 }
+                 $('#company').html(company_str);
+                 
+                 var buildings = data.buildings;
+                 var buildings_str = '<option value="" >请选择</option>'; 	
+                 for(var i=0;i<buildings.length;i++){
+                 buildings_str+="<option value='"+buildings[i].id+"' ";
+                 if(msg.tsa_building_id==buildings[i].id){
+                 buildings_str+=" selected=true ";
+                 }	
+                 buildings_str+=">"+buildings[i].name+"</option>";				    
+                 }
+                 $('#tsa_building_id').html(buildings_str);
+                 */
+                $('.new_address_edit').show();
+            }
+        }, "json");
+    })
+
+    $('#new_shipping_address').click(function() {
+        $("#save_address").attr("tsa_building_id", "");
+        $('.new_address_edit').click(function() {
+            $('.new_address_edit').toggle('fast');
+            $(".cookie_val").val("");
+            $("#extra_building_address").val("");
+            $("#company_address").val("");
+
+        })
+
+
+
+
+        $('.new_address_edit input[type=text]').val('');
+        // var area_str = '<option value="" >请选择</option>'; 	
+        // $('#city_id,#area_id').html(area_str);
+        $('#hidden_id').val(0);
+    })
+
+    var new_flag = '<?php echo $new_flag;?>';
+
+    if (new_flag == 1) {
+        $('.new_address_edit').show();
+        $('.new_address_edit input[type=text]').val('');
+        var area_str = '<option value="" >请选择</option>';
+        $('#city_id,#area_id').html(area_str);
+        $('#hidden_id').val(0);
+    }
+    var edit_flag = '<?php echo $edit_flag;?>';
+    if (edit_flag == 1) {
+        $('.new_address_edit').show();
+    }
+})   

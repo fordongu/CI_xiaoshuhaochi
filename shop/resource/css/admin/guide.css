@@ -1,0 +1,126 @@
+#guide{
+	position: absolute;
+	top: 0;
+	left: 0;
+	overflow: auto;
+}
+#guide .tip{
+	position: absolute;
+}
+#guide a,#notice_mask a{
+	display: inline-block;
+	zoom: 1;
+	*display: inline;
+	position: absolute;
+	background-color: white;
+	filter:Alpha(Opacity=0);opacity:0;
+}
+#bigpic0 .close{
+	width: 40px;
+	height: 40px;
+	top: 8px;
+	right: 8px;
+}
+#bigpic0 .next{
+	width: 50px;
+	height: 50px;
+	top: 150px;
+	right: 60px;
+}
+#bigpic1 .prev{
+	width: 65px;
+	height: 30px;
+	top: 580px;
+	right: 140px;
+}
+#bigpic1 .next{
+	width: 60px;
+	height: 50px;
+	top: 570px;
+	right: 75px;
+}
+#bigpic2 .prev{
+	width: 65px;
+	height: 30px;
+	top: 580px;
+	right: 470px;
+}
+#bigpic2 .next{
+	width: 60px;
+	height: 50px;
+	top: 570px;
+	right: 400px;
+}
+#bigpic3 .prev{
+	width: 65px;
+	height: 30px;
+	top: 675px;
+	right: 477px;
+}
+#bigpic3 .next{
+	width: 60px;
+	height: 50px;
+	top: 665px;
+	right: 410px;
+}
+#bigpic4 .close{
+	width: 224px;
+	height: 62px;
+	top: 275px;
+	right: 278px;
+}
+#bigpic4 .click-help{
+	width: 100px;
+	height: 30px;
+	top: 150px;
+	right: 80px;
+}
+#bigpic4 .again , #bigpic5 .again{
+	width: 100px;
+	height: 30px;
+	top: 295px;
+	right: 160px;
+}
+#bigpic4 .prev{
+	width: 65px;
+	height: 30px;
+	top: 530px;
+	right: 480px;
+}
+#bigpic4 .next{
+	width: 54px;
+	height: 54px;
+	top: 520px;
+	right: 414px;
+}
+#bigpic5 .shop-close{
+	width: 190px;
+	height: 62px;
+	top: 275px;
+	right: 280px;
+}
+#bigpic5 .video-help{
+	width: 100px;
+	height: 30px;
+	top: 95px;
+	right: 110px;
+}
+#loading{
+	position: relative;
+	background-color: white;
+	width: 372px;
+	height: 178px;
+	text-align: center;
+}
+.modal-backdrop, .modal-backdrop.fade.in {
+	filter: alpha(opacity=95);opacity: 0.95;
+}
+#notice_mask div{
+	position: absolute;
+}
+#notice_mask a{
+	width: 350px;
+	height: 60px;
+	top: 550px;
+	left: 500px;
+}

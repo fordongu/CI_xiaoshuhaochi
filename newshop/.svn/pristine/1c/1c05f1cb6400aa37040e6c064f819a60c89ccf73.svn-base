@@ -1,0 +1,93 @@
+<?php
+class base extends CI_Model
+{
+
+   function select($table,$cond="",$num="",$offset="",$like='',$order='',$where_in='',$or_where=''){
+       if($num){
+          $this->db->limit($num,$offset);	   
+       }    
+       if ($cond){
+          $this->db->where($cond);     
+       }
+       
+       if ($or_where){
+       	  $this->db->or_where($or_where);
+       }
+       
+       if($where_in){
+       	  foreach($where_in as $key=>$v){
+             $this->db->where_in($key,$v);	
+         }
+       }
+       
+       if (!empty($like)){
+       	  $this->db->like($like);
+       }
+       if($order){
+       	  foreach($order as $key=>$val){
+       	     $this->db->order_by($key,$val);
+       	  }
+       }
+       
+       $query = $this->db->get($table);
+       $result = $query->result();  
+     //  echo $this->db->last_query()."<br/>";
+    
+       return $result;
+    }
+    
+    
+    function api_select($table,$fields="*",$cond="",$num="",$offset="",$like='',$order=''){
+    	
+    	$this->db->select($fields);
+    	
+    	if($num){
+    		$this->db->limit($num,$offset);
+    	}
+    	if ($cond){
+    		$this->db->where($cond);
+    	}
+    	if (!empty($like)){
+    		$this->db->like($like);
+    	}
+    	if($table == "materials"){
+    		$order = array('tm_createtime'=>'desc');
+    	}
+    	
+    	if($order){
+    		foreach($order as $key=>$val){
+    			$this->db->order_by($key,$val);
+    		}
+    	}
+    	 
+    	$query = $this->db->get($table);
+    	$result = $query->result();
+    	//echo $this->db->last_query()."<br/>";
+    	return $result;
+    }
+    
+    
+    function update($table,$data,$cond){
+       $result = $this->db->update($table,$data,$cond);
+    //   echo $this->db->last_query()."<br/>";
+        
+       return $result;
+    }
+    
+    function delete($table,$cond){
+       $result = $this->db->delete($table,$cond);
+       return $result;
+    }
+     function insert($table,$data){
+       $result = $this->db->insert($table,$data);
+       $id = $this->db->insert_id();
+      // echo $this->db->last_query()."<br/>";
+       return $id;
+    }
+    /*
+    function personal_select($sql){
+		$query = $this->db->query($sql);
+		$result= $query->result();
+		return $result;
+	}*/
+}

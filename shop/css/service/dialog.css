@@ -1,0 +1,77 @@
+.select .d_option {
+	height: 4.4rem;
+	width: 100%;
+	font-size: 1.6rem;
+	border-radius: 0.65rem;
+	margin-top: 1.6rem;
+	margin-bottom: 1.6rem;
+	background: #fff;
+	text-align: center;
+	color: #00bff3;
+	line-height: 4.4rem;
+	vertical-align: middle;
+}
+
+.select .schedule_disabled{
+	color:#eee;
+}
+.select .d_option:active {
+	background: #00bff3;
+	color: #fff;
+}
+
+.d_symbol_left {
+	float:left;
+	font-size: 2.2rem;
+	color: #fff;
+	background: #00bff3;
+	padding:1.1rem;
+	font-weight: bold;
+	border-top-left-radius: 0.5rem;
+	border-bottom-left-radius: 0.5rem;
+}
+
+.d_num {
+	 /* position:absolute; */
+	width:16.5rem;
+	height:4.4rem;
+	/* top:50%;left:50%;
+	margin-top:-2rem;
+	margin-left:7.5rem;  */
+	
+}
+	
+.d_bg{
+	float: left;
+	background: #fff;
+	color: #00bff3;
+	width:4.4rem;
+	background:url("/image/service/number-bg.png") 0 0 no-repeat;
+	padding:1.1rem;
+	font-size: 2.2rem;
+	font-weight: bold;
+}
+	
+.d_symbol_right {
+	float:left;
+	font-weight: bold;
+	font-size: 2.2rem;
+	color: #fff;
+	background: #00bff3;
+	padding:1.1rem;
+	border-top-right-radius: 0.5rem;
+	border-bottom-right-radius: 0.5rem;
+}
+
+.d_disable{
+	background: #888888;
+}
+
+.d_seat {
+	padding: 1rem;
+}
+
+.d_seat img {
+	width: 100%;
+	height: 100%;
+}
